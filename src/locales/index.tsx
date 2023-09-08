@@ -1,12 +1,12 @@
 import { I18nContext, createI18nContext } from '@solid-primitives/i18n';
 import type { FlowComponent } from 'solid-js';
-import enGb from './en-gb.json';
-import enUs from './en-us.json';
-import esEs from './es-es.json';
-import frFr from './fr-fr.json';
-import jaJP from './ja-jp.json';
-import zhCn from './zh-cn.json';
-import zhTw from './zh-tw.json';
+import enGb from './en-GB.json';
+import enUs from './en-US.json';
+import esEs from './es-ES.json';
+import frFr from './fr-FR.json';
+import jaJP from './ja-JP.json';
+import zhCn from './zh-CN.json';
+import zhTw from './zh-TW.json';
 
 const ctx = createI18nContext(
     {
