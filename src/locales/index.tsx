@@ -18,10 +18,10 @@ const ctx = createI18nContext(
         zhCn,
         zhTw
     },
-    'en-us'
+    'enUs'
 );
 
-const availableLocales = ['en-gb', 'en-us', 'es-es', 'fr-fr', 'ja-jp', 'zh-cn', 'zh-tw'] as const;
+const availableLocales = ['enGb', 'enUs', 'esEs', 'frFr', 'jaJp', 'zhCn', 'zhTw'] as const;
 
 const I18nProvider: FlowComponent<{
     dict?: Record<string, Record<string, any>>;

@@ -5,7 +5,9 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
     plugins: [
-        devtools(),
+        devtools({
+            autoname: true
+        }),
         solidPlugin(),
         VitePWA({
             manifest: {
