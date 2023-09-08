@@ -8,11 +8,11 @@ Many of TUWA's predicesors are lacking in some aspects and are just not useful t
 
 ## Feature Progress
 
-  [ ] Schedules
-  [ ] User editable periods
-  [ ] Cloud syncing
-  [ ] Schoology intagration
-  [ ] Much more...
+  - [ ] Schedules
+  - [ ] User editable periods
+  - [ ] Cloud syncing
+  - [ ] Schoology intagration
+  - [ ] Much more...
 
 ## Technical Details
 
