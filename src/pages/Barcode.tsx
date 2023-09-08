@@ -3,17 +3,15 @@ import { createSignal, type Component } from 'solid-js';
 import { PageLayout } from '../layouts/page';
 import { Barcode } from '../components/Barcode';
 
-const Home: Component = () => {
+const BarcodePage: Component = () => {
     const [t] = useI18n();
     const [code, setCode] = createSignal('');
 
     return (
         <PageLayout title='pages.barcode.title'>
-            <div class='flex w-full flex-col items-center'>
-                <div class='w-full max-w-md rounded-lg bg-white px-4 py-2'>
-                    <div class='h-16 overflow-hidden'>
-                        <Barcode height={64} value={() => `*${code()}`} />
-                    </div>
+            <div class='w-full max-w-md rounded-lg bg-white px-4 py-2'>
+                <div class='h-16 overflow-hidden'>
+                    <Barcode height={64} value={() => `*${code()}*`} />
                 </div>
             </div>
             <input
@@ -21,16 +19,22 @@ const Home: Component = () => {
                 type='text'
                 inputMode='numeric'
                 value={code()}
-                placeholder='Enter your id here'
+                placeholder={t('pages.barcode.idPlaceholder')}
                 onInput={e => {
                     const value = e.currentTarget.value;
 
+                    if (value.length > 12) {
+                        e.currentTarget.value = code();
+                        return;
+                    }
+
                     // Remove all non-numeric characters
                     setCode(value.replace(/[^\d]/g, ''));
+                    e.currentTarget.value = code();
                 }}
             />
         </PageLayout>
     );
 };
 
-export default Home;
+export default BarcodePage;

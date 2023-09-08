@@ -6,11 +6,15 @@ import { Background } from './components/Background';
 // Import pages
 import './pages/Home';
 import './pages/Barcode';
+import './pages/Settings';
+import './pages/[404]';
 import { DefaultLayout } from './layouts/default';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
 const Barcode = lazy(() => import('./pages/Barcode'));
+const Settings = lazy(() => import('./pages/Settings'));
+const NotFound = lazy(() => import('./pages/[404]'));
 
 // Outlets
 const DefaultPageOutlet: Component = () => {
@@ -30,6 +34,8 @@ export const App: Component = () => {
                     <Route path='/' element={<DefaultPageOutlet />}>
                         <Route path='/home' element={<Home />} />
                         <Route path='/barcode' element={<Barcode />} />
+                        <Route path='/settings' element={<Settings />} />
+                        <Route path='*' element={<NotFound />} />
                     </Route>
                 </Routes>
             </I18nProvider>
