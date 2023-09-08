@@ -24,6 +24,10 @@ class GameOfLifeLogic {
         return this.grid;
     }
 
+    public setPoint(x: number, y: number, value: boolean): void {
+        this.grid[y * this.width + x] = value;
+    }
+
     public async resize(width: number, height: number): Promise<void> {
         // Resize the grid (deletes or adds rows/columns)
 
@@ -142,61 +146,84 @@ export const Background: Component = () => {
     let gol = new GameOfLifeLogic(0, 0);
     let animFrame: number | undefined;
 
-    onMount(() => {
+    const draw = () => {
         const ctx = canvas?.getContext('2d');
+        if (!ctx) return;
 
-        const draw = () => {
-            if (!ctx) return;
+        const width = (canvas?.width ?? 0) * 2;
+        const height = (canvas?.height ?? 0) * 2;
 
-            const width = (canvas?.width ?? 0) * 2;
-            const height = (canvas?.height ?? 0) * 2;
+        // Clear the canvas
+        ctx.clearRect(0, 0, width, height);
 
-            // Clear the canvas
-            ctx.clearRect(0, 0, width, height);
+        // Calc offset
+        const offsetX = (width - gol.getWidth() * cellSize) / 2;
+        const offsetY = (height - gol.getHeight() * cellSize) / 2;
 
-            // Calc offset
-            const offsetX = (width - gol.getWidth() * cellSize) / 2;
-            const offsetY = (height - gol.getHeight() * cellSize) / 2;
+        // Draw the grid
+        ctx.fillStyle = '#1f293750';
+        const grid = gol.getGrid();
+        for (let i = 0; i < grid.length; i++) {
+            const x = i % gol.getWidth();
+            const y = Math.floor(i / gol.getWidth());
 
-            // Draw the grid
-            ctx.fillStyle = '#1f293750';
-            const grid = gol.getGrid();
-            for (let i = 0; i < grid.length; i++) {
-                const x = i % gol.getWidth();
-                const y = Math.floor(i / gol.getWidth());
+            if (!grid[i]) continue;
 
-                if (!grid[i]) continue;
+            ctx?.fillRect(offsetX + x * cellSize, offsetY + y * cellSize, cellSize, cellSize);
+        }
 
-                ctx?.fillRect(offsetX + x * cellSize, offsetY + y * cellSize, cellSize, cellSize);
-            }
+        animFrame = undefined;
+    };
 
-            animFrame = undefined;
-        };
+    const mouseEvent = (e: MouseEvent | TouchEvent) => {
+        const width = (canvas?.width ?? 0) * 2;
+        const height = (canvas?.height ?? 0) * 2;
 
-        const resize = () => {
-            if (!ctx) return;
+        // Calc offset
+        const offsetX = (width - gol.getWidth() * cellSize) / 2;
+        const offsetY = (height - gol.getHeight() * cellSize) / 2;
 
-            // Get canvas size
-            const width = canvas?.clientWidth ?? 0;
-            const height = canvas?.clientHeight ?? 0;
+        // Get the mouse position and convert it to grid coordinates
+        if (e instanceof MouseEvent) {
+            const x = Math.floor((e.clientX - offsetX) / cellSize);
+            const y = Math.floor((e.clientY - offsetY) / cellSize);
 
-            const calcWidth = Math.ceil((width * 2) / cellSize);
-            const calcHeight = Math.ceil((height * 2) / cellSize);
+            gol.setPoint(x, y, true);
+            return;
+        }
 
-            console.log(calcWidth, calcHeight);
+        for (const touch of e.changedTouches) {
+            const x = Math.floor((touch.clientX - offsetX) / cellSize);
+            const y = Math.floor((touch.clientY - offsetY) / cellSize);
 
-            if (gol.getWidth() !== calcWidth || gol.getHeight() !== calcHeight) {
-                // Resize the grid
-                gol.resize(calcWidth, calcHeight);
-            }
+            gol.setPoint(x, y, true);
+        }
+    };
 
-            // Set canvas size
-            canvas!.width = width;
-            canvas!.height = height;
+    const resize = () => {
+        const ctx = canvas?.getContext('2d');
+        if (!ctx) return;
 
-            animFrame = requestAnimationFrame(draw);
-        };
+        // Get canvas size
+        const width = canvas?.clientWidth ?? 0;
+        const height = canvas?.clientHeight ?? 0;
 
+        const calcWidth = Math.ceil((width * 2) / cellSize);
+        const calcHeight = Math.ceil((height * 2) / cellSize);
+
+        if (gol.getWidth() !== calcWidth || gol.getHeight() !== calcHeight) {
+            // Resize the grid
+            gol.resize(calcWidth, calcHeight);
+        }
+
+        // Set canvas size
+        canvas!.width = width;
+        canvas!.height = height;
+
+        animFrame = requestAnimationFrame(draw);
+    };
+
+    onMount(() => {
         resize();
 
         const stepFrame = setInterval(() => {
@@ -212,18 +239,26 @@ export const Background: Component = () => {
         });
 
         resizeObserver.observe(canvas!);
+        window.addEventListener('mousemove', mouseEvent);
+        window.addEventListener('mousedown', mouseEvent);
+        window.addEventListener('touchmove', mouseEvent);
+        window.addEventListener('touchstart', mouseEvent);
 
         onCleanup(() => {
             resizeObserver.disconnect();
             clearInterval(stepFrame);
             cancelAnimationFrame(animFrame!);
+            window.removeEventListener('mousemove', mouseEvent);
+            window.removeEventListener('mousedown', mouseEvent);
+            window.removeEventListener('touchmove', mouseEvent);
+            window.removeEventListener('touchstart', mouseEvent);
         });
     });
 
     return (
         <canvas
             ref={canvas}
-            class='w-screen h-screen fixed -z-10 top-0 left-0'
+            class='fixed left-0 top-0 -z-10 h-screen w-screen'
             aria-hidden={true}
         />
     );
