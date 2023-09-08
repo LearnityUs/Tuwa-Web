@@ -1,10 +1,12 @@
 # Gunn TUWA
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/11619b07-8788-4d13-bde3-45de33fbc093/deploy-status)](https://app.netlify.com/sites/tuwa/deploys)
+
 Gunn TUWA (Titan's Unofficial Web App) is the one utility you'll ever need for everything Gunn. It is currently a work in progress and more features will be comming soon.
 
 ## Why TUWA
 
-Many of TUWA's predicesors are lacking in some aspects and are just not useful to an everyday student. TUWA plans to solve these issues rapidly using feedback and code from students rather than the slow process of feature requests. We welcome all people and ideas to help make TUWA a better app.
+Many of TUWA's predicesors are lacking in some aspects and are just not useful to an everyday student. TUWA plans to solve these issues rapidly using feedback and code from students rather than the slow process of feature requests. We welcome all people and ideas to help make TUWA a better app. View TUWA at [tuwa.netlify.app](https://tuwa.netlify.app).
 
 ## Feature Progress
 
