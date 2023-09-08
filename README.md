@@ -12,6 +12,10 @@ student. TUWA plans to solve these issues rapidly using feedback and code from s
 the slow process of feature requests. We welcome all people and ideas to help make TUWA a better
 app. View TUWA at [tuwa.netlify.app](https://tuwa.netlify.app).
 
+## Want to help?
+
+There are many ways to contribute to the development of TUWA. You can help by reporting bugs, requesting features, translating via [Crowdin](https://crowdin.com/project/gunn-tuwa). or even contributing code. Feel free to do any of these things!
+
 ## Feature Progress
 
 -   [ ] Schedules
