@@ -9,7 +9,8 @@
         "build": "vite build",
         "serve": "vite preview",
         "lint": "eslint --fix .",
-        "lint:check": "eslint ."
+        "lint:check": "eslint .",
+        "script:sched": "node ./scripts/genSched.js"
     },
     "license": "MIT",
     "devDependencies": {

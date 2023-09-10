@@ -18,7 +18,8 @@ There are many ways to contribute to the development of TUWA. You can help by re
 
 ## Feature Progress
 
--   [ ] Schedules
+-   [x] Schedules
+    -   [ ] Alternative Schedules
 -   [ ] User editable periods
 -   [ ] Cloud syncing
 -   [ ] Schoology intagration

@@ -23,15 +23,29 @@ const pageOptions = [
     }
 ];
 
+const stripUrl = (url: string) => {
+    // Remove trailing slash
+    if (url.endsWith('/')) url = url.slice(0, -1);
+    return url;
+};
+
 interface NavOptionProps {
     key: string;
     href: string;
     icon: string;
     active: () => boolean;
     onClick: () => void;
+    isMobile?: boolean;
 }
 
-const NavOption: Component<NavOptionProps> = ({ key, href, icon, active, onClick }) => {
+const NavOption: Component<NavOptionProps> = ({
+    key,
+    href,
+    icon,
+    active,
+    onClick,
+    isMobile = false
+}) => {
     const [t] = useI18n();
 
     return (
@@ -44,12 +58,12 @@ const NavOption: Component<NavOptionProps> = ({ key, href, icon, active, onClick
         >
             <div
                 class={
-                    'group-hover:bg-theme-700/20 rounded-full px-3 py-1 text-gray-300 transition-colors group-hover:text-white ' +
-                    (active() && 'bg-theme-700 group-hover:!bg-theme-700 text-white')
+                    'rounded-full px-3 py-1 text-gray-300 transition-colors group-hover:bg-theme-700/20 group-hover:text-white ' +
+                    (active() && 'bg-theme-700 text-white group-hover:!bg-theme-700')
                 }
             >
-                <svg class='h-6 w-6 transition-all' viewBox='0 -960 960 960'>
-                    <path fill='currentColor' d={icon} />
+                <svg class={isMobile ? 'h-4 w-4' : 'h-6 w-6'} viewBox='0 -960 960 960'>
+                    <path class='transition-color' fill='currentColor' d={icon} />
                 </svg>
             </div>
             <p class='text-xs'>{t(key)}</p>
@@ -58,10 +72,10 @@ const NavOption: Component<NavOptionProps> = ({ key, href, icon, active, onClick
 };
 
 export const SideBar: Component = () => {
-    const [page, setPage] = createSignal(window.location.pathname);
+    const [page, setPage] = createSignal(stripUrl(window.location.pathname));
 
     return (
-        <div class='pointer-events-none hidden h-full flex-col items-center gap-6 bg-gray-900/60 px-5 py-5 backdrop-blur-md transition-all lg:pointer-events-auto lg:flex'>
+        <div class='pointer-events-none fixed top-0 hidden h-full flex-col items-center gap-6 bg-gray-900/60 pb-5 pl-[max(env(safe-area-inset-left),1.25rem)] pr-5 pt-[calc(env(safe-area-inset-top)+1.25rem)] backdrop-blur-md transition-all md:pointer-events-auto md:flex'>
             {pageOptions.map(option => (
                 <NavOption
                     key={option.key}
@@ -76,10 +90,10 @@ export const SideBar: Component = () => {
 };
 
 export const BottomBar: Component = () => {
-    const [page, setPage] = createSignal(window.location.pathname);
+    const [page, setPage] = createSignal(stripUrl(window.location.pathname));
 
     return (
-        <div class='fixed bottom-0 flex w-full flex-row justify-evenly gap-6 bg-gray-900/60 px-4 py-3 backdrop-blur-md transition-all lg:pointer-events-none lg:hidden'>
+        <div class='fixed bottom-0 flex w-full flex-row justify-evenly gap-6 bg-gray-900/60 px-4 py-2 pb-[max(0.5rem,calc(env(safe-area-inset-bottom)))] backdrop-blur-md transition-all md:pointer-events-none md:hidden'>
             {pageOptions
                 .filter(e => e.showMobile)
                 .map(option => (
@@ -89,6 +103,7 @@ export const BottomBar: Component = () => {
                         icon={option.icon}
                         active={() => page() === option.href}
                         onClick={() => setPage(option.href)}
+                        isMobile={true}
                     />
                 ))}
         </div>
