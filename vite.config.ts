@@ -14,10 +14,11 @@ export default defineConfig({
             manifest: {
                 name: 'GUNN TUWA',
                 short_name: 'TUWA',
-                theme_color: '#ffffff'
+                theme_color: '#030712'
             }
         })
     ],
+    publicDir: 'public',
     server: {
         port: 3000
     },
