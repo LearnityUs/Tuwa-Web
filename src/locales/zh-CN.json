@@ -1,8 +1,84 @@
 {
-    "pages.404.title": "Page not found",
-    "pages.404.message": "The page you are looking for does not exist.",
-    "pages.home.title": "主頁",
-    "pages.barcode.title": "Barcode",
-    "pages.barcode.idPlaceholder": "Enter your 950 ID number",
-    "pages.settings.title": "Settings"
+    "common": {
+        "somethingWentWrong": "Something went wrong",
+        "day": {
+            "monday": "Monday",
+            "tuesday": "Tuesday",
+            "wednesday": "Wednesday",
+            "thursday": "Thursday",
+            "friday": "Friday",
+            "saturday": "Saturday",
+            "sunday": "Sunday"
+        },
+        "month": {
+            "january": "January",
+            "february": "February",
+            "march": "March",
+            "april": "April",
+            "may": "May",
+            "june": "June",
+            "july": "July",
+            "august": "August",
+            "september": "September",
+            "october": "October",
+            "november": "November",
+            "december": "December"
+        },
+        "period": {
+            "0": "ZERO period",
+            "1": "1st period",
+            "2": "2nd period",
+            "3": "3rd period",
+            "4": "4th period",
+            "5": "5th period",
+            "6": "6th period",
+            "7": "7th period",
+            "8": "8th period",
+            "self": "SELF",
+            "prime": "PRIME",
+            "studyHall": "Study Hall",
+            "lunch": "Lunch",
+            "brunch": "Brunch"
+        },
+        "dateFormat": "{{day}}, {{month}} {{date}}",
+        "timeFormat": "{{hours}} hours and {{minutes}} minutes"
+    },
+    "pages": {
+        "404": {
+            "title": "Page not found",
+            "message": "The page you are looking for does not exist."
+        },
+        "home": {
+            "title": "Home",
+            "weekend": "Enjoy the weekend!",
+            "noSchool": "No school today!",
+            "beforeSchool": "Get ready for school!",
+            "beforeSchoolIn": "School starts in {{time}}",
+            "beforeSchoolNextPeriod": "{{period}} is in {{time}}",
+            "afterSchool": "School's over!",
+            "passingPeriod": "Passing period",
+            "nextPeriod": "Next period is {{period}}.",
+            "periodIn": "Ending in {{time}}.",
+            "emojis": {
+                "afterSchool": "😵‍💫",
+                "beforeSchool": "🌅",
+                "passingPeriod": "🚶",
+                "activePeriod": "🤪",
+                "breakPeriod": "🍕",
+                "classPeriod": "😵",
+                "noSchoolHoliday": "🏖️",
+                "noSchoolWeekend": "😌",
+                "noSchoolCustom": "😪"
+            },
+            "today": "Today's schedule",
+            "periodTime": "{{start}} — {{end}}"
+        },
+        "barcode": {
+            "title": "Barcode",
+            "idPlaceholder": "Enter your 950 ID number"
+        },
+        "settings": {
+            "title": "Settings"
+        }
+    }
 }
