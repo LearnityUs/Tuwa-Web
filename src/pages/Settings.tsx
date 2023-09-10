@@ -21,6 +21,8 @@ const SettingsPage: Component = () => {
                         for (const registration of registrations) {
                             registration.unregister();
                         }
+
+                        location.reload();
                     }}
                     class='w-fit cursor-pointer rounded-xl bg-tertiary-500/60 px-6 py-2 font-bold text-white transition-colors active:bg-tertiary-500/80'
                 >
