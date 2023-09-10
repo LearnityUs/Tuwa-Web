@@ -75,7 +75,7 @@ export const SideBar: Component = () => {
     const [page, setPage] = createSignal(stripUrl(window.location.pathname));
 
     return (
-        <div class='pointer-events-none fixed top-0 hidden h-full flex-col items-center gap-6 bg-gray-900/60 pb-5 pl-[max(env(safe-area-inset-left),1.25rem)] pr-5 pt-[calc(env(safe-area-inset-top)+1.25rem)] backdrop-blur-md transition-all md:pointer-events-auto md:flex'>
+        <div class='pointer-events-none fixed top-0 z-10 hidden h-full flex-col items-center gap-6 bg-gray-900/60 pb-5 pl-[max(env(safe-area-inset-left),1.25rem)] pr-5 pt-[calc(env(safe-area-inset-top)+1.25rem)] backdrop-blur-md transition-all md:pointer-events-auto md:flex'>
             {pageOptions.map(option => (
                 <NavOption
                     key={option.key}
@@ -93,7 +93,7 @@ export const BottomBar: Component = () => {
     const [page, setPage] = createSignal(stripUrl(window.location.pathname));
 
     return (
-        <div class='fixed bottom-0 flex w-full flex-row justify-evenly gap-6 bg-gray-900/60 px-4 py-2 pb-[max(0.5rem,calc(env(safe-area-inset-bottom)))] backdrop-blur-md transition-all md:pointer-events-none md:hidden'>
+        <div class='fixed bottom-0 z-10 flex w-full flex-row justify-evenly gap-6 bg-gray-900/60 px-4 py-2 pb-[max(0.5rem,calc(env(safe-area-inset-bottom)))] backdrop-blur-md transition-all md:pointer-events-none md:hidden'>
             {pageOptions
                 .filter(e => e.showMobile)
                 .map(option => (
