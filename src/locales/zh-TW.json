@@ -1,28 +1,28 @@
 {
     "common": {
-        "somethingWentWrong": "Something went wrong",
+        "somethingWentWrong": "出錯了",
         "day": {
-            "monday": "Monday",
-            "tuesday": "Tuesday",
-            "wednesday": "Wednesday",
-            "thursday": "Thursday",
-            "friday": "Friday",
-            "saturday": "Saturday",
-            "sunday": "Sunday"
+            "monday": "星期一",
+            "tuesday": "星期二",
+            "wednesday": "星期三",
+            "thursday": "星期四",
+            "friday": "星期五",
+            "saturday": "星期六",
+            "sunday": "星期日"
         },
         "month": {
-            "january": "January",
-            "february": "February",
-            "march": "March",
-            "april": "April",
-            "may": "May",
-            "june": "June",
-            "july": "July",
-            "august": "August",
-            "september": "September",
-            "october": "October",
-            "november": "November",
-            "december": "December"
+            "january": "一月",
+            "february": "二月",
+            "march": "三月",
+            "april": "四月",
+            "may": "五月",
+            "june": "六月",
+            "july": "七月",
+            "august": "八月",
+            "september": "九月",
+            "october": "十月",
+            "november": "十一月",
+            "december": "十二月"
         },
         "period": {
             "0": "ZERO period",
@@ -36,29 +36,29 @@
             "8": "8th period",
             "self": "SELF",
             "prime": "PRIME",
-            "studyHall": "Study Hall",
-            "lunch": "Lunch",
-            "brunch": "Brunch"
+            "studyHall": "學習廳",
+            "lunch": "午餐",
+            "brunch": "早午餐"
         },
-        "dateFormat": "{{day}}, {{month}} {{date}}",
-        "timeFormat": "{{hours}} hours and {{minutes}} minutes"
+        "dateFormat": "{{month}}{{day}}，{{date}}",
+        "timeFormat": "{{hours}}小時{{minutes}}分鐘"
     },
     "pages": {
         "404": {
-            "title": "Page not found",
-            "message": "The page you are looking for does not exist."
+            "title": "找不到頁面",
+            "message": "您正在尋找的網頁不存在。"
         },
         "home": {
-            "title": "Home",
-            "weekend": "Enjoy the weekend!",
-            "noSchool": "No school today!",
-            "beforeSchool": "Get ready for school!",
-            "beforeSchoolIn": "School starts in {{time}}",
-            "beforeSchoolNextPeriod": "{{period}} is in {{time}}",
-            "afterSchool": "School's over!",
-            "passingPeriod": "Passing period",
+            "title": "主页",
+            "weekend": "度過美好的周末！",
+            "noSchool": "今天没学校！",
+            "beforeSchool": "直到促销结束",
+            "beforeSchoolIn": "學校在{{time}}開始",
+            "beforeSchoolNextPeriod": "{{time}}到{{period}}",
+            "afterSchool": "學校結束了！",
+            "passingPeriod": "過渡時間",
             "nextPeriod": "Next period is {{period}}.",
-            "periodIn": "Ending in {{time}}.",
+            "periodIn": "以{{time}}結束。",
             "emojis": {
                 "afterSchool": "😵‍💫",
                 "beforeSchool": "🌅",
@@ -70,18 +70,18 @@
                 "noSchoolWeekend": "😌",
                 "noSchoolCustom": "😪"
             },
-            "today": "Today's schedule",
-            "periodTime": "{{start}} — {{end}}"
+            "today": "今天的日程安排",
+            "periodTime": "{{start}}到{{end}}"
         },
         "barcode": {
-            "title": "Barcode",
-            "idPlaceholder": "Enter your 950 ID number"
+            "title": "条形码",
+            "idPlaceholder": "請輸入您的950識別號碼。"
         },
         "settings": {
-            "title": "Settings",
-            "appRefresh": "Fix App Cache",
-            "appRefreshDescription": "If the app is not working properly, it may be because some files are outdated. This will fix that. Do not do this if you are offline.",
-            "appRefreshButton": "Fix"
+            "title": "设置",
+            "appRefresh": "修复应用程序缓存",
+            "appRefreshDescription": "如果应用程序无法正常工作，可能是因为某些文件过时了。这将解决这个问题。如果您处于离线状态，请不要这样做。",
+            "appRefreshButton": "修復"
         }
     }
 }
