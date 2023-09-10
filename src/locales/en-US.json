@@ -78,7 +78,10 @@
             "idPlaceholder": "Enter your 950 ID number"
         },
         "settings": {
-            "title": "Settings"
+            "title": "Settings",
+            "appRefresh": "Fix App Cache",
+            "appRefreshDescription": "If the app is not working properly, it may be because some files are outdated. This will fix that. Do not do this if you are offline.",
+            "appRefreshButton": "Fix"
         }
     }
 }

@@ -10,6 +10,7 @@ export default defineConfig({
         }),
         solidPlugin(),
         VitePWA({
+            registerType: 'autoUpdate',
             manifest: {
                 name: 'GUNN TUWA',
                 short_name: 'TUWA',
