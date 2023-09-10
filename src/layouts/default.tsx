@@ -7,10 +7,10 @@ interface DefaultLayoutProps {
 
 export const DefaultLayout: Component<DefaultLayoutProps> = (props: DefaultLayoutProps) => {
     return (
-        <div class='flex h-full w-full flex-row text-white'>
+        <div class='flex min-h-full w-full flex-row text-white'>
             <SideBar />
-            <div class='h-hull flex w-full justify-center'>
-                <div class='flex h-full w-full max-w-5xl flex-col'>{props.children}</div>
+            <div class='flex min-h-full w-full justify-center'>
+                <div class='flex min-h-full w-full max-w-4xl flex-col'>{props.children}</div>
             </div>
             <BottomBar />
         </div>
