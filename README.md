@@ -3,7 +3,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/11619b07-8788-4d13-bde3-45de33fbc093/deploy-status)](https://app.netlify.com/sites/tuwa/deploys)
 
 Gunn TUWA (Titan's Unified Web App) is the one utility you'll ever need for everything Gunn. It
-is currently a work in progress and more features will be comming soon.
+is currently a work in progress and more features will be coming soon.
 
 ## Why TUWA
 

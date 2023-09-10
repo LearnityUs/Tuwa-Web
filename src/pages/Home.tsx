@@ -342,7 +342,7 @@ const HomePage: Component = () => {
                                 period()?.period?.type === 'period' &&
                                 t('pages.home.emojis.classPeriod')}
                         </div>
-                        <div class='flex w-full flex-col items-center md:h-full md:items-start'>
+                        <div class='flex w-full flex-1 flex-col items-center md:h-full md:items-start'>
                             <h3 class='text-3xl font-bold'>
                                 {schoolState()?.data === 'before-school' &&
                                     t('pages.home.beforeSchool')}
