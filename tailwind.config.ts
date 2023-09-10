@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import colors from 'tailwindcss/colors';
+
 export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
@@ -16,7 +18,8 @@ export default {
                     '800': '#5a03d5',
                     '900': '#4b05ad',
                     '950': '#2c0076'
-                }
+                },
+                tertiary: colors.rose
             }
         }
     },
