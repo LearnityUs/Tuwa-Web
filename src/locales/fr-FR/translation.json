@@ -2,7 +2,6 @@
     "utils": {
         "time": {
             "timeLeft": {
-                "now": "Now",
                 "hours_one": "{{count}} hour",
                 "hours_other": "{{count}} hours",
                 "minutes_one": "{{count}} minute",
