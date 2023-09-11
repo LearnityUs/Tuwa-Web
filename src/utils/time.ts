@@ -76,7 +76,10 @@ export const getFormatedTimeLeft = (secondMidnight: number, useSeconds = false):
     // Now
     if (hours === 0 && minutes === 0 && seconds === 0) {
         return {
-            fmtString: 'utils.time.timeLeft.now'
+            fmtString: 'utils.time.timeLeft.seconds',
+            fmtArgs: {
+                count: secondMidnight % 60
+            }
         };
     }
 
