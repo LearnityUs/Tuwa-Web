@@ -1,5 +1,5 @@
 import { type Component, type JSX, onMount, createSignal, onCleanup } from 'solid-js';
-import { useI18n } from '@solid-primitives/i18n';
+import { Trans } from '@mbarzda/solid-i18next';
 
 interface PageLayoutProps {
     children: JSX.Element;
@@ -8,7 +8,6 @@ interface PageLayoutProps {
 }
 
 export const PageLayout: Component<PageLayoutProps> = ({ children, title, showTitle = true }) => {
-    const [t] = useI18n();
     const [appear, setAppear] = createSignal(false);
 
     onMount(() => {
@@ -23,7 +22,11 @@ export const PageLayout: Component<PageLayoutProps> = ({ children, title, showTi
                 (appear() && '!translate-y-0 !opacity-100')
             }
         >
-            {showTitle && <h1 class='text-5xl font-bold'>{t(title)}</h1>}
+            {showTitle && (
+                <h1 class='text-5xl font-bold'>
+                    <Trans key={title} />
+                </h1>
+            )}
             {children}
         </div>
     );

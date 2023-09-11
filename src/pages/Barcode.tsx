@@ -1,10 +1,10 @@
-import { useI18n } from '@solid-primitives/i18n';
 import { createSignal, type Component } from 'solid-js';
 import { PageLayout } from '../layouts/page';
 import { Barcode } from '../components/Barcode';
+import { useTransContext } from '@mbarzda/solid-i18next';
 
 const BarcodePage: Component = () => {
-    const [t] = useI18n();
+    const [t] = useTransContext();
     const [code, setCode] = createSignal('');
 
     return (
