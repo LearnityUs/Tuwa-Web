@@ -1,30 +1,46 @@
 {
+    "utils": {
+        "time": {
+            "timeLeft": {
+                "now": "Now",
+                "hours_one": "{{count}} hour",
+                "hours_other": "{{count}} hours",
+                "minutes_one": "{{count}} minute",
+                "minutes_other": "{{count}} minutes",
+                "seconds_one": "{{count}} second",
+                "seconds_other": "{{count}} seconds",
+                "timeFmtThree": "{{unitBig}}, {{unitMedium}} and {{unitSmall}}",
+                "timeFmtTwo": "{{unitBig}} and {{unitSmall}}"
+            },
+            "dateFmt": "{{day}}, {{month}} {{date}}, {{year}}",
+            "days": {
+                "monday": "Monday",
+                "tuesday": "Tuesday",
+                "wednesday": "Wednesday",
+                "thursday": "Thursday",
+                "friday": "Friday",
+                "saturday": "Saturday",
+                "sunday": "Sunday"
+            },
+            "months": {
+                "january": "January",
+                "february": "February",
+                "march": "March",
+                "april": "April",
+                "may": "May",
+                "june": "June",
+                "july": "July",
+                "august": "August",
+                "september": "September",
+                "october": "October",
+                "november": "November",
+                "december": "December"
+            }
+        }
+    },
     "common": {
-        "somethingWentWrong": "Something went wrong",
-        "day": {
-            "monday": "Monday",
-            "tuesday": "Tuesday",
-            "wednesday": "Wednesday",
-            "thursday": "Thursday",
-            "friday": "Friday",
-            "saturday": "Saturday",
-            "sunday": "Sunday"
-        },
-        "month": {
-            "january": "January",
-            "february": "February",
-            "march": "March",
-            "april": "April",
-            "may": "May",
-            "june": "June",
-            "july": "July",
-            "august": "August",
-            "september": "September",
-            "october": "October",
-            "november": "November",
-            "december": "December"
-        },
-        "period": {
+        "unknownError": "Something went wrong",
+        "periods": {
             "0": "ZERO period",
             "1": "1st period",
             "2": "2nd period",
@@ -38,7 +54,9 @@
             "prime": "PRIME",
             "studyHall": "Study Hall",
             "lunch": "Lunch",
-            "brunch": "Brunch"
+            "brunch": "Brunch",
+            "passing": "Passing period",
+            "custom": "Custom period: {{name}}"
         },
         "dateFormat": "{{day}}, {{month}} {{date}}",
         "timeFormat": "{{hours}} hours and {{minutes}} minutes"
@@ -51,21 +69,20 @@
         "home": {
             "title": "Home",
             "weekend": "Enjoy the weekend!",
-            "noSchool": "No school today!",
+            "alternativeDay": "No school: {{name}}",
             "beforeSchool": "Get ready for school!",
-            "beforeSchoolIn": "School starts in {{time}}",
             "beforeSchoolNextPeriod": "{{period}} is in {{time}}",
             "afterSchool": "School's over!",
-            "passingPeriod": "Passing period",
             "nextPeriod": "Next period is {{period}}.",
             "periodIn": "Ending in {{time}}.",
             "emojis": {
                 "afterSchool": "😵‍💫",
                 "beforeSchool": "🌅",
-                "passingPeriod": "🚶",
-                "activePeriod": "🤪",
-                "breakPeriod": "🍕",
-                "classPeriod": "😵",
+                "periodPassing": "🚶",
+                "periodActive": "🤪",
+                "periodBreak": "🍕",
+                "periodClass": "📚",
+                "periodCustom": "🧠",
                 "noSchoolHoliday": "🏖️",
                 "noSchoolWeekend": "😌",
                 "noSchoolCustom": "😪"

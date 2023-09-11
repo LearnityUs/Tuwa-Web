@@ -30,8 +30,9 @@
         "vite-plugin-solid": "^2.7.0"
     },
     "dependencies": {
-        "@solid-primitives/i18n": "^1.4.1",
+        "@mbarzda/solid-i18next": "^1.2.2",
         "@solidjs/router": "^0.8.3",
+        "i18next": "^23.5.1",
         "solid-devtools": "^0.27.7",
         "solid-js": "^1.7.6"
     }
