@@ -372,7 +372,7 @@ const HomePage: Component = () => {
                                         aria-valuemax={100}
                                     >
                                         <div
-                                            class='h-full min-w-[0.5rem] rounded-full bg-theme-500/60'
+                                            class='h-full min-w-[0.5rem] rounded-full bg-theme-500/60 transition-all'
                                             style={{
                                                 width: `${
                                                     100 -
