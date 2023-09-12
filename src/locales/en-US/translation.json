@@ -58,8 +58,7 @@
             "passing": "Passing period",
             "custom": "Custom period: {{name}}"
         },
-        "dateFormat": "{{day}}, {{month}} {{date}}",
-        "timeFormat": "{{hours}} hours and {{minutes}} minutes"
+        "pageFmt": "TUWA | {{page}}"
     },
     "pages": {
         "404": {
@@ -86,6 +85,15 @@
                 "noSchoolHoliday": "🏖️",
                 "noSchoolWeekend": "😌",
                 "noSchoolCustom": "😪"
+            },
+            "titles": {
+                "beforeSchool": "School starts at {{time}}",
+                "afterSchool": "School is over",
+                "periodPassing": "Passing (next is {{period}})",
+                "period": "{{period}}",
+                "noSchoolHoliday": "No school ({{name}})",
+                "noSchoolWeekend": "No school (weekend)",
+                "noSchoolCustom": "No school ({{name}})"
             },
             "today": "Today's schedule",
             "periodTime": "{{start}} — {{end}}"

@@ -10,7 +10,7 @@ export const DefaultLayout: Component<DefaultLayoutProps> = (props: DefaultLayou
         <div class='flex min-h-full w-full flex-row text-white'>
             <SideBar />
             <div class='flex min-h-full w-full justify-center'>
-                <div class='flex min-h-full w-full max-w-4xl flex-col'>{props.children}</div>
+                <div class='flex min-h-full w-full max-w-4xl flex-1 flex-col'>{props.children}</div>
             </div>
             <BottomBar />
         </div>
