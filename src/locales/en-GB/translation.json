@@ -56,9 +56,7 @@
             "brunch": "Brunch",
             "passing": "Passing period",
             "custom": "Custom period: {{name}}"
-        },
-        "dateFormat": "{{day}}, {{month}} {{date}}",
-        "timeFormat": "{{hours}} hours and {{minutes}} minutes"
+        }
     },
     "pages": {
         "404": {
