@@ -1,16 +1,18 @@
-import { useI18n } from '@solid-primitives/i18n';
 import type { Component } from 'solid-js';
 import { PageLayout } from '../layouts/page';
+import { TranslationItem } from '../locales';
 
 const SettingsPage: Component = () => {
-    const [t] = useI18n();
-
     return (
         <PageLayout title='pages.settings.title'>
             <div class='flex flex-col gap-4 rounded-3xl bg-tertiary-900/60 p-8 backdrop-blur'>
                 <div class='flex flex-col gap-2'>
-                    <h3 class='text-2xl font-bold'>{t('pages.settings.appRefresh')}</h3>
-                    <p class='text-sm text-gray-300'>{t('pages.settings.appRefreshDescription')}</p>
+                    <h3 class='text-2xl font-bold'>
+                        <TranslationItem fmtString='pages.settings.appRefresh' />
+                    </h3>
+                    <p class='text-sm text-gray-300'>
+                        <TranslationItem fmtString='pages.settings.appRefreshDescription' />
+                    </p>
                 </div>
                 <button
                     onClick={async () => {
@@ -26,7 +28,7 @@ const SettingsPage: Component = () => {
                     }}
                     class='w-fit cursor-pointer rounded-xl bg-tertiary-500/60 px-6 py-2 font-bold text-white transition-colors active:bg-tertiary-500/80'
                 >
-                    {t('pages.settings.appRefreshButton')}
+                    <TranslationItem fmtString='pages.settings.appRefreshButton' />
                 </button>
             </div>
         </PageLayout>

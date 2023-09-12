@@ -143,7 +143,7 @@ class GameOfLifeLogic {
 export const Background: Component = () => {
     const cellSize = 20;
     let canvas: HTMLCanvasElement | undefined;
-    let gol = new GameOfLifeLogic(0, 0);
+    const gol = new GameOfLifeLogic(0, 0);
     let animFrame: number | undefined;
 
     const draw = () => {

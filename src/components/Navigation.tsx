@@ -1,4 +1,4 @@
-import { useI18n } from '@solid-primitives/i18n';
+import { Trans } from '@mbarzda/solid-i18next';
 import { A } from '@solidjs/router';
 import { createSignal, type Component } from 'solid-js';
 
@@ -46,8 +46,6 @@ const NavOption: Component<NavOptionProps> = ({
     onClick,
     isMobile = false
 }) => {
-    const [t] = useI18n();
-
     return (
         <A
             class='group flex cursor-pointer flex-col items-center gap-1'
@@ -66,7 +64,9 @@ const NavOption: Component<NavOptionProps> = ({
                     <path class='transition-color' fill='currentColor' d={icon} />
                 </svg>
             </div>
-            <p class='text-xs'>{t(key)}</p>
+            <p class='text-xs'>
+                <Trans key={key} />
+            </p>
         </A>
     );
 };
@@ -75,16 +75,18 @@ export const SideBar: Component = () => {
     const [page, setPage] = createSignal(stripUrl(window.location.pathname));
 
     return (
-        <div class='pointer-events-none fixed top-0 z-10 hidden h-full flex-col items-center gap-6 bg-gray-900/60 pb-5 pl-[max(env(safe-area-inset-left),1.25rem)] pr-5 pt-[calc(env(safe-area-inset-top)+1.25rem)] backdrop-blur-md transition-all md:pointer-events-auto md:flex'>
-            {pageOptions.map(option => (
-                <NavOption
-                    key={option.key}
-                    href={option.href}
-                    icon={option.icon}
-                    active={() => page() === option.href}
-                    onClick={() => setPage(option.href)}
-                />
-            ))}
+        <div class='pointer-events-none fixed top-0 z-10 hidden h-full bg-gray-900/60 pb-5 pl-[max(env(safe-area-inset-left),1.25rem)] pr-5 pt-[calc(env(safe-area-inset-top)+1.25rem)] backdrop-blur-md transition-all md:pointer-events-auto md:flex'>
+            <div class='flex w-12 flex-col items-center gap-6'>
+                {pageOptions.map(option => (
+                    <NavOption
+                        key={option.key}
+                        href={option.href}
+                        icon={option.icon}
+                        active={() => page() === option.href}
+                        onClick={() => setPage(option.href)}
+                    />
+                ))}
+            </div>
         </div>
     );
 };
