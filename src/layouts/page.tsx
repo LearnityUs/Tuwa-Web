@@ -1,5 +1,6 @@
-import { type Component, type JSX, onMount, createSignal, onCleanup } from 'solid-js';
+import { type Component, type JSX, onMount, createSignal, onCleanup, createEffect } from 'solid-js';
 import { Trans } from '@mbarzda/solid-i18next';
+import { flattenFmt } from '../locales';
 
 interface PageLayoutProps {
     children: JSX.Element;
@@ -13,6 +14,18 @@ export const PageLayout: Component<PageLayoutProps> = ({ children, title, showTi
     onMount(() => {
         setTimeout(() => setAppear(true), 100);
         onCleanup(() => setAppear(false));
+    });
+
+    createEffect(() => {
+        if (showTitle)
+            document.title = flattenFmt({
+                fmtString: 'common.pageFmt',
+                fmtArgs: {
+                    page: {
+                        fmtString: title
+                    }
+                }
+            });
     });
 
     return (

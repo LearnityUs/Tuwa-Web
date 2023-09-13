@@ -1,4 +1,4 @@
-import { createSignal, type Component, onMount, onCleanup } from 'solid-js';
+import { createSignal, type Component, onMount, onCleanup, createEffect } from 'solid-js';
 import { PageLayout } from '../layouts/page';
 import { schedules } from '../utils/defaultSchedule';
 import {
@@ -8,7 +8,7 @@ import {
     getFormattedDate
 } from '../utils/time';
 import { DayScheduleAny, PeriodAny } from '../utils/schedule';
-import { FmtProps, TranslationItem } from '../locales';
+import { FmtProps, TranslationItem, flattenFmt } from '../locales';
 
 interface PeriodDataPassing {
     type: 'passing';
@@ -186,15 +186,17 @@ const HomePage: Component = () => {
 
             // Update the date
             const dateData = getDateData();
-            setDate(dateData);
 
             // Get the schedule
             const scheduleData = schedules[dateData.dayName];
 
             // Only update the schedule if it is different
             if (date().dayEpoch !== dateData.dayEpoch || !schedule()) {
+                setPeriod(undefined);
                 setSchedule(scheduleData);
             }
+
+            setDate(dateData);
 
             // Check holiday
             if (!scheduleData.hasSchool || !scheduleData.periods || !scheduleData.periods.length) {
@@ -295,6 +297,65 @@ const HomePage: Component = () => {
         });
     });
 
+    createEffect(() => {
+        let fmt: FmtProps = { fmtString: 'common.unknownError' };
+        const periodData = period();
+        const scheduleData = schedule();
+
+        if (periodData) {
+            if (periodData.type === 'after-school') {
+                fmt = { fmtString: 'pages.home.titles.afterSchool' };
+            } else if (periodData.type === 'before-school') {
+                fmt = {
+                    fmtString: 'pages.home.titles.beforeSchool',
+                    fmtArgs: {
+                        time: getFormattedClockTime(periodData.nextPeriod.start)
+                    }
+                };
+            } else if (periodData.type === 'passing') {
+                fmt = {
+                    fmtString: 'pages.home.titles.periodPassing',
+                    fmtArgs: {
+                        period: getPeriodKey(periodData.nextPeriod)
+                    }
+                };
+            } else if (periodData.type === 'period') {
+                fmt = {
+                    fmtString: 'pages.home.titles.period',
+                    fmtArgs: {
+                        period: getPeriodKey(periodData.period)
+                    }
+                };
+            }
+        } else if (scheduleData) {
+            if (scheduleData.type === 'custom-school') {
+                fmt = {
+                    fmtString: 'pages.home.titles.noSchoolCustom',
+                    fmtArgs: {
+                        name: scheduleData.name
+                    }
+                };
+            } else if (scheduleData.type === 'holiday') {
+                fmt = {
+                    fmtString: 'pages.home.titles.noSchoolHoliday',
+                    fmtArgs: {
+                        // TODO: Add holiday name
+                        name: scheduleData.holiday
+                    }
+                };
+            } else if (scheduleData.type === 'standard-weekend') {
+                fmt = { fmtString: 'pages.home.titles.noSchoolWeekend' };
+            }
+        }
+
+        document.title = flattenFmt({
+            fmtString: 'common.pageFmt',
+            fmtArgs: {
+                page: fmt
+            }
+        });
+    });
+
     return (
         <PageLayout showTitle={false} title='pages.home.title'>
             <div>
@@ -335,12 +396,17 @@ const HomePage: Component = () => {
                             />
                         </p>
                     )}
-                    {period()?.type === 'passing' && (
+                    {(period()?.type === 'passing' ||
+                        (period()?.type === 'period' &&
+                            (period() as PeriodDataPeriod).nextPeriod)) && (
                         <p class='text-gray-300'>
                             <TranslationItem
                                 fmtString='pages.home.nextPeriod'
                                 fmtArgs={{
-                                    period: getPeriodKey((period() as PeriodDataPassing).nextPeriod)
+                                    period: getPeriodKey(
+                                        (period() as PeriodDataPassing | PeriodDataPeriod)
+                                            .nextPeriod as PeriodAny
+                                    )
                                 }}
                             />
                         </p>
@@ -370,9 +436,24 @@ const HomePage: Component = () => {
                                                 100
                                         }
                                         aria-valuemax={100}
+                                        aria-label={flattenFmt({
+                                            fmtString: 'pages.home.periodIn',
+                                            fmtArgs: {
+                                                time: getFormatedTimeLeft(
+                                                    (period()?.type === 'passing' ||
+                                                    period()?.type === 'period'
+                                                        ? (
+                                                              period() as
+                                                                  | PeriodDataPassing
+                                                                  | PeriodDataPeriod
+                                                          ).end
+                                                        : 0) - date().secondMidnight
+                                                )
+                                            }
+                                        })}
                                     >
                                         <div
-                                            class='h-full min-w-[0.5rem] rounded-full bg-theme-500/60'
+                                            class='h-full min-w-[0.5rem] rounded-full bg-theme-500/60 transition-all'
                                             style={{
                                                 width: `${
                                                     100 -
@@ -429,7 +510,7 @@ const HomePage: Component = () => {
                                 class={
                                     'w-full rounded-xl bg-gray-900/60 p-6 backdrop-blur ' +
                                     (date().secondMidnight >= period.end &&
-                                        'bg-gray-900/50 text-gray-500')
+                                        'bg-gray-900/50 text-gray-400')
                                 }
                             >
                                 <h4 class='text-2xl font-bold'>
@@ -438,7 +519,7 @@ const HomePage: Component = () => {
                                 <p
                                     class={
                                         'text-gray-300 ' +
-                                        (date().secondMidnight >= period.end && 'text-gray-500')
+                                        (date().secondMidnight >= period.end && 'text-gray-400')
                                     }
                                 >
                                     <TranslationItem

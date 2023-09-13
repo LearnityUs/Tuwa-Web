@@ -2,7 +2,6 @@
     "utils": {
         "time": {
             "timeLeft": {
-                "now": "Now",
                 "hours_one": "{{count}} hour",
                 "hours_other": "{{count}} hours",
                 "minutes_one": "{{count}} minute",
@@ -57,9 +56,7 @@
             "brunch": "Brunch",
             "passing": "Passing period",
             "custom": "Custom period: {{name}}"
-        },
-        "dateFormat": "{{day}}, {{month}} {{date}}",
-        "timeFormat": "{{hours}} hours and {{minutes}} minutes"
+        }
     },
     "pages": {
         "404": {
