@@ -18,16 +18,18 @@ export const PageLayout: Component<PageLayoutProps> = ({ children, title, showTi
     return (
         <div
             class={
-                'flex min-h-full w-full translate-y-20 flex-col justify-end gap-8 overflow-visible pb-[calc(max(0.5rem,env(safe-area-inset-bottom))+5.75rem)] pl-[max(2.5rem,env(safe-area-inset-bottom))] pr-[max(2.5rem,env(safe-area-inset-right))] pt-10 opacity-0 transition-all md:justify-start md:pb-[max(2.5rem,env(safe-area-inset-bottom))] md:pl-[calc(max(env(safe-area-inset-left),1.25rem)+6.75rem)] ' +
+                'flex min-h-full w-full translate-y-20 opacity-0 transition-all p-safe-or-6 md:p-safe-or-10 ' +
                 (appear() && '!translate-y-0 !opacity-100')
             }
         >
-            {showTitle && (
-                <h1 class='text-5xl font-bold'>
-                    <Trans key={title} />
-                </h1>
-            )}
-            {children}
+            <div class='flex min-h-full w-full flex-col justify-end gap-8 overflow-visible pb-[3.75rem] md:justify-start md:pb-0 md:pl-[5.5rem]'>
+                {showTitle && (
+                    <h1 class='text-5xl font-bold'>
+                        <Trans key={title} />
+                    </h1>
+                )}
+                {children}
+            </div>
         </div>
     );
 };
