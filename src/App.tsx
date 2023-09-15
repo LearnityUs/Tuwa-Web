@@ -5,15 +5,17 @@ import { Background } from './components/Background';
 
 // Import pages
 import './pages/Home';
-import './pages/Barcode';
+import './pages/Identification';
 import './pages/Settings';
+import './pages/About';
 import './pages/[404]';
 import { DefaultLayout } from './layouts/default';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
-const Barcode = lazy(() => import('./pages/Barcode'));
+const Identification = lazy(() => import('./pages/Identification'));
 const Settings = lazy(() => import('./pages/Settings'));
+const About = lazy(() => import('./pages/About'));
 const NotFound = lazy(() => import('./pages/[404]'));
 
 // Outlets
@@ -33,8 +35,9 @@ export const App: Component = () => {
                     <Route path='/' element={<Navigate href='/home' />} />
                     <Route path='/' element={<DefaultPageOutlet />}>
                         <Route path='/home' element={<Home />} />
-                        <Route path='/barcode' element={<Barcode />} />
+                        <Route path='/identification' element={<Identification />} />
                         <Route path='/settings' element={<Settings />} />
+                        <Route path='/about' element={<About />} />
                         <Route path='*' element={<NotFound />} />
                     </Route>
                 </Routes>

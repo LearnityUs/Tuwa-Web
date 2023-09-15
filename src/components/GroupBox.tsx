@@ -6,7 +6,7 @@ interface GroupBoxProps {
 
 export const GroupBox: Component<GroupBoxProps> = ({ children }) => {
     return (
-        <div class='flex flex-col gap-4 rounded-lg bg-gray-900 p-8 shadow-lg ring-1 ring-gray-800'>
+        <div class='flex flex-col gap-6 rounded-xl bg-gray-900 p-8 ring-2 ring-gray-800/60'>
             {children}
         </div>
     );
