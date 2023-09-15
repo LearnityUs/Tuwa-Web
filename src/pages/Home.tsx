@@ -1,14 +1,18 @@
 import { createSignal, type Component, onMount, onCleanup, createEffect } from 'solid-js';
 import { PageLayout } from '../layouts/page';
 import { schedules } from '../utils/defaultSchedule';
-import {
-    getDateData,
-    getFormatedTimeLeft,
-    getFormattedClockTime,
-    getFormattedDate
-} from '../utils/time';
-import { DayScheduleAny, PeriodAny } from '../utils/schedule';
+import { getDateData, getFormattedClockTime, getFormattedDate } from '../utils/time';
+import { DayScheduleAny, PeriodAny, getHolidayFmtProps } from '../utils/schedule';
 import { FmtProps, TranslationItem, flattenFmt } from '../locales';
+import {
+    academicCap,
+    arrowRight,
+    faceSmile,
+    heart,
+    questionMarkCircle,
+    sun
+} from 'solid-heroicons/solid';
+import { SchoolStatus } from '../components/SchoolStatus';
 
 interface PeriodDataPassing {
     type: 'passing';
@@ -54,110 +58,118 @@ const periodTexts = {
     custom: 'common.periods.custom'
 };
 
+const getPeriodTitle = (
+    scheduleData?: DayScheduleAny,
+    periodData?:
+        | PeriodDataPassing
+        | PeriodDataPeriod
+        | PeriodDataBeforeSchool
+        | PeriodDataAfterSchool
+): FmtProps => {
+    if (!scheduleData) return { fmtString: 'common.unknownError' };
+
+    if (!scheduleData.hasSchool || !scheduleData.periods) {
+        return {
+            fmtString: 'pages.home.status.noSchool'
+        };
+    }
+
+    if (!periodData) return { fmtString: 'common.unknownError' };
+
+    if (periodData.type === 'before-school') {
+        return {
+            fmtString: 'pages.home.status.beforeSchool',
+            fmtArgs: {
+                time: getFormattedClockTime(periodData.nextPeriod.start)
+            }
+        };
+    }
+
+    // After school
+    if (periodData.type === 'after-school') {
+        return {
+            fmtString: 'pages.home.status.afterSchool'
+        };
+    }
+
+    // Passing
+    if (periodData.type === 'passing') {
+        return {
+            fmtString: 'pages.home.status.passing'
+        };
+    }
+
+    // Period
+    return {
+        fmtString: 'pages.home.status.period',
+        fmtArgs: {
+            period: getPeriodKey(periodData.period)
+        }
+    };
+};
+
+const getPeriodDescription = (
+    scheduleData?: DayScheduleAny,
+    periodData?:
+        | PeriodDataPassing
+        | PeriodDataPeriod
+        | PeriodDataBeforeSchool
+        | PeriodDataAfterSchool
+): FmtProps | undefined => {
+    if (!scheduleData) return { fmtString: 'common.unknownError' };
+
+    if (!scheduleData.hasSchool || !scheduleData.periods) {
+        if (scheduleData.type === 'custom-school') {
+            return {
+                fmtString: 'pages.home.descriptions.noSchoolCustom',
+                fmtArgs: {
+                    name: scheduleData.name
+                }
+            };
+        } else if (scheduleData.type === 'holiday') {
+            return {
+                fmtString: 'pages.home.descriptions.noSchoolHoliday',
+                fmtArgs: {
+                    name: getHolidayFmtProps(scheduleData.holiday)
+                }
+            };
+        } else if (scheduleData.type === 'standard-weekend') {
+            return {
+                fmtString: 'pages.home.descriptions.noSchoolWeekend'
+            };
+        }
+    }
+
+    if (!periodData) return { fmtString: 'common.unknownError' };
+
+    if (periodData.type === 'before-school') {
+        return {
+            fmtString: 'pages.home.descriptions.beforeSchool',
+            fmtArgs: {
+                period: getPeriodKey(periodData.nextPeriod)
+            }
+        };
+    }
+
+    // Passing or period
+    if (periodData.type === 'passing' || periodData.type === 'period') {
+        if (!periodData.nextPeriod) return { fmtString: 'pages.home.descriptions.lastPeriod' };
+
+        return {
+            fmtString: 'pages.home.descriptions.upNext',
+            fmtArgs: {
+                period: getPeriodKey(periodData.nextPeriod)
+            }
+        };
+    }
+};
+
 const getPeriodKey = (period: PeriodAny): FmtProps => {
     if (period.type === 'active') return { fmtString: periodTexts[period.active] };
     if (period.type === 'break') return { fmtString: periodTexts[period.break] };
     if (period.type === 'custom')
         return { fmtString: periodTexts.custom, fmtArgs: { name: period.name } };
     return { fmtString: periodTexts[period.period] };
-};
-
-// TODO: This is so botched and needs to be fixed
-const getEmojiTextForPeriod = (
-    schedule?: DayScheduleAny,
-    period?: PeriodDataPassing | PeriodDataPeriod | PeriodDataBeforeSchool | PeriodDataAfterSchool
-): {
-    emoji: FmtProps;
-    text: FmtProps;
-} => {
-    if (!schedule) return { emoji: { fmtString: '' }, text: { fmtString: '' } };
-
-    // No school
-    if (period) {
-        // Before school
-        if (period.type === 'before-school')
-            return {
-                emoji: { fmtString: 'pages.home.emojis.beforeSchool' },
-                text: { fmtString: 'pages.home.beforeSchool' }
-            };
-        // After school
-        if (period.type === 'after-school')
-            return {
-                emoji: { fmtString: 'pages.home.emojis.afterSchool' },
-                text: { fmtString: 'pages.home.afterSchool' }
-            };
-        // Passing
-        if (period.type === 'passing') {
-            return {
-                emoji: { fmtString: 'pages.home.emojis.periodPassing' },
-                text: { fmtString: 'common.periods.passing' }
-            };
-        }
-        // Period
-        const periodData = period.period;
-        if (periodData.type === 'active') {
-            return {
-                emoji: { fmtString: 'pages.home.emojis.periodActive' },
-                text: {
-                    fmtString: {
-                        'study-hall': 'common.periods.studyHall',
-                        prime: 'common.periods.prime',
-                        self: 'common.periods.self'
-                    }[periodData.active]
-                }
-            };
-        }
-        // Break
-        if (periodData.type === 'break') {
-            return {
-                emoji: { fmtString: 'pages.home.emojis.periodBreak' },
-                text: {
-                    fmtString: {
-                        brunch: 'common.periods.brunch',
-                        lunch: 'common.periods.lunch'
-                    }[periodData.break]
-                }
-            };
-        }
-        // Custom
-        if (periodData.type === 'custom') {
-            return {
-                emoji: { fmtString: 'pages.home.emojis.periodCustom' },
-                text: { fmtString: 'common.periods.custom', fmtArgs: { name: periodData.name } }
-            };
-        }
-        // Class
-        const periodNumber = periodData.period;
-        return {
-            emoji: { fmtString: 'pages.home.emojis.periodClass' },
-            text: {
-                fmtString: 'common.periods.' + periodNumber.toString()
-            }
-        };
-    }
-
-    // No school
-    if (schedule.type === 'holiday') {
-        return {
-            emoji: { fmtString: 'pages.home.emojis.noSchoolHoliday' },
-            text: { fmtString: '' } // TODO: Add holiday name
-        };
-    }
-    // Weekend
-    if (schedule.type === 'standard-weekend') {
-        return {
-            emoji: { fmtString: 'pages.home.emojis.noSchoolWeekend' },
-            text: { fmtString: 'pages.home.weekend' }
-        };
-    }
-    // Custom
-    return {
-        emoji: { fmtString: 'pages.home.emojis.noSchoolCustom' },
-        text: {
-            fmtString: 'pages.home.alternativeDay',
-            fmtArgs: { name: schedule.type === 'custom-school' ? schedule.name : '' }
-        }
-    };
 };
 
 const HomePage: Component = () => {
@@ -372,133 +384,59 @@ const HomePage: Component = () => {
                     <TranslationItem {...getFormattedDate(date() ?? getDateData())} />
                 </p>
             </div>
-            <div class='flex w-full flex-col items-center gap-6 rounded-3xl bg-gray-900/60 p-8 backdrop-blur-lg md:flex-row '>
-                <div class='flex h-32 w-32 items-center justify-center rounded-full bg-theme-500/20 text-6xl'>
-                    <TranslationItem {...getEmojiTextForPeriod(schedule(), period()).emoji} />
-                </div>
-                <div class='flex w-full flex-1 flex-col items-center text-center md:h-full md:items-start md:text-left'>
-                    <h3 class='text-3xl font-bold'>
-                        <TranslationItem {...getEmojiTextForPeriod(schedule(), period()).text} />
-                    </h3>
-                    {period()?.type === 'before-school' && (
-                        <p class='text-gray-300'>
-                            <TranslationItem
-                                fmtString='pages.home.beforeSchoolNextPeriod'
-                                fmtArgs={{
-                                    period: getPeriodKey(
-                                        (period() as PeriodDataBeforeSchool).nextPeriod
-                                    ),
-                                    time: getFormatedTimeLeft(
-                                        (period() as PeriodDataBeforeSchool).nextPeriod.start -
-                                            date().secondMidnight
-                                    )
-                                }}
-                            />
-                        </p>
-                    )}
-                    {(period()?.type === 'passing' ||
-                        (period()?.type === 'period' &&
-                            (period() as PeriodDataPeriod).nextPeriod)) && (
-                        <p class='text-gray-300'>
-                            <TranslationItem
-                                fmtString='pages.home.nextPeriod'
-                                fmtArgs={{
-                                    period: getPeriodKey(
-                                        (period() as PeriodDataPassing | PeriodDataPeriod)
-                                            .nextPeriod as PeriodAny
-                                    )
-                                }}
-                            />
-                        </p>
-                    )}
-                    {(period()?.type === 'period' || period()?.type === 'passing') && (
-                        <>
-                            <div class='flex min-h-[1rem] w-full flex-1 flex-col'></div>
-                            <div class='flex w-full flex-1 flex-col items-center md:h-full md:items-start'>
-                                <div class='flex w-full flex-col gap-2'>
-                                    <div
-                                        class='h-2 w-full rounded-full bg-gray-800/60 transition-all'
-                                        role='progressbar'
-                                        aria-valuemin={0}
-                                        aria-valuenow={
-                                            100 -
-                                            (period()?.type === 'passing' ||
-                                            period()?.type === 'period'
-                                                ? ((
-                                                      period() as
-                                                          | PeriodDataPassing
-                                                          | PeriodDataPeriod
-                                                  ).end -
-                                                      date().secondMidnight) /
-                                                  (period() as PeriodDataPassing | PeriodDataPeriod)
-                                                      .length
-                                                : 0) *
-                                                100
-                                        }
-                                        aria-valuemax={100}
-                                        aria-label={flattenFmt({
-                                            fmtString: 'pages.home.periodIn',
-                                            fmtArgs: {
-                                                time: getFormatedTimeLeft(
-                                                    (period()?.type === 'passing' ||
-                                                    period()?.type === 'period'
-                                                        ? (
-                                                              period() as
-                                                                  | PeriodDataPassing
-                                                                  | PeriodDataPeriod
-                                                          ).end
-                                                        : 0) - date().secondMidnight
-                                                )
-                                            }
-                                        })}
-                                    >
-                                        <div
-                                            class='h-full min-w-[0.5rem] rounded-full bg-theme-500/60 transition-all'
-                                            style={{
-                                                width: `${
-                                                    100 -
-                                                    (period()?.type === 'passing' ||
-                                                    period()?.type === 'period'
-                                                        ? ((
-                                                              period() as
-                                                                  | PeriodDataPassing
-                                                                  | PeriodDataPeriod
-                                                          ).end -
-                                                              date().secondMidnight) /
-                                                          (
-                                                              period() as
-                                                                  | PeriodDataPassing
-                                                                  | PeriodDataPeriod
-                                                          ).length
-                                                        : 0) *
-                                                        100
-                                                }%`
-                                            }}
-                                        />
-                                    </div>
-                                    <p class='text-sm text-gray-300'>
-                                        <TranslationItem
-                                            fmtString='pages.home.periodIn'
-                                            fmtArgs={{
-                                                time: getFormatedTimeLeft(
-                                                    (period()?.type === 'passing' ||
-                                                    period()?.type === 'period'
-                                                        ? (
-                                                              period() as
-                                                                  | PeriodDataPassing
-                                                                  | PeriodDataPeriod
-                                                          ).end
-                                                        : 0) - date().secondMidnight
-                                                )
-                                            }}
-                                        />
-                                    </p>
-                                </div>
-                            </div>
-                        </>
-                    )}
-                </div>
-            </div>
+            <SchoolStatus
+                icon={() => {
+                    const scheduleData = schedule();
+                    const periodData = period();
+                    // If no schedule, show the question mark
+                    if (!scheduleData) return questionMarkCircle;
+
+                    if (!scheduleData.hasSchool) return heart;
+
+                    if (!periodData) return questionMarkCircle;
+
+                    // Passing
+                    if (periodData.type === 'passing') return arrowRight;
+
+                    // Before school
+                    if (periodData.type === 'before-school') return sun;
+
+                    // After school
+                    if (periodData.type === 'after-school') return faceSmile;
+
+                    // Period
+                    return academicCap;
+                }}
+                title={() => {
+                    return getPeriodTitle(schedule(), period());
+                }}
+                subtitle={() => {
+                    return getPeriodDescription(schedule(), period());
+                }}
+                progress={() => {
+                    const periodData = period();
+                    if (
+                        !periodData ||
+                        (periodData.type !== 'period' && periodData.type !== 'passing')
+                    )
+                        return undefined;
+
+                    // Get the current period
+                    const progress = (periodData.end - date().secondMidnight) / periodData.length;
+
+                    return 1 - progress;
+                }}
+                periodEndsIn={() => {
+                    const periodData = period();
+                    if (
+                        !periodData ||
+                        (periodData.type !== 'period' && periodData.type !== 'passing')
+                    )
+                        return undefined;
+
+                    return periodData.end - date().secondMidnight;
+                }}
+            />
             {schedule() && schedule()?.periods && (
                 <>
                     <h3 class='text-3xl font-bold'>
@@ -508,9 +446,8 @@ const HomePage: Component = () => {
                         {(schedule()?.periods as PeriodAny[]).map(period => (
                             <div
                                 class={
-                                    'w-full rounded-xl bg-gray-900/60 p-6 backdrop-blur ' +
-                                    (date().secondMidnight >= period.end &&
-                                        'bg-gray-900/50 text-gray-400')
+                                    'w-full rounded-lg bg-gray-900 p-6 shadow ring-1 ring-gray-800/60 backdrop-blur ' +
+                                    (date().secondMidnight >= period.end && 'text-gray-400')
                                 }
                             >
                                 <h4 class='text-2xl font-bold'>

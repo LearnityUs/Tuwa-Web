@@ -3,12 +3,12 @@ import { PageLayout } from '../layouts/page';
 import { Barcode } from '../components/Barcode';
 import { useTransContext } from '@mbarzda/solid-i18next';
 
-const BarcodePage: Component = () => {
+const IdentificationPage: Component = () => {
     const [t] = useTransContext();
     const [code, setCode] = createSignal('');
 
     return (
-        <PageLayout title='pages.barcode.title'>
+        <PageLayout title='pages.identification.title'>
             <div class='w-full max-w-md rounded-lg bg-white px-4 py-2'>
                 <div class='h-16 overflow-hidden'>
                     <Barcode height={64} value={() => `*${code()}*`} />
@@ -19,7 +19,7 @@ const BarcodePage: Component = () => {
                 type='text'
                 inputMode='numeric'
                 value={code()}
-                placeholder={t('pages.barcode.idPlaceholder')}
+                placeholder={t('pages.identification.idPlaceholder')}
                 onInput={e => {
                     const value = e.currentTarget.value;
 
@@ -37,4 +37,4 @@ const BarcodePage: Component = () => {
     );
 };
 
-export default BarcodePage;
+export default IdentificationPage;

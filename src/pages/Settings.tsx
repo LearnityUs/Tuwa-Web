@@ -1,11 +1,13 @@
 import type { Component } from 'solid-js';
 import { PageLayout } from '../layouts/page';
 import { TranslationItem } from '../locales';
+import { GroupBox } from '../components/GroupBox';
+import { Button } from '../components/Button';
 
 const SettingsPage: Component = () => {
     return (
         <PageLayout title='pages.settings.title'>
-            <div class='flex flex-col gap-4 rounded-3xl bg-tertiary-900/60 p-8 backdrop-blur'>
+            <GroupBox>
                 <div class='flex flex-col gap-2'>
                     <h3 class='text-2xl font-bold'>
                         <TranslationItem fmtString='pages.settings.appRefresh' />
@@ -14,7 +16,8 @@ const SettingsPage: Component = () => {
                         <TranslationItem fmtString='pages.settings.appRefreshDescription' />
                     </p>
                 </div>
-                <button
+                <Button
+                    style='secondary'
                     onClick={async () => {
                         if (!navigator.serviceWorker || !navigator.serviceWorker.getRegistration)
                             return;
@@ -26,11 +29,10 @@ const SettingsPage: Component = () => {
 
                         location.reload();
                     }}
-                    class='w-fit cursor-pointer rounded-xl bg-tertiary-500/60 px-6 py-2 font-bold text-white transition-colors active:bg-tertiary-500/80'
                 >
                     <TranslationItem fmtString='pages.settings.appRefreshButton' />
-                </button>
-            </div>
+                </Button>
+            </GroupBox>
         </PageLayout>
     );
 };

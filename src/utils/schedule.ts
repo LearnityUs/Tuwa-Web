@@ -1,3 +1,4 @@
+import { FmtProps } from '../locales';
 import { schedules } from './defaultSchedule';
 import { WeekDays, getDateData } from './time';
 
@@ -86,4 +87,9 @@ export const getStandardSchedule = (date: Date): DayScheduleAny => {
     const dateData = getDateData(date);
 
     return schedules[dateData.dayName];
+};
+
+/// Gets the FmtProps for a holiday
+export const getHolidayFmtProps = (holiday: HolidayName): FmtProps => {
+    return { fmtString: holiday };
 };
