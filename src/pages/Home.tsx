@@ -7,6 +7,7 @@ import { FmtProps, TranslationItem, flattenFmt } from '../locales';
 import {
     academicCap,
     arrowRight,
+    bolt,
     faceSmile,
     heart,
     questionMarkCircle,
@@ -403,6 +404,9 @@ const HomePage: Component = () => {
 
                     // After school
                     if (periodData.type === 'after-school') return faceSmile;
+
+                    // Break
+                    if (periodData.period.type === 'break') return bolt;
 
                     // Period
                     return academicCap;

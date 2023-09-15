@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import colors from 'tailwindcss/colors';
+import { zinc, rose } from 'tailwindcss/colors';
 import tailwindcssSafeArea from 'tailwindcss-safe-area';
 
 export default {
@@ -7,7 +7,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                gray: colors.zinc,
+                gray: zinc,
                 theme: {
                     '50': '#f3f1ff',
                     '100': '#ebe5ff',
@@ -21,7 +21,7 @@ export default {
                     '900': '#4b05ad',
                     '950': '#2c0076'
                 },
-                danger: colors.rose
+                danger: rose
             }
         }
     },
