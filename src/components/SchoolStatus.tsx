@@ -27,19 +27,21 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
                 <div class='flex h-12 w-12 items-center justify-center rounded-full bg-theme-700 p-2'>
                     <Icon path={icon()} class='h-8 w-8' />
                 </div>
-                <div class='flex w-full flex-col gap-2'>
-                    <h2 class='text-3xl font-bold'>
-                        <TranslationItem {...title()} />
-                    </h2>
-                    {subtitle() && (
-                        <p class='text-md text-gray-300'>
-                            <TranslationItem
-                                {...(subtitle() ?? {
-                                    fmtString: 'common.unknownError'
-                                })}
-                            />
-                        </p>
-                    )}
+                <div class='flex w-full flex-col gap-4'>
+                    <div class='flex flex-col gap-1'>
+                        <h2 class='text-3xl font-bold'>
+                            <TranslationItem {...title()} />
+                        </h2>
+                        {subtitle() && (
+                            <p class='text-md text-gray-300'>
+                                <TranslationItem
+                                    {...(subtitle() ?? {
+                                        fmtString: 'common.unknownError'
+                                    })}
+                                />
+                            </p>
+                        )}
+                    </div>
                     {typeof progress() !== 'undefined' && (
                         <div class='flex flex-col gap-2'>
                             <ProgressBar

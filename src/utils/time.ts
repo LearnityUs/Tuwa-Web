@@ -212,7 +212,9 @@ export interface DateData {
  * const dateData = getDateData(date);
  * console.log(dateData);
  */
-export const getDateData = (date = new Date()): DateData => {
+export const getDateData = (
+    date = new Date('Fri Sep 15 2023 12:40:00 GMT-0700 (Pacific Daylight Time)')
+): DateData => {
     const year = date.getFullYear();
 
     // Month
