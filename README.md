@@ -10,7 +10,7 @@ is currently a work in progress and more features will be coming soon.
 Many of TUWA's predicesors are lacking in some aspects and are just not useful to an everyday
 student. TUWA plans to solve these issues rapidly using feedback and code from students rather than
 the slow process of feature requests. We welcome all people and ideas to help make TUWA a better
-app. View TUWA at [tuwa.netlify.app](https://tuwa.netlify.app).
+app. View TUWA at [tuwa.app](https://tuwa.app).
 
 ## Want to help?
 
