@@ -4,9 +4,9 @@
             "timeLeft": {
                 "timeFmtThree": "{{unitBig}}{{unitMedium}}{{unitMedium}}",
                 "timeFmtTwo": "{{unitBig}}{{unitSmall}}",
-                "hours_other": "{{count}} hours",
-                "minutes_other": "{{count}} minutes",
-                "seconds_other": "{{count}} seconds"
+                "hours_other": "{{count}}个小时",
+                "minutes_other": "{{count}}分钟",
+                "seconds_other": "{{count}}秒"
             },
             "dateFmt": "{{year}}，{{month}}{{date}}日，{{day}}。",
             "days": {
@@ -89,8 +89,8 @@
             "descriptions": {
                 "beforeSchool": "第一节课是{{period}}。",
                 "periodPassing": "下一节课是{{period}}。",
-                "noSchoolCustom": "Today is an alternative schedule ({{name}}).",
-                "noSchoolHoliday": "Today is a holiday ({{name}}).",
+                "noSchoolCustom": "今天是一个替代时间表（{{name}}）。",
+                "noSchoolHoliday": "今天是一个假期（{{name}}）。",
                 "noSchoolWeekend": "度过美好的周末！",
                 "upNext": "下一节课是{{period}}。",
                 "lastPeriod": "这是一天中最后一节课。"
@@ -105,7 +105,7 @@
         },
         "settings": {
             "title": "设置",
-            "language": "Language",
+            "language": "语言",
             "appRefresh": "修复应用程序缓存",
             "appRefreshDescription": "如果应用程序无法正常工作，可能是因为某些文件已过时。这将修复此问题。如果您处于离线状态，请勿执行此操作。",
             "appRefreshButton": "修正"
