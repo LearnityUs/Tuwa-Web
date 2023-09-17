@@ -55,7 +55,8 @@
             "lunch": "Lunch",
             "brunch": "Brunch",
             "passing": "Passing period",
-            "custom": "Custom period: {{name}}"
+            "custom": "Custom period: {{name}}",
+            "name": "{{name}}"
         },
         "pageFmt": "TUWA | {{page}}"
     },
