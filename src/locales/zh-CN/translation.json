@@ -2,14 +2,11 @@
     "utils": {
         "time": {
             "timeLeft": {
-                "hours_one": "{{count}} hour",
-                "hours_other": "{{count}} hours",
-                "minutes_one": "{{count}} minute",
-                "minutes_other": "{{count}} minutes",
-                "seconds_one": "{{count}} second",
-                "seconds_other": "{{count}} seconds",
                 "timeFmtThree": "{{unitBig}}{{unitMedium}}{{unitMedium}}",
-                "timeFmtTwo": "{{unitBig}}{{unitSmall}}"
+                "timeFmtTwo": "{{unitBig}}{{unitSmall}}",
+                "hours_other": "{{count}} hours",
+                "minutes_other": "{{count}} minutes",
+                "seconds_other": "{{count}} seconds"
             },
             "dateFmt": "{{year}}，{{month}}{{date}}日，{{day}}。",
             "days": {
