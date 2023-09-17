@@ -1,11 +1,13 @@
 /** @type {import('tailwindcss').Config} */
-import colors from 'tailwindcss/colors';
+import { zinc, rose } from 'tailwindcss/colors';
+import tailwindcssSafeArea from 'tailwindcss-safe-area';
 
 export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {
             colors: {
+                gray: zinc,
                 theme: {
                     '50': '#f3f1ff',
                     '100': '#ebe5ff',
@@ -19,9 +21,9 @@ export default {
                     '900': '#4b05ad',
                     '950': '#2c0076'
                 },
-                tertiary: colors.rose
+                danger: rose
             }
         }
     },
-    plugins: []
+    plugins: [tailwindcssSafeArea]
 };

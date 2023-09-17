@@ -63,7 +63,7 @@
     "components": {
         "schoolStatus": {
             "progrssBar": "Percentage of period completed",
-            "periodLeft": "{{time}} left"
+            "periodLeft": "{{time}} left in period"
         }
     },
     "pages": {

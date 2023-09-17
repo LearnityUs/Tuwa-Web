@@ -58,12 +58,12 @@
             "custom": "{{name}}",
             "name": "{{name}}"
         },
-        "pageFmt": "途哇 | {{page}}"
+        "pageFmt": "TUWA | {{page}}"
     },
     "components": {
         "schoolStatus": {
-            "progrssBar": "已完成的课程时间百分比",
-            "periodLeft": "{{time}} 剩余"
+            "progrssBar": "Percentage of period completed",
+            "periodLeft": "{{time}} left in period"
         }
     },
     "pages": {
@@ -72,22 +72,31 @@
             "message": "您要访问的页面不存在。"
         },
         "home": {
-            "title": "主頁",
+            "title": "Home",
             "titles": {
-                "beforeSchool": "学校将在{{time}}开始。",
-                "afterSchool": "学校结束了。",
-                "periodPassing": "通过（下一个是{{period}}）",
+                "beforeSchool": "School starts at {{time}}",
+                "afterSchool": "School is over",
+                "periodPassing": "Passing (next is {{period}})",
                 "period": "{{period}}",
-                "noSchoolHoliday": "没有学校（{{name}}）",
-                "noSchoolWeekend": "没有学校（周末）",
-                "noSchoolCustom": "假期（{{name}}）"
+                "noSchoolHoliday": "No school ({{name}})",
+                "noSchoolWeekend": "No school (weekend)",
+                "noSchoolCustom": "No school ({{name}})"
             },
             "status": {
-                "noSchool": "今天没有学校",
-                "beforeSchool": "学校将在{{time}}开始。",
-                "afterSchool": "学校结束了",
-                "passing": "过渡时间",
+                "noSchool": "No school today",
+                "beforeSchool": "School starts at {{time}}",
+                "afterSchool": "School is over",
+                "passing": "Passing period",
                 "period": "{{period}}"
+            },
+            "descriptions": {
+                "beforeSchool": "First period is {{period}}.",
+                "periodPassing": "Next period is {{period}}.",
+                "noSchoolCustom": "Alternative: {{name}}.",
+                "noSchoolHoliday": "Holiday: {{name}}.",
+                "noSchoolWeekend": "Enjoy the weekend!",
+                "upNext": "Next period is {{period}}.",
+                "lastPeriod": "This is the last period of the day."
             },
             "descriptions": {
                 "beforeSchool": "第一节课是{{period}}。",
@@ -102,23 +111,23 @@
             "periodTime": "{{start}}到{{end}}"
         },
         "identification": {
-            "title": "识别",
+            "title": "Identification",
             "titleShort": "ID",
-            "idPlaceholder": "请输入您的950ID号"
+            "idPlaceholder": "Enter your 950 ID number"
         },
         "settings": {
-            "title": "设置",
-            "appRefresh": "修复应用程序缓存",
-            "appRefreshDescription": "如果应用程序无法正常工作，可能是因为某些文件已过时。这将修复此问题。如果您处于离线状态，请勿执行此操作。",
-            "appRefreshButton": "修正"
+            "title": "Settings",
+            "appRefresh": "Fix App Cache",
+            "appRefreshDescription": "If the app is not working properly, it may be because some files are outdated. This will fix that. Do not do this if you are offline.",
+            "appRefreshButton": "Fix"
         },
         "about": {
-            "title": "关于",
-            "quote": "你必须成为你希望在世界上看到的变化。",
+            "title": "About",
+            "quote": "You must be the change you wish to see in the world.",
             "quoteAuthor": "Mahatma Gandhi",
-            "description": "TUWA 是 WATT 和 UGWA 的接替者。由于 WATT 在 2024 年之后没有更新，我们建立了 TUWA。TUWA 在 Github 上是开源的，我们欢迎任何形式的贡献。加入我们的 Discord 服务器参与其中！我们欢迎所有反馈和意见！TUWA 在很大程度上受到了 WATT 和 UGWA 的启发。没有它们我们不可能存在。谢谢您使用 TUWA！",
-            "discordLink": "加入Discord服务器",
-            "githubLink": "在Github上贡献"
+            "description": "TUWA is the succsessor to WATT and UGWA. We built TUWA due to WATT being after 2024 and a lack of updates to WATT. TUWA is open source on Github and we welcome contributions of any kind. Join our Discord server to get involved! All feedback and opinions are welcome! TUWA is hevaly inspired by WATT and UGWA. We would not be here without them. Thank you for using TUWA!",
+            "discordLink": "Join Discord",
+            "githubLink": "Contribute on Github"
         }
     }
 }

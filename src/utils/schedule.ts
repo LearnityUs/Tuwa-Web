@@ -1,5 +1,7 @@
+import { FmtProps } from '../locales';
 import { schedules } from './defaultSchedule';
-import { WeekDays, getDateData } from './time';
+import { StoreableSettingsV1 } from './settings/v1';
+import { DateData, WeekDays, getDateData } from './time';
 
 /// Base period with start and end time
 interface Period {
@@ -81,9 +83,62 @@ export type DayScheduleAny =
     | DayScheduleHoliday
     | DayScheduleCustom;
 
+/// Converts a period to a StorablePeriod name
+export const periodToStorablePeriod = (
+    period: PeriodAny
+): 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 'prime' | 'self' | 'studyHall' | null => {
+    if (period.type === 'period') {
+        return period.period;
+    }
+
+    if (period.type === 'active') {
+        const map: Record<'prime' | 'self' | 'study-hall', 'prime' | 'self' | 'studyHall'> = {
+            prime: 'prime',
+            self: 'self',
+            'study-hall': 'studyHall'
+        };
+
+        return map[period.active];
+    }
+
+    return null;
+};
+
+/// Filters a schedule
+export const filterSchedule = (
+    date: DateData,
+    schedule: DayScheduleAny,
+    settings: StoreableSettingsV1
+) => {
+    const gradeLevel = (settings.syncable.graduationYear - date.year + 9).toString() as
+        | '9'
+        | '10'
+        | '11'
+        | '12';
+
+    schedule.periods = schedule.periods
+        ? schedule.periods!.filter(period => {
+              const isGrade = period.grades ? period.grades.includes(gradeLevel) : true;
+              const isEnabled =
+                  periodToStorablePeriod(period) !== null
+                      ? settings.syncable.periods[periodToStorablePeriod(period)!].enabled
+                      : true;
+
+              return isGrade && isEnabled;
+          })
+        : [];
+
+    return schedule;
+};
+
 /// Get the standard schedule for a day
 export const getStandardSchedule = (date: Date): DayScheduleAny => {
     const dateData = getDateData(date);
 
     return schedules[dateData.dayName];
+};
+
+/// Gets the FmtProps for a holiday
+export const getHolidayFmtProps = (holiday: HolidayName): FmtProps => {
+    return { fmtString: holiday };
 };

@@ -2,7 +2,6 @@
     "utils": {
         "time": {
             "timeLeft": {
-                "now": "Now",
                 "hours_one": "{{count}} hour",
                 "hours_other": "{{count}} hours",
                 "minutes_one": "{{count}} minute",
@@ -56,10 +55,16 @@
             "lunch": "Lunch",
             "brunch": "Brunch",
             "passing": "Passing period",
-            "custom": "Custom period: {{name}}"
+            "custom": "Custom period: {{name}}",
+            "name": "{{name}}"
         },
-        "dateFormat": "{{day}}, {{month}} {{date}}",
-        "timeFormat": "{{hours}} hours and {{minutes}} minutes"
+        "pageFmt": "TUWA | {{page}}"
+    },
+    "components": {
+        "schoolStatus": {
+            "progrssBar": "Percentage of period completed",
+            "periodLeft": "{{time}} left"
+        }
     },
     "pages": {
         "404": {
@@ -68,30 +73,37 @@
         },
         "home": {
             "title": "Home",
-            "weekend": "Enjoy the weekend!",
-            "alternativeDay": "No school: {{name}}",
-            "beforeSchool": "Get ready for school!",
-            "beforeSchoolNextPeriod": "{{period}} is in {{time}}",
-            "afterSchool": "School's over!",
-            "nextPeriod": "Next period is {{period}}.",
-            "periodIn": "Ending in {{time}}.",
-            "emojis": {
-                "afterSchool": "😵‍💫",
-                "beforeSchool": "🌅",
-                "periodPassing": "🚶",
-                "periodActive": "🤪",
-                "periodBreak": "🍕",
-                "periodClass": "📚",
-                "periodCustom": "🧠",
-                "noSchoolHoliday": "🏖️",
-                "noSchoolWeekend": "😌",
-                "noSchoolCustom": "😪"
+            "titles": {
+                "beforeSchool": "School starts at {{time}}",
+                "afterSchool": "School is over",
+                "periodPassing": "Passing (next is {{period}})",
+                "period": "{{period}}",
+                "noSchoolHoliday": "No school ({{name}})",
+                "noSchoolWeekend": "No school (weekend)",
+                "noSchoolCustom": "No school ({{name}})"
+            },
+            "status": {
+                "noSchool": "No school today",
+                "beforeSchool": "School starts at {{time}}",
+                "afterSchool": "School is over",
+                "passing": "Passing period",
+                "period": "{{period}}"
+            },
+            "descriptions": {
+                "beforeSchool": "First period is {{period}}.",
+                "periodPassing": "Next period is {{period}}.",
+                "noSchoolCustom": "Alternative: {{name}}.",
+                "noSchoolHoliday": "Holiday: {{name}}.",
+                "noSchoolWeekend": "Enjoy the weekend!",
+                "upNext": "Next period is {{period}}.",
+                "lastPeriod": "This is the last period of the day."
             },
             "today": "Today's schedule",
             "periodTime": "{{start}} — {{end}}"
         },
-        "barcode": {
-            "title": "Barcode",
+        "identification": {
+            "title": "Identification",
+            "titleShort": "ID",
             "idPlaceholder": "Enter your 950 ID number"
         },
         "settings": {
@@ -99,6 +111,14 @@
             "appRefresh": "Fix App Cache",
             "appRefreshDescription": "If the app is not working properly, it may be because some files are outdated. This will fix that. Do not do this if you are offline.",
             "appRefreshButton": "Fix"
+        },
+        "about": {
+            "title": "About",
+            "quote": "You must be the change you wish to see in the world.",
+            "quoteAuthor": "Mahatma Gandhi",
+            "description": "TUWA is the succsessor to WATT and UGWA. We built TUWA due to WATT being after 2024 and a lack of updates to WATT. TUWA is open source on Github and we welcome contributions of any kind. Join our Discord server to get involved! All feedback and opinions are welcome! TUWA is hevaly inspired by WATT and UGWA. We would not be here without them. Thank you for using TUWA!",
+            "discordLink": "Join Discord",
+            "githubLink": "Contribute on Github"
         }
     }
 }

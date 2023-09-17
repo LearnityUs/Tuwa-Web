@@ -11,7 +11,7 @@
     <!-- Primary Meta Tags -->
     <meta name="title" content="Titans Unified Web App (TUWA)">
     <meta name="description"
-        content="The best utility you'll ever need for everything Gunn. Itis currently a work in progress and more features will be coming soon." />
+        content="TUWA is the best utility everything Gunn High Schol. Schdeules, announcments, events, everything in one app!" />
     <meta name=" keywords" content="gunn,tuwa,watt,ugwa,titans,schedule,Henry M. Gunn,high school">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
@@ -22,7 +22,7 @@
     <meta property="og:url" content="https://tuwa.app/" />
     <meta property="og:title" content="Titans Unified Web App (TUWA)" />
     <meta property="og:description"
-        content="The best utility you'll ever need for everything Gunn. Itis currently a work in progress and more features will be coming soon." />
+        content="TUWA is the best utility everything Gunn High Schol. Schdeules, announcments, events, everything in one app!" />
     <meta property="og:image" content="/seo.png" />
 
     <!-- Twitter -->
@@ -30,16 +30,25 @@
     <meta property="twitter:url" content="https://tuwa.app/" />
     <meta property="twitter:title" content="Titans Unified Web App (TUWA)" />
     <meta property="twitter:description"
-        content="The best utility you'll ever need for everything Gunn. Itis currently a work in progress and more features will be coming soon." />
+        content="The best utility you'll ever need for everything Gunn. It is currently a work in progress and more features will be coming soon." />
     <meta property="twitter:image" content="/seo.png" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HET9EL7G7J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-HET9EL7G7J');
+    </script>
 
     <title>Titans Unified Web App (TUWA)</title>
 </head>
 
-<body class="w-full min-h-full m-0 bg-gray-950 overflow-x-hidden">
+<body class="w-full min-h-full m-0 bg-gray-950 overflow-x-hidden flex">
     <noscript> Whoops! You need to enable JavaScript to run this app. </noscript>
-    <div id="root" class="w-full h-full"></div>
+    <div id="root" class="w-full min-h-full flex-1"></div>
 
     <script src="/src/index.tsx" type="module"></script>
 </body>
