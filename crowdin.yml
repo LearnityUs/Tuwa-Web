@@ -1,3 +1,9 @@
+base_path: .
+base_url: https://api.crowdin.com
+preserve_hierarchy: true
+project_id: '614979'
+
 files:
     - source: /src/locales/en-US/translation.json
       translation: /src/locales/%locale%/translation.json
+      type: i18next_json

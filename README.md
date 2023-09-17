@@ -1,9 +1,10 @@
 # Gunn TUWA
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/11619b07-8788-4d13-bde3-45de33fbc093/deploy-status)](https://app.netlify.com/sites/tuwa/deploys) [![Crowdin](https://badges.crowdin.net/gunn-tuwa/localized.svg)](https://crowdin.com/project/gunn-tuwa)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/11619b07-8788-4d13-bde3-45de33fbc093/deploy-status)](https://app.netlify.com/sites/tuwa/deploys)
+[![Crowdin](https://badges.crowdin.net/tuwa/localized.svg)](https://crowdin.com/project/tuwa)
 
-Gunn TUWA (Titan's Unified Web App) is the one utility you'll ever need for everything Gunn. It
-is currently a work in progress and more features will be coming soon.
+Gunn TUWA (Titan's Unified Web App) is the one utility you'll ever need for everything Gunn. It is
+currently a work in progress and more features will be coming soon.
 
 ## Why TUWA
 
@@ -14,7 +15,9 @@ app. View TUWA at [tuwa.app](https://tuwa.app).
 
 ## Want to help?
 
-There are many ways to contribute to the development of TUWA. You can help by reporting bugs, requesting features, translating via [Crowdin](https://crowdin.com/project/gunn-tuwa). or even contributing code. Feel free to do any of these things!
+There are many ways to contribute to the development of TUWA. You can help by reporting bugs,
+requesting features, translating via [Crowdin](https://crowdin.com/project/gunn-tuwa). or even
+contributing code. Feel free to do any of these things!
 
 ## Feature Progress
 
