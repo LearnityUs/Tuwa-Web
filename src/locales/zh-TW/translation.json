@@ -108,6 +108,7 @@
         },
         "settings": {
             "title": "Settings",
+            "language": "Language",
             "appRefresh": "Fix App Cache",
             "appRefreshDescription": "If the app is not working properly, it may be because some files are outdated. This will fix that. Do not do this if you are offline.",
             "appRefreshButton": "Fix"
