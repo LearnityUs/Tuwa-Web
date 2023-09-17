@@ -51,6 +51,8 @@ export const availableLocales = [
     'zh-TW'
 ] as const;
 
+export type AvailableLocales = (typeof availableLocales)[number];
+
 export const I18nProvider: FlowComponent = props => {
     return (
         <TransProvider

@@ -55,7 +55,7 @@
             "lunch": "Lunch",
             "brunch": "Brunch",
             "passing": "Passing period",
-            "custom": "Custom period: {{name}}",
+            "custom": "{{name}}",
             "name": "{{name}}"
         },
         "pageFmt": "TUWA | {{page}}"
@@ -63,7 +63,7 @@
     "components": {
         "schoolStatus": {
             "progrssBar": "Percentage of period completed",
-            "periodLeft": "{{time}} left in period"
+            "periodLeft": "{{time}} left"
         }
     },
     "pages": {
@@ -92,8 +92,8 @@
             "descriptions": {
                 "beforeSchool": "First period is {{period}}.",
                 "periodPassing": "Next period is {{period}}.",
-                "noSchoolCustom": "Alternative: {{name}}.",
-                "noSchoolHoliday": "Holiday: {{name}}.",
+                "noSchoolCustom": "Today is an alternative schedule ({{name}}).",
+                "noSchoolHoliday": "Today is a holiday ({{name}}).",
                 "noSchoolWeekend": "Enjoy the weekend!",
                 "upNext": "Next period is {{period}}.",
                 "lastPeriod": "This is the last period of the day."

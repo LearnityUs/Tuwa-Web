@@ -59,6 +59,7 @@ class SettingsStore {
 
     public saveSettings(): void {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.settings));
+        this.listeners.forEach(listener => listener());
     }
 }
 

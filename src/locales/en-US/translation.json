@@ -55,7 +55,7 @@
             "lunch": "Lunch",
             "brunch": "Brunch",
             "passing": "Passing period",
-            "custom": "Custom period: {{name}}",
+            "custom": "{{name}}",
             "name": "{{name}}"
         },
         "pageFmt": "TUWA | {{page}}"
@@ -92,8 +92,8 @@
             "descriptions": {
                 "beforeSchool": "First period is {{period}}.",
                 "periodPassing": "Next period is {{period}}.",
-                "noSchoolCustom": "Alternative: {{name}}.",
-                "noSchoolHoliday": "Holiday: {{name}}.",
+                "noSchoolCustom": "Today is an alternative schedule ({{name}}).",
+                "noSchoolHoliday": "Today is a holiday ({{name}}).",
                 "noSchoolWeekend": "Enjoy the weekend!",
                 "upNext": "Next period is {{period}}.",
                 "lastPeriod": "This is the last period of the day."
@@ -108,6 +108,7 @@
         },
         "settings": {
             "title": "Settings",
+            "language": "Language",
             "appRefresh": "Fix App Cache",
             "appRefreshDescription": "If the app is not working properly, it may be because some files are outdated. This will fix that. Do not do this if you are offline.",
             "appRefreshButton": "Fix"
