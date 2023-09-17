@@ -1,33 +1,39 @@
 import { Trans } from '@mbarzda/solid-i18next';
 import { A } from '@solidjs/router';
 import { createSignal, type Component } from 'solid-js';
-import { cog_6Tooth, home, identification, informationCircle } from 'solid-heroicons/solid';
-import { HeroIcon } from '../utils/icon';
-import { Icon } from 'solid-heroicons';
+import { Icon } from '../utils/icon';
+import { icons } from 'lucide-solid';
 
-const pageOptions = [
+interface PageOption {
+    key: string;
+    href: string;
+    icon: keyof typeof icons;
+    showMobile: boolean;
+}
+
+const pageOptions: PageOption[] = [
     {
         key: 'pages.home.title',
         href: '/home',
-        icon: home,
+        icon: 'Home',
         showMobile: true
     },
     {
         key: 'pages.identification.titleShort',
         href: '/identification',
-        icon: identification,
+        icon: 'Fingerprint',
         showMobile: true
     },
     {
         key: 'pages.settings.title',
         href: '/settings',
-        icon: cog_6Tooth,
+        icon: 'Settings',
         showMobile: true
     },
     {
         key: 'pages.about.title',
         href: '/about',
-        icon: informationCircle,
+        icon: 'Info',
         showMobile: true
     }
 ];
@@ -41,7 +47,7 @@ const stripUrl = (url: string) => {
 interface NavOptionProps {
     key: string;
     href: string;
-    icon: HeroIcon;
+    icon: keyof typeof icons;
     active: () => boolean;
     onClick: () => void;
     isMobile?: boolean;
@@ -69,7 +75,7 @@ const NavOption: Component<NavOptionProps> = ({
                     (active() && 'bg-theme-700 text-white group-hover:!bg-theme-700')
                 }
             >
-                <Icon class={isMobile ? 'h-4 w-4' : 'h-6 w-6'} path={icon} />
+                <Icon class={isMobile ? 'h-4 w-4' : 'h-6 w-6'} name={icon} />
             </div>
             <p class='text-xs'>
                 <Trans key={key} />

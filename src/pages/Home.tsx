@@ -2,18 +2,17 @@ import { createSignal, type Component, onMount, onCleanup, createEffect } from '
 import { PageLayout } from '../layouts/page';
 import { schedules } from '../utils/defaultSchedule';
 import { getDateData, getFormattedClockTime, getFormattedDate } from '../utils/time';
-import { DayScheduleAny, PeriodAny, getHolidayFmtProps } from '../utils/schedule';
-import { FmtProps, TranslationItem, flattenFmt } from '../locales';
 import {
-    academicCap,
-    arrowRight,
-    bolt,
-    faceSmile,
-    heart,
-    questionMarkCircle,
-    sun
-} from 'solid-heroicons/solid';
+    DayScheduleAny,
+    PeriodAny,
+    filterSchedule,
+    getHolidayFmtProps,
+    periodToStorablePeriod
+} from '../utils/schedule';
+import { FmtProps, TranslationItem, flattenFmt } from '../locales';
 import { SchoolStatus } from '../components/SchoolStatus';
+import { useSettingsStore } from '../utils/settings/store';
+import { StoreableSettingsV1 } from '../utils/settings/v1';
 
 interface PeriodDataPassing {
     type: 'passing';
@@ -60,14 +59,20 @@ const periodTexts = {
 };
 
 const getPeriodTitle = (
-    scheduleData?: DayScheduleAny,
-    periodData?:
+    scheduleData: DayScheduleAny | undefined,
+    periodData:
         | PeriodDataPassing
         | PeriodDataPeriod
         | PeriodDataBeforeSchool
         | PeriodDataAfterSchool
+        | undefined,
+    settings: StoreableSettingsV1
 ): FmtProps => {
     if (!scheduleData) return { fmtString: 'common.unknownError' };
+    const periodKey =
+        periodData && periodData.type === 'period'
+            ? periodToStorablePeriod(periodData.period)
+            : null;
 
     if (!scheduleData.hasSchool || !scheduleData.periods) {
         return {
@@ -101,6 +106,20 @@ const getPeriodTitle = (
     }
 
     // Period
+    if (periodKey !== null && settings.syncable.periods[periodKey].name) {
+        return {
+            fmtString: 'pages.home.status.period',
+            fmtArgs: {
+                period: {
+                    fmtString: 'common.periods.name',
+                    fmtArgs: {
+                        name: settings.syncable.periods[periodKey].name ?? ''
+                    }
+                }
+            }
+        };
+    }
+
     return {
         fmtString: 'pages.home.status.period',
         fmtArgs: {
@@ -110,12 +129,13 @@ const getPeriodTitle = (
 };
 
 const getPeriodDescription = (
-    scheduleData?: DayScheduleAny,
-    periodData?:
+    scheduleData: DayScheduleAny | undefined,
+    periodData:
         | PeriodDataPassing
         | PeriodDataPeriod
         | PeriodDataBeforeSchool
         | PeriodDataAfterSchool
+        | undefined
 ): FmtProps | undefined => {
     if (!scheduleData) return { fmtString: 'common.unknownError' };
 
@@ -179,6 +199,7 @@ const HomePage: Component = () => {
     const [period, setPeriod] = createSignal<
         PeriodDataPassing | PeriodDataPeriod | PeriodDataBeforeSchool | PeriodDataAfterSchool
     >();
+    const [settings] = useSettingsStore();
 
     onMount(() => {
         let timeout: number | undefined;
@@ -210,16 +231,17 @@ const HomePage: Component = () => {
             }
 
             setDate(dateData);
+            const periodData = period();
 
             // Check holiday
             if (!scheduleData.hasSchool || !scheduleData.periods || !scheduleData.periods.length) {
-                if (period()) setPeriod(undefined);
+                if (periodData) setPeriod(undefined);
                 return doRefresh();
             }
 
             // Check before school
             if (dateData.secondMidnight < scheduleData.periods[0].start) {
-                if (!period() || period()?.type !== 'before-school') {
+                if (!periodData || periodData.type !== 'before-school') {
                     // Don't refresh if we don't have to (chromebooks are slow)
                     setPeriod({
                         type: 'before-school',
@@ -233,7 +255,7 @@ const HomePage: Component = () => {
             if (
                 dateData.secondMidnight > scheduleData.periods[scheduleData.periods.length - 1].end
             ) {
-                if (!period() || period()?.type !== 'after-school') {
+                if (!periodData || periodData?.type !== 'after-school') {
                     // Don't refresh if we don't have to (chromebooks are slow)
                     setPeriod({
                         type: 'after-school'
@@ -263,10 +285,10 @@ const HomePage: Component = () => {
 
             if (isPassing) {
                 if (
-                    !period() ||
-                    period()?.type !== 'passing' ||
-                    (period()?.type === 'passing' &&
-                        (period() as PeriodDataPassing).start !== latestPeriod.end)
+                    !periodData ||
+                    periodData.type !== 'passing' ||
+                    (periodData.type === 'passing' &&
+                        (periodData as PeriodDataPassing).start !== latestPeriod.end)
                 ) {
                     // Don't refresh if we don't have to (chromebooks are slow)
                     setPeriod({
@@ -282,10 +304,10 @@ const HomePage: Component = () => {
 
             // We are in a period
             if (
-                !period() ||
-                period()?.type !== 'period' ||
-                (period()?.type === 'period' &&
-                    (period() as PeriodDataPeriod).start !== latestPeriod.start)
+                !periodData ||
+                periodData.type !== 'period' ||
+                (periodData.type === 'period' &&
+                    (periodData as PeriodDataPeriod).start !== latestPeriod.start)
             ) {
                 // Don't refresh if we don't have to (chromebooks are slow)
                 setPeriod({
@@ -313,30 +335,55 @@ const HomePage: Component = () => {
     createEffect(() => {
         let fmt: FmtProps = { fmtString: 'common.unknownError' };
         const periodData = period();
-        const scheduleData = schedule();
+        const scheduleData = schedule()
+            ? filterSchedule(date(), schedule()!, settings())
+            : undefined;
+        const settingsData = settings();
+        const periodKey =
+            periodData && periodData.type === 'period'
+                ? periodToStorablePeriod(periodData.period)
+                : null;
 
         if (periodData) {
+            // After school
             if (periodData.type === 'after-school') {
                 fmt = { fmtString: 'pages.home.titles.afterSchool' };
-            } else if (periodData.type === 'before-school') {
+            }
+
+            // Before school
+            if (periodData.type === 'before-school') {
                 fmt = {
                     fmtString: 'pages.home.titles.beforeSchool',
                     fmtArgs: {
                         time: getFormattedClockTime(periodData.nextPeriod.start)
                     }
                 };
-            } else if (periodData.type === 'passing') {
+            }
+
+            // Passing
+            if (periodData.type === 'passing') {
                 fmt = {
                     fmtString: 'pages.home.titles.periodPassing',
                     fmtArgs: {
                         period: getPeriodKey(periodData.nextPeriod)
                     }
                 };
-            } else if (periodData.type === 'period') {
+            }
+
+            // Period
+            if (periodData.type === 'period') {
                 fmt = {
                     fmtString: 'pages.home.titles.period',
                     fmtArgs: {
-                        period: getPeriodKey(periodData.period)
+                        period:
+                            periodKey !== null && settingsData.syncable.periods[periodKey].name
+                                ? {
+                                      fmtString: 'common.periods.name',
+                                      fmtArgs: {
+                                          name: settingsData.syncable.periods[periodKey].name ?? ''
+                                      }
+                                  }
+                                : getPeriodKey(periodData.period)
                     }
                 };
             }
@@ -387,35 +434,52 @@ const HomePage: Component = () => {
             </div>
             <SchoolStatus
                 icon={() => {
-                    const scheduleData = schedule();
+                    const scheduleData = schedule()
+                        ? filterSchedule(date(), schedule()!, settings())
+                        : undefined;
                     const periodData = period();
+                    const settingsData = settings();
+                    const periodKey =
+                        periodData && periodData.type === 'period'
+                            ? periodToStorablePeriod(periodData.period)
+                            : null;
+
                     // If no schedule, show the question mark
-                    if (!scheduleData) return questionMarkCircle;
+                    if (!scheduleData) return 'Cloud';
 
-                    if (!scheduleData.hasSchool) return heart;
+                    if (!scheduleData.hasSchool) return 'Cloud';
 
-                    if (!periodData) return questionMarkCircle;
+                    if (!periodData) return 'HelpCircle';
 
-                    // Passing
-                    if (periodData.type === 'passing') return arrowRight;
+                    if (periodKey !== null) settingsData.syncable.periods[periodKey].icon;
 
                     // Before school
-                    if (periodData.type === 'before-school') return sun;
+                    if (periodData.type === 'before-school') return 'Sunrise';
 
                     // After school
-                    if (periodData.type === 'after-school') return faceSmile;
+                    if (periodData.type === 'after-school') return 'BedDouble';
+
+                    // Passing
+                    if (periodData.type === 'passing') return 'Clock';
 
                     // Break
-                    if (periodData.period.type === 'break') return bolt;
+                    if (periodData.period.type === 'break') return 'Pizza';
 
                     // Period
-                    return academicCap;
+                    return 'GraduationCap';
                 }}
                 title={() => {
-                    return getPeriodTitle(schedule(), period());
+                    return getPeriodTitle(
+                        schedule() ? filterSchedule(date(), schedule()!, settings()) : undefined,
+                        period(),
+                        settings()
+                    );
                 }}
                 subtitle={() => {
-                    return getPeriodDescription(schedule(), period());
+                    return getPeriodDescription(
+                        schedule() ? filterSchedule(date(), schedule()!, settings()) : undefined,
+                        period()
+                    );
                 }}
                 progress={() => {
                     const periodData = period();
@@ -441,41 +505,48 @@ const HomePage: Component = () => {
                     return periodData.end - date().secondMidnight;
                 }}
             />
-            {schedule() && schedule()?.periods && (
-                <>
-                    <h3 class='text-3xl font-bold'>
-                        <TranslationItem fmtString='pages.home.today' />
-                    </h3>
-                    <div class='flex flex-col gap-4'>
-                        {(schedule()?.periods as PeriodAny[]).map(period => (
-                            <div
-                                class={
-                                    'w-full rounded-lg bg-gray-900 p-6 shadow ring-1 ring-gray-800/60 backdrop-blur ' +
-                                    (date().secondMidnight >= period.end && 'text-gray-400')
-                                }
-                            >
-                                <h4 class='text-2xl font-bold'>
-                                    <TranslationItem {...getPeriodKey(period)} />
-                                </h4>
-                                <p
+            {(schedule() ? filterSchedule(date(), schedule()!, settings()) : undefined) &&
+                (schedule() ? filterSchedule(date(), schedule()!, settings()) : undefined)
+                    ?.periods && (
+                    <>
+                        <h3 class='text-3xl font-bold'>
+                            <TranslationItem fmtString='pages.home.today' />
+                        </h3>
+                        <div class='flex flex-col gap-4'>
+                            {(
+                                (schedule()
+                                    ? filterSchedule(date(), schedule()!, settings())
+                                    : undefined
+                                )?.periods as PeriodAny[]
+                            ).map(period => (
+                                <div
                                     class={
-                                        'text-gray-300 ' +
+                                        'w-full rounded-lg bg-gray-900 p-6 shadow ring-1 ring-gray-800/60 backdrop-blur ' +
                                         (date().secondMidnight >= period.end && 'text-gray-400')
                                     }
                                 >
-                                    <TranslationItem
-                                        fmtString='pages.home.periodTime'
-                                        fmtArgs={{
-                                            start: getFormattedClockTime(period.start),
-                                            end: getFormattedClockTime(period.end)
-                                        }}
-                                    />
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </>
-            )}
+                                    <h4 class='text-2xl font-bold'>
+                                        <TranslationItem {...getPeriodKey(period)} />
+                                    </h4>
+                                    <p
+                                        class={
+                                            'text-gray-300 ' +
+                                            (date().secondMidnight >= period.end && 'text-gray-400')
+                                        }
+                                    >
+                                        <TranslationItem
+                                            fmtString='pages.home.periodTime'
+                                            fmtArgs={{
+                                                start: getFormattedClockTime(period.start),
+                                                end: getFormattedClockTime(period.end)
+                                            }}
+                                        />
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )}
         </PageLayout>
     );
 };
