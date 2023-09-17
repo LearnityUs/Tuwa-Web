@@ -3,8 +3,7 @@ import { PageLayout } from '../layouts/page';
 import { TranslationItem } from '../locales';
 import { GroupBox } from '../components/GroupBox';
 import { Button } from '../components/Button';
-import { Icon } from 'solid-heroicons';
-import { arrowUpRight } from 'solid-heroicons/solid';
+import { Icon } from '../utils/icon';
 
 const AboutPage: Component = () => {
     return (
@@ -30,7 +29,7 @@ const AboutPage: Component = () => {
                     topRightSharp={true}
                 >
                     <TranslationItem fmtString='pages.about.discordLink' />
-                    <Icon path={arrowUpRight} class='h-4 w-4' />
+                    <Icon class='h-4 w-4' name='ArrowUpRight' />
                 </Button>
                 <Button
                     style='secondary'
@@ -39,7 +38,7 @@ const AboutPage: Component = () => {
                     topRightSharp={true}
                 >
                     <TranslationItem fmtString='pages.about.githubLink' />
-                    <Icon path={arrowUpRight} class='h-4 w-4' />
+                    <Icon class='h-4 w-4' name='ArrowUpRight' />
                 </Button>
             </div>
         </PageLayout>
