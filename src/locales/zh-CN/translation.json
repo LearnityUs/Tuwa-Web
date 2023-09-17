@@ -8,53 +8,53 @@
                 "minutes_other": "{{count}} minutes",
                 "seconds_one": "{{count}} second",
                 "seconds_other": "{{count}} seconds",
-                "timeFmtThree": "{{unitBig}}, {{unitMedium}} and {{unitSmall}}",
-                "timeFmtTwo": "{{unitBig}} and {{unitSmall}}"
+                "timeFmtThree": "{{unitBig}}{{unitMedium}}{{unitMedium}}",
+                "timeFmtTwo": "{{unitBig}}{{unitSmall}}"
             },
-            "dateFmt": "{{day}}, {{month}} {{date}}, {{year}}",
+            "dateFmt": "{{year}}，{{month}}{{date}}，{{day}}。",
             "days": {
-                "monday": "Monday",
-                "tuesday": "Tuesday",
-                "wednesday": "Wednesday",
-                "thursday": "Thursday",
-                "friday": "Friday",
-                "saturday": "Saturday",
-                "sunday": "Sunday"
+                "monday": "星期一",
+                "tuesday": "星期二",
+                "wednesday": "星期三",
+                "thursday": "星期四",
+                "friday": "星期五",
+                "saturday": "星期六",
+                "sunday": "星期天"
             },
             "months": {
-                "january": "January",
-                "february": "February",
-                "march": "March",
-                "april": "April",
-                "may": "May",
-                "june": "June",
-                "july": "July",
-                "august": "August",
-                "september": "September",
-                "october": "October",
-                "november": "November",
-                "december": "December"
+                "january": "一月",
+                "february": "二月",
+                "march": "三月",
+                "april": "四月",
+                "may": "五月",
+                "june": "六月",
+                "july": "七月",
+                "august": "八月",
+                "september": "九月",
+                "october": "十月",
+                "november": "十一月",
+                "december": "十二月"
             }
         }
     },
     "common": {
-        "unknownError": "Something went wrong",
+        "unknownError": "出错了",
         "periods": {
-            "0": "ZERO period",
-            "1": "1st period",
-            "2": "2nd period",
-            "3": "3rd period",
-            "4": "4th period",
-            "5": "5th period",
-            "6": "6th period",
-            "7": "7th period",
-            "8": "8th period",
-            "self": "SELF",
-            "prime": "PRIME",
-            "studyHall": "Study Hall",
-            "lunch": "Lunch",
-            "brunch": "Brunch",
-            "passing": "Passing period",
+            "0": "零节课",
+            "1": "第一节课",
+            "2": "第二节课",
+            "3": "第二节课",
+            "4": "第二节课",
+            "5": "第五节课",
+            "6": "第六节课",
+            "7": "第七节课",
+            "8": "第八节课",
+            "self": "自我课",
+            "prime": "灵活课程",
+            "studyHall": "学习厅",
+            "lunch": "午餐",
+            "brunch": "早午餐",
+            "passing": "过渡时间",
             "custom": "{{name}}",
             "name": "{{name}}"
         },
@@ -68,8 +68,8 @@
     },
     "pages": {
         "404": {
-            "title": "Page not found",
-            "message": "The page you are looking for does not exist."
+            "title": "页面未找到",
+            "message": "您要访问的页面不存在。"
         },
         "home": {
             "title": "Home",
@@ -98,8 +98,17 @@
                 "upNext": "Next period is {{period}}.",
                 "lastPeriod": "This is the last period of the day."
             },
-            "today": "Today's schedule",
-            "periodTime": "{{start}} — {{end}}"
+            "descriptions": {
+                "beforeSchool": "第一节课是{{period}}。",
+                "periodPassing": "下一节课是{{period}}。",
+                "noSchoolCustom": "替代（{{name}}）",
+                "noSchoolHoliday": "假期（{{name}}）",
+                "noSchoolWeekend": "度过美好的周末！",
+                "upNext": "下一节课是{{period}}。",
+                "lastPeriod": "这是一天中最后一节课。"
+            },
+            "today": "今天的日程",
+            "periodTime": "{{start}}到{{end}}"
         },
         "identification": {
             "title": "Identification",
