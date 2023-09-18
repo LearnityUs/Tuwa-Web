@@ -81,7 +81,7 @@
             "arbitrary": "日程预览",
             "alternate": "Alternate Schedule",
             "arbitraryAlternate": "{{date}} (Alternate)",
-            "goBack": "返回",
+            "goBack": "Back to today",
             "nextDay": "后一天",
             "previousDay": "前一天",
             "noSchool": "没有学校",
