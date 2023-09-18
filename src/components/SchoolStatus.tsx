@@ -130,7 +130,10 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
         }
 
         // Period finished
-        const periodFinished = dateData.secondMidnight >= scheduleData.periods[periodIndex].end;
+        const periodFinished =
+            periodIndex !== -1
+                ? dateData.secondMidnight >= scheduleData.periods[periodIndex].end
+                : false;
 
         const cacheString = `${periodIndex}-${periodFinished}`;
 
