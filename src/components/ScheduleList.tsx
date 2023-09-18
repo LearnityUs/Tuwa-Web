@@ -1,10 +1,16 @@
 import { createSignal, type Component, createEffect } from 'solid-js';
 import { DateData, getDateData, getFormattedClockTime, getFormattedDateShort } from '../utils/time';
-import { DayScheduleAny, getPeriodName, getStandardSchedule } from '../utils/schedule';
+import {
+    DayScheduleAny,
+    filterSchedule,
+    getPeriodName,
+    getStandardSchedule
+} from '../utils/schedule';
 import { GroupBox } from './GroupBox';
 import { TranslationItem } from '../locales';
 import { Button } from './Button';
 import { Icon } from '../utils/icon';
+import { useSettingsStore } from '../utils/settings/store';
 
 interface ScheduleListProps {
     defaultDate: () => DateData;
@@ -12,6 +18,7 @@ interface ScheduleListProps {
 
 export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
     let cache = 0;
+    const [settings] = useSettingsStore();
     const [lookAhead, setLookAhead] = createSignal<Date | null>(null);
     const [schedule, setSchedule] = createSignal<DayScheduleAny>({
         type: 'customSchool',
@@ -23,7 +30,7 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
         if (date.dayEpoch === cache) return;
         cache = date.dayEpoch;
 
-        const scheduleData = getStandardSchedule(date);
+        const scheduleData = filterSchedule(date, getStandardSchedule(date), settings);
         setSchedule(scheduleData);
     };
 
@@ -131,7 +138,7 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
                                     }
                                 >
                                     <h3 class='text-xl font-bold'>
-                                        <TranslationItem {...getPeriodName(p)} />
+                                        <TranslationItem {...getPeriodName(p, settings)} />
                                     </h3>
                                     <p class='text-md text-gray-300'>
                                         <TranslationItem
