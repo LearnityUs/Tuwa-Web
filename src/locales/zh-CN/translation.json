@@ -8,8 +8,8 @@
                 "minutes_other": "{{count}}分钟",
                 "seconds_other": "{{count}}秒"
             },
-            "dateFmt": "{{year}}，{{month}}{{date}}日，{{day}}。",
-            "dateFmtShort": "{{month}} {{date}}, {{year}}",
+            "dateFmt": "{{year}}年，{{month}}{{date}}日，{{day}}",
+            "dateFmtShort": "{{year}}年{{month}}{{date}}日",
             "days": {
                 "monday": "星期一",
                 "tuesday": "星期二",
@@ -63,28 +63,28 @@
             "progrssBar": "已完成的课程时间百分比",
             "periodLeft": "{{time}} 剩余",
             "headings": {
-                "beforeSchool": "School starts at {{time}}",
-                "afterSchool": "School is over",
-                "passingPeriod": "Passing period",
-                "weekend": "Enjoy the weekend!",
+                "beforeSchool": "学校将在 {{time}} 开始。",
+                "afterSchool": "学校结束了。",
+                "passingPeriod": "过渡时间",
+                "weekend": "度过美好的周末！",
                 "holidays": {},
-                "noSchool": "No school ({{name}})"
+                "noSchool": "没有学校（{{name}}）"
             },
             "subheadings": {
-                "firstPeriod": "First period is {{period}}.",
-                "nextPeriod": "Next period is {{period}}.",
-                "lastPeriod": "This is the last period of the day."
+                "firstPeriod": "第一节课是{{period}}。",
+                "nextPeriod": "下一节课是{{period}}。",
+                "lastPeriod": "这是一天中最后一节课。"
             }
         },
         "scheduleList": {
-            "today": "Today's schedule",
-            "arbitrary": "Schedule Preview",
-            "arbitraryDescription": "Showing a schedule preview.",
-            "arbitraryGoBack": "Back",
-            "nextDay": "Next date",
-            "previousDay": "Previous date",
-            "noSchool": "No school",
-            "periodTime": "{{start}} — {{end}}"
+            "today": "今天的日程",
+            "arbitrary": "日程预览",
+            "arbitraryDescription": "展示日程预览。",
+            "arbitraryGoBack": "返回",
+            "nextDay": "后一天",
+            "previousDay": "前一天",
+            "noSchool": "没有学校",
+            "periodTime": "{{start}} 到 {{end}}"
         }
     },
     "pages": {
