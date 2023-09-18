@@ -31,15 +31,6 @@ export const Button: Component<ButtonProps> = ({
         danger: 'ring-danger-600/60 bg-danger-700 hover:bg-danger-600 active:bg-danger-500'
     };
 
-    const className =
-        'flex w-fit cursor-pointer items-center gap-2 rounded-lg px-4 py-2 shadow-md transition-all ring-1 outline-offset-4 outline-transparent focus:outline-theme-400 focus:outline focus:outline-2 ' +
-        (disabled()
-            ? '!bg-gray-800/60 !text-gray-300 !shadow-none !outline-none !ring-0 !cursor-not-allowed '
-            : '') +
-        styles[style] +
-        ' ' +
-        (topRightSharp ? 'rounded-tr' : '');
-
     createEffect(() => {
         if (!elementData) return;
 
@@ -60,7 +51,15 @@ export const Button: Component<ButtonProps> = ({
                     elementData = e;
                 }}
                 href={href ?? ''}
-                class={className}
+                class={
+                    'flex w-fit cursor-pointer items-center gap-2 rounded-lg px-4 py-2 shadow-md outline-offset-4 outline-transparent ring-1 transition-all focus:outline focus:outline-2 focus:outline-theme-400 ' +
+                    (disabled()
+                        ? '!cursor-not-allowed !bg-gray-800/60 !text-gray-300 !shadow-none !outline-none !ring-0 '
+                        : '') +
+                    styles[style] +
+                    ' ' +
+                    (topRightSharp ? 'rounded-tr' : '')
+                }
                 aria-label={ariaLabel && flattenFmt(ariaLabel)}
                 aria-disabled={disabled()}
                 onClick={e => {
@@ -78,7 +77,15 @@ export const Button: Component<ButtonProps> = ({
             ref={e => {
                 elementData = e;
             }}
-            class={className}
+            class={
+                'flex w-fit cursor-pointer items-center gap-2 rounded-lg px-4 py-2 shadow-md outline-offset-4 outline-transparent ring-1 transition-all focus:outline focus:outline-2 focus:outline-theme-400 ' +
+                (disabled()
+                    ? '!cursor-not-allowed !bg-gray-800/60 !text-gray-300 !shadow-none !outline-none !ring-0 '
+                    : '') +
+                styles[style] +
+                ' ' +
+                (topRightSharp ? 'rounded-tr' : '')
+            }
             aria-label={ariaLabel && flattenFmt(ariaLabel)}
             onClick={e => {
                 if (disabled()) e.preventDefault();

@@ -64,15 +64,46 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
                             <TranslationItem fmtString='components.scheduleList.today' />
                         )}
                     </h2>
-                    {lookAhead() && (
+                    {lookAhead() ? (
                         <p class='text-sm text-gray-300'>
-                            <TranslationItem
-                                {...getFormattedDateShort(getDateData(lookAhead() || new Date()))}
-                            />
+                            {['standardSchool', 'standardWeekend', 'holiday'].includes(
+                                schedule().type
+                            ) ? (
+                                <TranslationItem
+                                    {...getFormattedDateShort(
+                                        getDateData(lookAhead() || new Date())
+                                    )}
+                                />
+                            ) : (
+                                <TranslationItem
+                                    fmtString='components.scheduleList.arbitraryAlternate'
+                                    fmtArgs={{
+                                        date: getFormattedDateShort(
+                                            getDateData(lookAhead() || new Date())
+                                        )
+                                    }}
+                                />
+                            )}
+                        </p>
+                    ) : (
+                        <p class='text-sm text-gray-300'>
+                            {['standardSchool', 'standardWeekend', 'holiday'].includes(
+                                schedule().type
+                            ) || <TranslationItem fmtString='components.scheduleList.alternate' />}
                         </p>
                     )}
                 </div>
                 <div class='flex-grow' />
+                <Button
+                    disabled={() => lookAhead() === null}
+                    onClick={() => setLookAhead(null)}
+                    style='secondary'
+                    ariaLabel={{
+                        fmtString: 'components.scheduleList.goBack'
+                    }}
+                >
+                    <Icon class='h-4 w-4' name={() => 'Home'} />
+                </Button>
                 <Button
                     disabled={() => false}
                     onClick={() => {
@@ -104,62 +135,40 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
                     <Icon class='h-4 w-4' name={() => 'ArrowRight'} />
                 </Button>
             </div>
-            <div class='flex flex-col gap-8'>
-                {lookAhead() && (
-                    <GroupBox padding='extraSmall'>
-                        <div class='flex items-center gap-2'>
-                            <p>
-                                <TranslationItem fmtString='components.scheduleList.arbitraryDescription' />
-                            </p>
-                            <div class='flex-grow' />
-                            <Button
-                                disabled={() => false}
-                                onClick={() => setLookAhead(null)}
-                                style='secondary'
-                                ariaLabel={{
-                                    fmtString: 'components.scheduleList.arbitraryGoBack'
-                                }}
+            <div class='flex flex-col gap-4'>
+                {schedule().hasSchool && schedule().periods ? (
+                    schedule().periods!.map(p => (
+                        <GroupBox padding='small'>
+                            <div
+                                class={
+                                    'flex flex-col gap-1 ' +
+                                    (!lookAhead() && p.end <= defaultDate().secondMidnight
+                                        ? 'opacity-60'
+                                        : '')
+                                }
                             >
-                                <Icon class='h-4 w-4' name={() => 'Home'} />
-                            </Button>
-                        </div>
+                                <h3 class='text-xl font-bold'>
+                                    <TranslationItem {...getPeriodName(p, settings)} />
+                                </h3>
+                                <p class='text-md text-gray-300'>
+                                    <TranslationItem
+                                        fmtString='components.scheduleList.periodTime'
+                                        fmtArgs={{
+                                            start: getFormattedClockTime(p.start),
+                                            end: getFormattedClockTime(p.end)
+                                        }}
+                                    />
+                                </p>
+                            </div>
+                        </GroupBox>
+                    ))
+                ) : (
+                    <GroupBox padding='medium'>
+                        <p class='text-md flex items-center justify-center text-lg font-bold text-gray-300'>
+                            <TranslationItem fmtString='components.scheduleList.noSchool' />
+                        </p>
                     </GroupBox>
                 )}
-                <div class='flex flex-col gap-4'>
-                    {schedule().hasSchool && schedule().periods ? (
-                        schedule().periods!.map(p => (
-                            <GroupBox padding='small'>
-                                <div
-                                    class={
-                                        'flex flex-col gap-1 ' +
-                                        (!lookAhead() && p.end <= defaultDate().secondMidnight
-                                            ? 'opacity-60'
-                                            : '')
-                                    }
-                                >
-                                    <h3 class='text-xl font-bold'>
-                                        <TranslationItem {...getPeriodName(p, settings)} />
-                                    </h3>
-                                    <p class='text-md text-gray-300'>
-                                        <TranslationItem
-                                            fmtString='components.scheduleList.periodTime'
-                                            fmtArgs={{
-                                                start: getFormattedClockTime(p.start),
-                                                end: getFormattedClockTime(p.end)
-                                            }}
-                                        />
-                                    </p>
-                                </div>
-                            </GroupBox>
-                        ))
-                    ) : (
-                        <GroupBox padding='medium'>
-                            <p class='text-md flex items-center justify-center text-lg font-bold text-gray-300'>
-                                <TranslationItem fmtString='components.scheduleList.noSchool' />
-                            </p>
-                        </GroupBox>
-                    )}
-                </div>
             </div>
         </div>
     );
