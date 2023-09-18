@@ -323,6 +323,16 @@ const HomePage: Component = () => {
         onCleanup(() => {
             if (timeout) clearTimeout(timeout);
             if (animFrame) cancelAnimationFrame(animFrame);
+
+            // Reset favicon
+            let faviocn = document.querySelector<HTMLLinkElement>('link[rel~="icon"]');
+            if (!faviocn) {
+                faviocn = document.createElement('link');
+                faviocn.rel = 'icon';
+                document.head.appendChild(faviocn);
+            }
+            faviocn.href = '/icon/icon.svg';
+            faviocn.type = 'image/svg+xml';
         });
     });
 
