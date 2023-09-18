@@ -1,18 +1,9 @@
 import { SVGAttributes } from 'lucide-solid/dist/types/types';
 import { icons } from 'lucide-solid';
-import { type Component, splitProps } from 'solid-js';
+import { type Component } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
-
-interface AvaliableIcon {
-    key: string;
-    icon: keyof typeof icons;
-}
-
-export const availableIcons: Record<string, AvaliableIcon> = {
-    graduationCap: {
-        key: 'common.icons.graduationCap',
-        icon: 'GraduationCap'
-    }
+export const availableIcons: Partial<Record<keyof typeof icons, string>> = {
+    GraduationCap: 'icons.graduationCap'
 };
 
 export const iconKeys: (keyof typeof availableIcons)[] = Object.keys(
@@ -29,14 +20,9 @@ export interface LucideProps extends SVGAttributes {
 }
 
 interface IconProps extends LucideProps {
-    name: keyof typeof icons;
+    name: () => keyof typeof icons;
 }
 
 export const Icon: Component<IconProps> = (props: IconProps) => {
-    const [local, others] = splitProps(props, ['name']);
-
-    return Dynamic({
-        component: icons[local.name],
-        ...others
-    });
+    return <Dynamic component={icons[props.name()]} {...props} />;
 };

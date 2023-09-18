@@ -8,7 +8,7 @@ const LanguageChanger: Component = () => {
     const trans = useTransContext()[1];
 
     createEffect(() => {
-        const settingsData = settings();
+        const settingsData = settings;
         const locale = settingsData.locale;
 
         document.documentElement.lang = locale;

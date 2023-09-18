@@ -12,6 +12,7 @@
                 "timeFmtTwo": "{{unitBig}} and {{unitSmall}}"
             },
             "dateFmt": "{{day}}, {{month}} {{date}}, {{year}}",
+            "dateFmtShort": "{{month}} {{date}}, {{year}}",
             "days": {
                 "monday": "Monday",
                 "tuesday": "Tuesday",
@@ -63,7 +64,30 @@
     "components": {
         "schoolStatus": {
             "progrssBar": "Percentage of period completed",
-            "periodLeft": "{{time}} left"
+            "periodLeft": "{{time}} left",
+            "headings": {
+                "beforeSchool": "School starts at {{time}}",
+                "afterSchool": "School is over",
+                "passingPeriod": "Passing period",
+                "weekend": "Enjoy the weekend!",
+                "holidays": {},
+                "noSchool": "No school ({{name}})"
+            },
+            "subheadings": {
+                "firstPeriod": "First period is {{period}}.",
+                "nextPeriod": "Next period is {{period}}.",
+                "lastPeriod": "This is the last period of the day."
+            }
+        },
+        "scheduleList": {
+            "today": "Today's schedule",
+            "arbitrary": "Schedule Preview",
+            "arbitraryDescription": "Showing a schedule preview.",
+            "arbitraryGoBack": "Back",
+            "nextDay": "Next date",
+            "previousDay": "Previous date",
+            "noSchool": "No school",
+            "periodTime": "{{start}} — {{end}}"
         }
     },
     "pages": {
@@ -72,34 +96,7 @@
             "message": "The page you are looking for does not exist."
         },
         "home": {
-            "title": "Home",
-            "titles": {
-                "beforeSchool": "School starts at {{time}}",
-                "afterSchool": "School is over",
-                "periodPassing": "Passing (next is {{period}})",
-                "period": "{{period}}",
-                "noSchoolHoliday": "No school ({{name}})",
-                "noSchoolWeekend": "No school (weekend)",
-                "noSchoolCustom": "No school ({{name}})"
-            },
-            "status": {
-                "noSchool": "No school today",
-                "beforeSchool": "School starts at {{time}}",
-                "afterSchool": "School is over",
-                "passing": "Passing period",
-                "period": "{{period}}"
-            },
-            "descriptions": {
-                "beforeSchool": "First period is {{period}}.",
-                "periodPassing": "Next period is {{period}}.",
-                "noSchoolCustom": "Today is an alternative schedule ({{name}}).",
-                "noSchoolHoliday": "Today is a holiday ({{name}}).",
-                "noSchoolWeekend": "Enjoy the weekend!",
-                "upNext": "Next period is {{period}}.",
-                "lastPeriod": "This is the last period of the day."
-            },
-            "today": "Today's schedule",
-            "periodTime": "{{start}} — {{end}}"
+            "title": "Home"
         },
         "identification": {
             "title": "Identification",

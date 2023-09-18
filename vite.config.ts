@@ -15,24 +15,25 @@ export default defineConfig({
                 name: 'TUWA Gunn App',
                 short_name: 'TUWA',
                 theme_color: '#09090b',
+                start_url: '/home',
                 icons: [
                     {
-                        src: '/icons/128.png',
+                        src: '/icon/128.png',
                         sizes: '128x128',
                         type: 'image/png'
                     },
                     {
-                        src: '/icons/256.png',
+                        src: '/icon/256.png',
                         sizes: '256x256',
                         type: 'image/png'
                     },
                     {
-                        src: '/icons/512.png',
+                        src: '/icon/512.png',
                         sizes: '512x512',
                         type: 'image/png'
                     },
                     {
-                        src: '/icons/1024.png',
+                        src: '/icon/1024.png',
                         sizes: '1024x1024',
                         type: 'image/png'
                     }

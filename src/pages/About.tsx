@@ -23,22 +23,24 @@ const AboutPage: Component = () => {
             </p>
             <div class='flex gap-4'>
                 <Button
+                    disabled={() => false}
                     style='secondary'
                     element='a'
                     href='https://discord.gg/sA7MGJnU'
                     topRightSharp={true}
                 >
                     <TranslationItem fmtString='pages.about.discordLink' />
-                    <Icon class='h-4 w-4' name='ArrowUpRight' />
+                    <Icon class='h-4 w-4' name={() => 'ArrowUpRight'} />
                 </Button>
                 <Button
+                    disabled={() => false}
                     style='secondary'
                     element='a'
                     href='https://github.com/JoshuaBrest/TUWA'
                     topRightSharp={true}
                 >
                     <TranslationItem fmtString='pages.about.githubLink' />
-                    <Icon class='h-4 w-4' name='ArrowUpRight' />
+                    <Icon class='h-4 w-4' name={() => 'ArrowUpRight'} />
                 </Button>
             </div>
         </PageLayout>

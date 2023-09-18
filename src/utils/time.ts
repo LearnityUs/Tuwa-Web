@@ -3,7 +3,7 @@ import { FmtProps } from '../locales';
 /// Type containing the months
 export type AllMonths =
     | 'january'
-    | 'feburary'
+    | 'february'
     | 'march'
     | 'april'
     | 'may'
@@ -156,7 +156,7 @@ export const getFormattedClockTime = (secondMidnight: number): string => {
 };
 
 /**
- * Get the date formatted as `Monday, January 1`
+ * Get the date formatted as `Monday, January 1, 2021`
  */
 export const getFormattedDate = (dateData: DateData): FmtProps => {
     return {
@@ -165,6 +165,22 @@ export const getFormattedDate = (dateData: DateData): FmtProps => {
             day: {
                 fmtString: dateData.dayKey
             },
+            month: {
+                fmtString: dateData.monthKey
+            },
+            date: dateData.date,
+            year: dateData.year
+        }
+    };
+};
+
+/**
+ * Get the date formatted as `January 1, 2021`
+ */
+export const getFormattedDateShort = (dateData: DateData): FmtProps => {
+    return {
+        fmtString: 'utils.time.dateFmtShort',
+        fmtArgs: {
             month: {
                 fmtString: dateData.monthKey
             },
@@ -219,7 +235,7 @@ export const getDateData = (date = new Date()): DateData => {
     const month = date.getMonth();
     const months: AllMonths[] = [
         'january',
-        'feburary',
+        'february',
         'march',
         'april',
         'may',

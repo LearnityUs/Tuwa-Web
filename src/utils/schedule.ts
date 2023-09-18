@@ -26,7 +26,7 @@ export interface PeriodBreak extends Period {
 /// Active period (study hall, prime, self)
 export interface PeriodActive extends Period {
     type: 'active';
-    active: 'study-hall' | 'prime' | 'self';
+    active: 'studyHall' | 'prime' | 'self';
 }
 
 /// Custom period
@@ -46,7 +46,7 @@ interface DaySchedule {
 
 /// In school day schedule
 export interface DayScheduleStandardSchool extends DaySchedule {
-    type: 'standard-school';
+    type: 'standardSchool';
     day: WeekDays;
     hasSchool: true;
     periods: PeriodAny[];
@@ -54,7 +54,7 @@ export interface DayScheduleStandardSchool extends DaySchedule {
 
 /// Weekend school day schedule
 export interface DayScheduleStandardWeekend extends DaySchedule {
-    type: 'standard-weekend';
+    type: 'standardWeekend';
     day: 'saturday' | 'sunday';
     hasSchool: false;
 }
@@ -72,7 +72,7 @@ export interface DayScheduleHoliday extends DaySchedule {
 
 /// Custom school day schedule
 export interface DayScheduleCustom extends DaySchedule {
-    type: 'custom-school';
+    type: 'customSchool';
     name: string;
     periods?: PeriodAny[];
 }
@@ -84,25 +84,56 @@ export type DayScheduleAny =
     | DayScheduleHoliday
     | DayScheduleCustom;
 
-/// Converts a period to a StorablePeriod name
-export const periodToStorablePeriod = (
-    period: PeriodAny
-): 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 'prime' | 'self' | 'studyHall' | null => {
+export type PeriodKey = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 'prime' | 'self' | 'studyHall';
+
+/// Gets the period key for a period
+export const getPeriodKey = (period: PeriodAny): PeriodKey | null => {
     if (period.type === 'period') {
         return period.period;
     }
 
     if (period.type === 'active') {
-        const map: Record<'prime' | 'self' | 'study-hall', 'prime' | 'self' | 'studyHall'> = {
-            prime: 'prime',
-            self: 'self',
-            'study-hall': 'studyHall'
-        };
-
-        return map[period.active];
+        return period.active;
     }
 
     return null;
+};
+
+/// Gets the formatted period text for a period
+export const getPeriodName = (
+    period: PeriodAny,
+    settings?: StorableSyncableSettingsV1
+): FmtProps => {
+    const key = getPeriodKey(period);
+
+    if (settings && key && settings.periods[key].name) {
+        return {
+            fmtString: 'common.periods.custom',
+            fmtArgs: {
+                name: settings.periods[key].name
+            }
+        };
+    }
+
+    if (period.type === 'custom') {
+        return {
+            fmtString: 'common.periods.custom',
+            fmtArgs: {
+                name: period.name
+            }
+        };
+    }
+
+    // Breaks are not customizable
+    if (period.type === 'break') {
+        return {
+            fmtString: periodTexts[period.break]
+        };
+    }
+
+    return {
+        fmtString: periodTexts[key ?? 'custom']
+    };
 };
 
 /// Filters a schedule
@@ -121,8 +152,8 @@ export const filterSchedule = (
         ? schedule.periods!.filter(period => {
               const isGrade = period.grades ? period.grades.includes(gradeLevel) : true;
               const isEnabled =
-                  periodToStorablePeriod(period) !== null
-                      ? settings.periods[periodToStorablePeriod(period)!].enabled
+                  getPeriodKey(period) !== null
+                      ? settings.periods[getPeriodKey(period)!].enabled
                       : true;
 
               return isGrade && isEnabled;
@@ -148,7 +179,7 @@ export const getHolidayFmtProps = (holiday: HolidayName): FmtProps => {
     return { fmtString: holiday };
 };
 
-export const periodTexts = {
+export const periodTexts: Record<PeriodKey | 'lunch' | 'brunch' | 'custom', string> = {
     0: 'common.periods.0',
     1: 'common.periods.1',
     2: 'common.periods.2',
@@ -160,7 +191,6 @@ export const periodTexts = {
     8: 'common.periods.8',
     lunch: 'common.periods.lunch',
     brunch: 'common.periods.brunch',
-    'study-hall': 'common.periods.studyHall',
     studyHall: 'common.periods.studyHall',
     prime: 'common.periods.prime',
     self: 'common.periods.self',
