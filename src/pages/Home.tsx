@@ -1,12 +1,14 @@
 import { createSignal, type Component, onMount, onCleanup } from 'solid-js';
 import { PageLayout } from '../layouts/page';
 import { getDateData, getFormattedDate } from '../utils/time';
-import { DayScheduleAny, getStandardSchedule } from '../utils/schedule';
+import { DayScheduleAny, filterSchedule, getStandardSchedule } from '../utils/schedule';
 import { TranslationItem } from '../locales';
 import { SchoolStatus } from '../components/SchoolStatus';
 import { ScheduleList } from '../components/ScheduleList';
+import { useSettingsStore } from '../utils/settings/store';
 
 const HomePage: Component = () => {
+    const [settings] = useSettingsStore();
     const [date, setDate] = createSignal(getDateData());
     const [schedule, setSchedule] = createSignal<DayScheduleAny>();
 
@@ -32,7 +34,7 @@ const HomePage: Component = () => {
 
             // Only update the schedule if it is different
             if (date().dayEpoch !== dateData.dayEpoch || !schedule()) {
-                setSchedule(scheduleData);
+                setSchedule(filterSchedule(dateData, scheduleData, settings));
             }
 
             // Update the date
