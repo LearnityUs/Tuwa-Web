@@ -2,14 +2,11 @@
     "utils": {
         "time": {
             "timeLeft": {
-                "hours_one": "{{count}} hour",
-                "hours_other": "{{count}} hours",
-                "minutes_one": "{{count}} minute",
-                "minutes_other": "{{count}} minutes",
-                "seconds_one": "{{count}} second",
-                "seconds_other": "{{count}} seconds",
                 "timeFmtThree": "{{unitBig}}{{unitMedium}}{{unitMedium}}",
-                "timeFmtTwo": "{{unitBig}}{{unitSmall}}"
+                "timeFmtTwo": "{{unitBig}}{{unitSmall}}",
+                "hours_other": "{{count}}个小时",
+                "minutes_other": "{{count}}分钟",
+                "seconds_other": "{{count}}秒"
             },
             "dateFmt": "{{year}}，{{month}}{{date}}日，{{day}}。",
             "days": {
@@ -58,7 +55,7 @@
             "custom": "{{name}}",
             "name": "{{name}}"
         },
-        "pageFmt": "途哇 | {{page}}"
+        "pageFmt": "{{page}} | TUWA Gunn App"
     },
     "components": {
         "schoolStatus": {
@@ -81,7 +78,8 @@
         },
         "settings": {
             "title": "设置",
-            "language": "Language",
+            "language": "语言",
+            "scheduleCustomization": "Schedule customization",
             "appRefresh": "修复应用程序缓存",
             "appRefreshDescription": "如果应用程序无法正常工作，可能是因为某些文件已过时。这将修复此问题。如果您处于离线状态，请勿执行此操作。",
             "appRefreshButton": "修正"
