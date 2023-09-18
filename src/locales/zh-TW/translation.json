@@ -2,14 +2,11 @@
     "utils": {
         "time": {
             "timeLeft": {
-                "hours_one": "{{count}} hour",
-                "hours_other": "{{count}} hours",
-                "minutes_one": "{{count}} minute",
-                "minutes_other": "{{count}} minutes",
-                "seconds_one": "{{count}} second",
-                "seconds_other": "{{count}} seconds",
                 "timeFmtThree": "{{unitBig}}, {{unitMedium}} and {{unitSmall}}",
-                "timeFmtTwo": "{{unitBig}} and {{unitSmall}}"
+                "timeFmtTwo": "{{unitBig}} and {{unitSmall}}",
+                "hours_other": "{{count}} hours",
+                "minutes_other": "{{count}} minutes",
+                "seconds_other": "{{count}} seconds"
             },
             "dateFmt": "{{day}}, {{month}} {{date}}, {{year}}",
             "days": {
@@ -58,7 +55,7 @@
             "custom": "{{name}}",
             "name": "{{name}}"
         },
-        "pageFmt": "TUWA | {{page}}"
+        "pageFmt": "{{page}} | TUWA Gunn App"
     },
     "components": {
         "schoolStatus": {
@@ -109,6 +106,7 @@
         "settings": {
             "title": "Settings",
             "language": "Language",
+            "scheduleCustomization": "Schedule customization",
             "appRefresh": "Fix App Cache",
             "appRefreshDescription": "If the app is not working properly, it may be because some files are outdated. This will fix that. Do not do this if you are offline.",
             "appRefreshButton": "Fix"
