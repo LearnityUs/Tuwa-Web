@@ -9,6 +9,7 @@
                 "seconds_other": "{{count}}秒"
             },
             "dateFmt": "{{year}}，{{month}}{{date}}日，{{day}}。",
+            "dateFmtShort": "{{month}} {{date}}, {{year}}",
             "days": {
                 "monday": "星期一",
                 "tuesday": "星期二",
@@ -55,12 +56,35 @@
             "custom": "{{name}}",
             "name": "{{name}}"
         },
-        "pageFmt": "{{page}} | TUWA Gunn App"
+        "pageFmt": "{{page}}｜途哇 Gunn APP"
     },
     "components": {
         "schoolStatus": {
             "progrssBar": "已完成的课程时间百分比",
-            "periodLeft": "{{time}} 剩余"
+            "periodLeft": "{{time}} 剩余",
+            "headings": {
+                "beforeSchool": "School starts at {{time}}",
+                "afterSchool": "School is over",
+                "passingPeriod": "Passing period",
+                "weekend": "Enjoy the weekend!",
+                "holidays": {},
+                "noSchool": "No school ({{name}})"
+            },
+            "subheadings": {
+                "firstPeriod": "First period is {{period}}.",
+                "nextPeriod": "Next period is {{period}}.",
+                "lastPeriod": "This is the last period of the day."
+            }
+        },
+        "scheduleList": {
+            "today": "Today's schedule",
+            "arbitrary": "Schedule Preview",
+            "arbitraryDescription": "Showing a schedule preview.",
+            "arbitraryGoBack": "Back",
+            "nextDay": "Next date",
+            "previousDay": "Previous date",
+            "noSchool": "No school",
+            "periodTime": "{{start}} — {{end}}"
         }
     },
     "pages": {
@@ -79,7 +103,7 @@
         "settings": {
             "title": "设置",
             "language": "语言",
-            "scheduleCustomization": "Schedule customization",
+            "scheduleCustomization": "自定义日程安排",
             "appRefresh": "修复应用程序缓存",
             "appRefreshDescription": "如果应用程序无法正常工作，可能是因为某些文件已过时。这将修复此问题。如果您处于离线状态，请勿执行此操作。",
             "appRefreshButton": "修正"
