@@ -9,9 +9,7 @@
         "build": "vite build",
         "serve": "vite preview",
         "lint": "eslint --fix .",
-        "lint:check": "eslint .",
-        "script:sched": "node ./scripts/genSched.js",
-        "script:synctranslations": "sync-i18n --check --files '**/src/locales/*/translation.json' --primary en-US --space 4 --languages en-GB es-ES fr-FR ja-JP zh-CN zh-TW"
+        "lint:check": "eslint ."
     },
     "license": "MIT",
     "devDependencies": {

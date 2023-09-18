@@ -82,8 +82,9 @@
         "scheduleList": {
             "today": "Today's schedule",
             "arbitrary": "Schedule Preview",
-            "arbitraryDescription": "Showing a schedule preview.",
-            "arbitraryGoBack": "Back",
+            "alternate": "Alternate Schedule",
+            "arbitraryAlternate": "{{date}} (Alternate)",
+            "goBack": "Back to today",
             "nextDay": "Next date",
             "previousDay": "Previous date",
             "noSchool": "No school",

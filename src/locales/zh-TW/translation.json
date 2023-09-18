@@ -4,8 +4,11 @@
             "timeLeft": {
                 "timeFmtThree": "{{unitBig}}, {{unitMedium}} and {{unitSmall}}",
                 "timeFmtTwo": "{{unitBig}} and {{unitSmall}}",
+                "hours_one": "{{count}} hour",
                 "hours_other": "{{count}} hours",
+                "minutes_one": "{{count}} minute",
                 "minutes_other": "{{count}} minutes",
+                "seconds_one": "{{count}} second",
                 "seconds_other": "{{count}} seconds"
             },
             "dateFmt": "{{day}}, {{month}} {{date}}, {{year}}",
@@ -79,8 +82,9 @@
         "scheduleList": {
             "today": "Today's schedule",
             "arbitrary": "Schedule Preview",
-            "arbitraryDescription": "Showing a schedule preview.",
-            "arbitraryGoBack": "Back",
+            "alternate": "Alternate Schedule",
+            "arbitraryAlternate": "{{date}} (Alternate)",
+            "goBack": "Back to today",
             "nextDay": "Next date",
             "previousDay": "Previous date",
             "noSchool": "No school",
