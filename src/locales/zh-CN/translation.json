@@ -55,7 +55,7 @@
             "custom": "{{name}}",
             "name": "{{name}}"
         },
-        "pageFmt": "途哇 | {{page}}"
+        "pageFmt": "{{page}} | TUWA Gunn App"
     },
     "components": {
         "schoolStatus": {
@@ -106,6 +106,7 @@
         "settings": {
             "title": "设置",
             "language": "语言",
+            "scheduleCustomization": "Schedule customization",
             "appRefresh": "修复应用程序缓存",
             "appRefreshDescription": "如果应用程序无法正常工作，可能是因为某些文件已过时。这将修复此问题。如果您处于离线状态，请勿执行此操作。",
             "appRefreshButton": "修正"
