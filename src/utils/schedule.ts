@@ -1,7 +1,8 @@
-import { FmtProps } from '../locales';
+import type { FmtProps } from '../locales';
 import { schedules } from './defaultSchedule';
-import { StoreableSettingsV1 } from './settings/v1';
-import { DateData, WeekDays, getDateData } from './time';
+import type { StorableSyncableSettingsV1 } from './settings/v1';
+import type { DateData, WeekDays } from './time';
+import overides from './overides.json';
 
 /// Base period with start and end time
 interface Period {
@@ -108,9 +109,9 @@ export const periodToStorablePeriod = (
 export const filterSchedule = (
     date: DateData,
     schedule: DayScheduleAny,
-    settings: StoreableSettingsV1
+    settings: StorableSyncableSettingsV1
 ) => {
-    const gradeLevel = (settings.syncable.graduationYear - date.year + 9).toString() as
+    const gradeLevel = (settings.graduationYear - date.year + 9).toString() as
         | '9'
         | '10'
         | '11'
@@ -121,7 +122,7 @@ export const filterSchedule = (
               const isGrade = period.grades ? period.grades.includes(gradeLevel) : true;
               const isEnabled =
                   periodToStorablePeriod(period) !== null
-                      ? settings.syncable.periods[periodToStorablePeriod(period)!].enabled
+                      ? settings.periods[periodToStorablePeriod(period)!].enabled
                       : true;
 
               return isGrade && isEnabled;
@@ -132,8 +133,12 @@ export const filterSchedule = (
 };
 
 /// Get the standard schedule for a day
-export const getStandardSchedule = (date: Date): DayScheduleAny => {
-    const dateData = getDateData(date);
+export const getStandardSchedule = (dateData: DateData): DayScheduleAny => {
+    // Check if day epoch is overidden
+    const dayEpoch = dateData.dayEpoch.toString();
+    if (dayEpoch in overides) {
+        return overides[dayEpoch as keyof typeof overides] as DayScheduleAny;
+    }
 
     return schedules[dateData.dayName];
 };
@@ -141,4 +146,23 @@ export const getStandardSchedule = (date: Date): DayScheduleAny => {
 /// Gets the FmtProps for a holiday
 export const getHolidayFmtProps = (holiday: HolidayName): FmtProps => {
     return { fmtString: holiday };
+};
+
+export const periodTexts = {
+    0: 'common.periods.0',
+    1: 'common.periods.1',
+    2: 'common.periods.2',
+    3: 'common.periods.3',
+    4: 'common.periods.4',
+    5: 'common.periods.5',
+    6: 'common.periods.6',
+    7: 'common.periods.7',
+    8: 'common.periods.8',
+    lunch: 'common.periods.lunch',
+    brunch: 'common.periods.brunch',
+    'study-hall': 'common.periods.studyHall',
+    studyHall: 'common.periods.studyHall',
+    prime: 'common.periods.prime',
+    self: 'common.periods.self',
+    custom: 'common.periods.custom'
 };

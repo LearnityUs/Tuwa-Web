@@ -9,7 +9,7 @@ const LanguageChanger: Component = () => {
 
     createEffect(() => {
         const settingsData = settings();
-        const locale = settingsData.syncable.locale;
+        const locale = settingsData.locale;
 
         document.documentElement.lang = locale;
         trans.changeLanguage(locale);

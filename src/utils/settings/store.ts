@@ -1,5 +1,5 @@
 import { createSignal, onCleanup, onMount } from 'solid-js';
-import { StoreableSettingsV1, storeableSettingsV1 } from './v1';
+import { StorableSyncableSettingsV1, StoreableSettingsV1, storeableSettingsV1 } from './v1';
 
 const LOCAL_STORAGE_KEY = 'syncableSettings';
 
@@ -64,15 +64,15 @@ class SettingsStore {
 }
 
 export const useSettingsStore = () => {
-    const [settings, setSettings] = createSignal<StoreableSettingsV1>(
-        storeableSettingsV1.getDefault() as StoreableSettingsV1
+    const [settings, setSettings] = createSignal<StorableSyncableSettingsV1>(
+        (storeableSettingsV1.getDefault() as StoreableSettingsV1).syncable
     );
 
     const store = SettingsStore.getInstance();
 
-    const update = (newSettings: Partial<StoreableSettingsV1>) => {
-        store.settings = {
-            ...store.settings,
+    const update = (newSettings: Partial<StorableSyncableSettingsV1>) => {
+        store.settings.syncable = {
+            ...store.settings.syncable,
             ...newSettings
         };
 
@@ -81,7 +81,7 @@ export const useSettingsStore = () => {
 
     onMount(() => {
         const listener = () => {
-            setSettings(store.settings);
+            setSettings(store.settings.syncable);
         };
 
         listener();

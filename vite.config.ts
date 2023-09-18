@@ -12,9 +12,31 @@ export default defineConfig({
         VitePWA({
             registerType: 'autoUpdate',
             manifest: {
-                name: 'GUNN TUWA',
+                name: 'TUWA Gunn App',
                 short_name: 'TUWA',
-                theme_color: '#030712'
+                theme_color: '#09090b',
+                icons: [
+                    {
+                        src: '/icons/128.png',
+                        sizes: '128x128',
+                        type: 'image/png'
+                    },
+                    {
+                        src: '/icons/256.png',
+                        sizes: '256x256',
+                        type: 'image/png'
+                    },
+                    {
+                        src: '/icons/512.png',
+                        sizes: '512x512',
+                        type: 'image/png'
+                    },
+                    {
+                        src: '/icons/1024.png',
+                        sizes: '1024x1024',
+                        type: 'image/png'
+                    }
+                ]
             }
         })
     ],

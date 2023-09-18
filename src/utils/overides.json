@@ -1,0 +1,63 @@
+{
+    "19618": {
+        "type": "custom-school",
+        "name": "Staff Professional Development",
+        "hasSchool": true,
+        "periods": [
+            {
+                "type": "break",
+                "break": "brunch",
+                "start": 36000,
+                "end": 36300
+            },
+            {
+                "type": "period",
+                "period": 1,
+                "start": 36900,
+                "end": 39000
+            },
+            {
+                "type": "period",
+                "period": 2,
+                "start": 39600,
+                "end": 41700
+            },
+            {
+                "type": "period",
+                "period": 3,
+                "start": 42300,
+                "end": 44400
+            },
+            {
+                "type": "break",
+                "break": "lunch",
+                "start": 44400,
+                "end": 46200
+            },
+            {
+                "type": "period",
+                "period": 4,
+                "start": 46800,
+                "end": 48900
+            },
+            {
+                "type": "period",
+                "period": 5,
+                "start": 49500,
+                "end": 51600
+            },
+            {
+                "type": "period",
+                "period": 6,
+                "start": 52200,
+                "end": 54300
+            },
+            {
+                "type": "period",
+                "period": 7,
+                "start": 54900,
+                "end": 57000
+            }
+        ]
+    }
+}
