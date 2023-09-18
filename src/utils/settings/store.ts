@@ -1,5 +1,6 @@
-import { createSignal, onCleanup, onMount } from 'solid-js';
+import { onCleanup, onMount } from 'solid-js';
 import { StorableSyncableSettingsV1, StoreableSettingsV1, storeableSettingsV1 } from './v1';
+import { createStore } from 'solid-js/store';
 
 const LOCAL_STORAGE_KEY = 'syncableSettings';
 
@@ -22,12 +23,14 @@ class SettingsStore {
         try {
             const parsedSettings = JSON.parse(storedSettings);
 
-            if (storeableSettingsV1.isValidSync(parsedSettings)) {
+            const isValid = storeableSettingsV1.validateSync(parsedSettings);
+            if (isValid) {
                 return storeableSettingsV1.cast(parsedSettings);
             }
 
             return storeableSettingsV1.getDefault() as StoreableSettingsV1;
         } catch (e) {
+            console.error(e);
             return storeableSettingsV1.getDefault() as StoreableSettingsV1;
         }
     }
@@ -44,6 +47,7 @@ class SettingsStore {
     static getInstance(): SettingsStore {
         if (!SettingsStore.instance) {
             SettingsStore.instance = new SettingsStore();
+            SettingsStore.instance.settings = SettingsStore.instance.loadSettings();
         }
 
         return SettingsStore.instance;
@@ -64,7 +68,7 @@ class SettingsStore {
 }
 
 export const useSettingsStore = () => {
-    const [settings, setSettings] = createSignal<StorableSyncableSettingsV1>(
+    const [settings, setSettings] = createStore<StorableSyncableSettingsV1>(
         (storeableSettingsV1.getDefault() as StoreableSettingsV1).syncable
     );
 

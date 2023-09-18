@@ -1,12 +1,14 @@
-import type { Component } from 'solid-js';
+import { Index, type Component } from 'solid-js';
 import { PageLayout } from '../layouts/page';
-import { AvailableLocales, TranslationItem, flattenFmt } from '../locales';
+import { AvailableLocales, TranslationItem } from '../locales';
 import { GroupBox } from '../components/GroupBox';
 import { Button } from '../components/Button';
 import { SelectMenu } from '../components/SelectMenu';
 import { useSettingsStore } from '../utils/settings/store';
 import { StorableSyncableSettingsV1 } from '../utils/settings/v1';
 import { periodTexts } from '../utils/schedule';
+import { InputBox } from '../components/InputBox';
+import { TickBox } from '../components/TickBox';
 
 const languages = [
     {
@@ -56,7 +58,8 @@ const SettingsPage: Component = () => {
                             element: <span>{l.text}</span>
                         }))
                     }
-                    selected={() => settings().locale}
+                    disabled={() => false}
+                    selected={() => settings.locale}
                     onChange={value => {
                         setSettings({
                             locale: value as AvailableLocales
@@ -69,66 +72,77 @@ const SettingsPage: Component = () => {
                     <TranslationItem fmtString='pages.settings.scheduleCustomization' />
                 </h3>
                 <div class='flex flex-col gap-2'>
-                    {Object.keys(settings().periods).map(key => (
-                        <div class='flex flex-col gap-2'>
-                            <p class='text-sm text-gray-300'>
-                                <TranslationItem
-                                    fmtString={
-                                        periodTexts[
-                                            key as keyof StorableSyncableSettingsV1['periods']
-                                        ]
-                                    }
-                                />
-                            </p>
-                            <div class='flex items-center gap-4'>
-                                <input
-                                    type='period'
-                                    class='w-full rounded-lg bg-gray-700 px-4 py-2 text-white ring-1 ring-gray-600/60'
-                                    placeholder={flattenFmt({
-                                        fmtString:
+                    <Index each={Object.keys(settings.periods)}>
+                        {key => (
+                            <div class='flex flex-col gap-2'>
+                                <p class='text-sm text-gray-300'>
+                                    <TranslationItem
+                                        fmtString={
                                             periodTexts[
-                                                key as keyof StorableSyncableSettingsV1['periods']
+                                                key() as keyof StorableSyncableSettingsV1['periods']
                                             ]
-                                    })}
-                                    value={
-                                        settings().periods[
-                                            key as keyof StorableSyncableSettingsV1['periods']
-                                        ].name || ''
-                                    }
-                                    onChange={e => {
-                                        setSettings({
-                                            periods: {
-                                                ...settings().periods,
-                                                [key]: {
-                                                    ...settings().periods[
-                                                        key as keyof StorableSyncableSettingsV1['periods']
-                                                    ],
-                                                    name: e.currentTarget.value
+                                        }
+                                    />
+                                </p>
+                                <div class='flex items-center gap-4'>
+                                    <InputBox
+                                        inputMode='text'
+                                        type='text'
+                                        placeholder={{
+                                            fmtString:
+                                                periodTexts[
+                                                    key() as keyof StorableSyncableSettingsV1['periods']
+                                                ]
+                                        }}
+                                        value={() =>
+                                            settings.periods[
+                                                key() as keyof StorableSyncableSettingsV1['periods']
+                                            ].name || ''
+                                        }
+                                        disabled={() =>
+                                            !settings.periods[
+                                                key() as keyof StorableSyncableSettingsV1['periods']
+                                            ].enabled
+                                        }
+                                        onChange={e => {
+                                            setSettings({
+                                                periods: {
+                                                    ...settings.periods,
+                                                    [key()]: {
+                                                        ...settings.periods[
+                                                            key() as keyof StorableSyncableSettingsV1['periods']
+                                                        ],
+                                                        name: e
+                                                    }
                                                 }
-                                            }
-                                        });
-                                    }}
-                                />
-                                <input
-                                    type='checkbox'
-                                    class='h-4 w-4'
-                                    checked={
-                                        settings().periods[
-                                            key as keyof StorableSyncableSettingsV1['periods']
-                                        ].enabled
-                                    }
-                                    onChange={e => {
-                                        setSettings({
-                                            periods: {
-                                                ...settings().periods,
-                                                [key]: e.currentTarget.checked
-                                            }
-                                        });
-                                    }}
-                                />
+                                            });
+                                        }}
+                                    />
+                                    <TickBox
+                                        value={() =>
+                                            settings.periods[
+                                                key() as keyof StorableSyncableSettingsV1['periods']
+                                            ].enabled
+                                        }
+                                        disabled={() => false}
+                                        onChange={value => {
+                                            setSettings({
+                                                periods: {
+                                                    ...settings.periods,
+                                                    [key()]: {
+                                                        ...settings.periods[
+                                                            key() as keyof StorableSyncableSettingsV1['periods']
+                                                        ],
+                                                        enabled: value
+                                                    }
+                                                }
+                                            });
+                                        }}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        )}
+                    </Index>
                 </div>
             </GroupBox>
             <GroupBox>
@@ -141,6 +155,7 @@ const SettingsPage: Component = () => {
                     </p>
                 </div>
                 <Button
+                    disabled={() => false}
                     style='secondary'
                     onClick={async () => {
                         if (!navigator.serviceWorker || !navigator.serviceWorker.getRegistration)

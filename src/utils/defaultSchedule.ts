@@ -4,12 +4,12 @@ import { AllDays, getSecMidTime } from './time';
 /// Default schedules
 export const schedules: Record<AllDays, DayScheduleStandardSchool | DayScheduleStandardWeekend> = {
     sunday: {
-        type: 'standard-weekend',
+        type: 'standardWeekend',
         day: 'sunday',
         hasSchool: false
     },
     monday: {
-        type: 'standard-school',
+        type: 'standardSchool',
         day: 'monday',
         hasSchool: true,
         periods: [
@@ -82,7 +82,7 @@ export const schedules: Record<AllDays, DayScheduleStandardSchool | DayScheduleS
         ]
     },
     tuesday: {
-        type: 'standard-school',
+        type: 'standardSchool',
         day: 'tuesday',
         hasSchool: true,
         periods: [
@@ -137,7 +137,7 @@ export const schedules: Record<AllDays, DayScheduleStandardSchool | DayScheduleS
         ]
     },
     wednesday: {
-        type: 'standard-school',
+        type: 'standardSchool',
         day: 'wednesday',
         hasSchool: true,
         periods: [
@@ -186,7 +186,7 @@ export const schedules: Record<AllDays, DayScheduleStandardSchool | DayScheduleS
         ]
     },
     thursday: {
-        type: 'standard-school',
+        type: 'standardSchool',
         day: 'thursday',
         hasSchool: true,
         periods: [
@@ -241,7 +241,7 @@ export const schedules: Record<AllDays, DayScheduleStandardSchool | DayScheduleS
         ]
     },
     friday: {
-        type: 'standard-school',
+        type: 'standardSchool',
         day: 'friday',
         hasSchool: true,
         periods: [
@@ -284,7 +284,7 @@ export const schedules: Record<AllDays, DayScheduleStandardSchool | DayScheduleS
         ]
     },
     saturday: {
-        type: 'standard-weekend',
+        type: 'standardWeekend',
         day: 'saturday',
         hasSchool: false
     }

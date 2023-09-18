@@ -75,7 +75,7 @@ const NavOption: Component<NavOptionProps> = ({
                     (active() && 'bg-theme-700 text-white group-hover:!bg-theme-700')
                 }
             >
-                <Icon class={isMobile ? 'h-4 w-4' : 'h-6 w-6'} name={icon} />
+                <Icon class={isMobile ? 'h-4 w-4' : 'h-6 w-6'} name={() => icon} />
             </div>
             <p class='text-xs'>
                 <Trans key={key} />

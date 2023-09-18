@@ -14,7 +14,7 @@ const decideTextColour = (color: { r: number; g: number; b: number }) => {
     return luminance > 0.179 ? '#000' : '#fff';
 };
 
-export const generateFavicon = async (
+export const generateFavicon = (
     color: {
         r: number;
         g: number;
@@ -22,15 +22,17 @@ export const generateFavicon = async (
     },
     number: number,
     size: number
-): Promise<Blob> => {
+): string => {
     // Convert color to RGB
     const useDarkText = decideTextColour(color);
 
     // Create a canvas element
-    const canvas = new OffscreenCanvas(size, size);
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
     const ctx = canvas.getContext('2d');
 
-    if (!ctx) return new Blob();
+    if (!ctx) return '/icon/128.png';
 
     // Draw background
     ctx.fillStyle = `rgb(${color.r}, ${color.g}, ${color.b})`;
@@ -46,5 +48,6 @@ export const generateFavicon = async (
     ctx.fillStyle = useDarkText;
     ctx.fillText(number.toString(), size / 2, size / 2);
 
-    return canvas.convertToBlob({ type: 'image/png' });
+    // Get the data URL
+    return canvas.toDataURL();
 };

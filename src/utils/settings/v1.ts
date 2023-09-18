@@ -1,12 +1,16 @@
-import { type InferType, boolean, number, object, string } from 'yup';
+import { type InferType, boolean, number, object, string, array } from 'yup';
 import { availableLocales } from '../../locales';
 import { iconKeys } from '../icon';
 
 const periodSettingsV1 = object({
-    // Only one emoji is allowed (the string must be one emoji and nothing else)
-    icon: string().required().oneOf(iconKeys).default('graduationCap'),
-    name: string(),
-    classroom: string(),
+    icon: string().required().oneOf(iconKeys).default('GraduationCap'),
+    rgb: object({
+        r: number().required().min(0).max(255).default(0),
+        g: number().required().min(0).max(255).default(0),
+        b: number().required().min(0).max(255).default(0)
+    }).required(),
+    name: string().default(''),
+    classroom: string().default(''),
     enabled: boolean().required().default(true)
 });
 
@@ -19,21 +23,22 @@ export const storeableSettingsV1 = object({
         graduationYear: number()
             .required()
             .default(new Date().getFullYear() + 4),
-        identificationNumber: string().required().default(''),
+        identificationNumber: string().default(''),
         periods: object({
-            0: periodSettingsV1.required().default({ enabled: false }),
-            1: periodSettingsV1.required().default({ enabled: true }),
-            2: periodSettingsV1.required().default({ enabled: true }),
-            3: periodSettingsV1.required().default({ enabled: true }),
-            4: periodSettingsV1.required().default({ enabled: true }),
-            5: periodSettingsV1.required().default({ enabled: true }),
-            6: periodSettingsV1.required().default({ enabled: true }),
-            7: periodSettingsV1.required().default({ enabled: true }),
-            8: periodSettingsV1.required().default({ enabled: false }),
-            prime: periodSettingsV1.required().default({ enabled: true }),
-            self: periodSettingsV1.required().default({ enabled: true }),
-            studyHall: periodSettingsV1.required().default({ enabled: true })
-        }).required()
+            0: periodSettingsV1.required(),
+            1: periodSettingsV1.required(),
+            2: periodSettingsV1.required(),
+            3: periodSettingsV1.required(),
+            4: periodSettingsV1.required(),
+            5: periodSettingsV1.required(),
+            6: periodSettingsV1.required(),
+            7: periodSettingsV1.required(),
+            8: periodSettingsV1.required(),
+            prime: periodSettingsV1.required(),
+            self: periodSettingsV1.required(),
+            studyHall: periodSettingsV1.required()
+        }).required(),
+        clubs: array(object({})).ensure().required().default([])
     }).required()
 }).required();
 

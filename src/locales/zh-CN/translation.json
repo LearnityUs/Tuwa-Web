@@ -69,34 +69,7 @@
             "message": "您要访问的页面不存在。"
         },
         "home": {
-            "title": "主頁",
-            "titles": {
-                "beforeSchool": "学校将在{{time}}开始。",
-                "afterSchool": "学校结束了。",
-                "periodPassing": "通过（下一个是{{period}}）",
-                "period": "{{period}}",
-                "noSchoolHoliday": "没有学校（{{name}}）",
-                "noSchoolWeekend": "没有学校（周末）",
-                "noSchoolCustom": "假期（{{name}}）"
-            },
-            "status": {
-                "noSchool": "今天没有学校",
-                "beforeSchool": "学校将在{{time}}开始。",
-                "afterSchool": "学校结束了",
-                "passing": "过渡时间",
-                "period": "{{period}}"
-            },
-            "descriptions": {
-                "beforeSchool": "第一节课是{{period}}。",
-                "periodPassing": "下一节课是{{period}}。",
-                "noSchoolCustom": "今天是一个替代时间表（{{name}}）。",
-                "noSchoolHoliday": "今天是一个假期（{{name}}）。",
-                "noSchoolWeekend": "度过美好的周末！",
-                "upNext": "下一节课是{{period}}。",
-                "lastPeriod": "这是一天中最后一节课。"
-            },
-            "today": "今天的日程",
-            "periodTime": "{{start}}到{{end}}"
+            "title": "主頁"
         },
         "identification": {
             "title": "识别",
