@@ -19,6 +19,7 @@ export const storeableSettingsV1 = object({
         graduationYear: number()
             .required()
             .default(new Date().getFullYear() + 4),
+        identificationNumber: string().required().default(''),
         periods: object({
             0: periodSettingsV1.required().default({ enabled: false }),
             1: periodSettingsV1.required().default({ enabled: true }),
@@ -37,3 +38,4 @@ export const storeableSettingsV1 = object({
 }).required();
 
 export type StoreableSettingsV1 = InferType<typeof storeableSettingsV1>;
+export type StorableSyncableSettingsV1 = StoreableSettingsV1['syncable'];
