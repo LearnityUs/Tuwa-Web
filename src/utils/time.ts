@@ -273,8 +273,8 @@ export const getDateData = (date = new Date()): DateData => {
     const second = date.getSeconds();
     const secondMidnight = hour * 3600 + minute * 60 + second;
 
-    // Days since epoch
-    const dayEpoch = Math.floor((date.getTime() - date.getTimezoneOffset() * 60000) / 86400000);
+    // Days since epoch (adjusted for timezone)
+    const dayEpoch = Math.floor((date.getTime() + date.getTimezoneOffset() * 60000) / 86400000);
 
     return {
         year,
