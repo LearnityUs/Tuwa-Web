@@ -150,10 +150,6 @@ export const filterSchedule = (
         ? 'educator'
         : (gradeLevelNumber.toString() as '9' | '10' | '11' | '12');
 
-    if (!['9', '10', '11', '12'].includes(gradeLevel)) {
-        educator = true;
-    }
-
     schedule.periods = schedule.periods
         ? schedule.periods!.filter(period => {
               const isGrade = period.grades ? period.grades.includes(gradeLevel) : true;
