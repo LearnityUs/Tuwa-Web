@@ -2,57 +2,57 @@
     "utils": {
         "time": {
             "timeLeft": {
-                "timeFmtThree": "{{unitBig}}, {{unitMedium}} and {{unitSmall}}",
-                "timeFmtTwo": "{{unitBig}} and {{unitSmall}}",
-                "hours_other": "{{count}} hours",
-                "minutes_other": "{{count}} minutes",
-                "seconds_other": "{{count}} seconds"
+                "timeFmtThree": "{{unitBig}}, {{unitMedium}} 和 {{unitSmall}}",
+                "timeFmtTwo": "{{unitBig}} 和 {{unitSmall}}",
+                "hours_other": "{{count}} 小時",
+                "minutes_other": "{{count}} 分鐘",
+                "seconds_other": "{{count}} 秒"
             },
             "dateFmt": "{{day}}, {{month}} {{date}}, {{year}}",
             "dateFmtShort": "{{month}} {{date}}, {{year}}",
             "days": {
-                "monday": "Monday",
-                "tuesday": "Tuesday",
-                "wednesday": "Wednesday",
-                "thursday": "Thursday",
-                "friday": "Friday",
-                "saturday": "Saturday",
-                "sunday": "Sunday"
+                "monday": "星期一",
+                "tuesday": "星期二",
+                "wednesday": "星期三",
+                "thursday": "星期四",
+                "friday": "星期五",
+                "saturday": "星期六",
+                "sunday": "星期日"
             },
             "months": {
-                "january": "January",
-                "february": "February",
-                "march": "March",
-                "april": "April",
-                "may": "May",
-                "june": "June",
-                "july": "July",
-                "august": "August",
-                "september": "September",
-                "october": "October",
-                "november": "November",
-                "december": "December"
+                "january": "一月",
+                "february": "二月",
+                "march": "三月",
+                "april": "四月",
+                "may": "五月",
+                "june": "六月",
+                "july": "七月",
+                "august": "八月",
+                "september": "九月",
+                "october": "十月",
+                "november": "十一月",
+                "december": "十二月"
             }
         }
     },
     "common": {
-        "unknownError": "Something went wrong",
+        "unknownError": "出錯了",
         "periods": {
             "0": "ZERO period",
-            "1": "1st period",
-            "2": "2nd period",
-            "3": "3rd period",
-            "4": "4th period",
-            "5": "5th period",
-            "6": "6th period",
-            "7": "7th period",
-            "8": "8th period",
-            "self": "SELF",
-            "prime": "PRIME",
-            "studyHall": "Study Hall",
-            "lunch": "Lunch",
-            "brunch": "Brunch",
-            "passing": "Passing period",
+            "1": "第1節課",
+            "2": "第2節課",
+            "3": "第3節課",
+            "4": "第四節課",
+            "5": "第五節課",
+            "6": "第六節課",
+            "7": "第七節課",
+            "8": "第八節課",
+            "self": "自修",
+            "prime": "自選",
+            "studyHall": "自習室",
+            "lunch": "午餐",
+            "brunch": "早午餐",
+            "passing": "換班",
             "custom": "{{name}}",
             "name": "{{name}}"
         },
@@ -60,62 +60,62 @@
     },
     "components": {
         "schoolStatus": {
-            "progrssBar": "Percentage of period completed",
-            "periodLeft": "{{time}} left",
+            "progrssBar": "已完成的課程百分比",
+            "periodLeft": "剩餘 {{time}}",
             "headings": {
-                "beforeSchool": "School starts at {{time}}",
-                "afterSchool": "School is over",
-                "passingPeriod": "Passing period",
-                "weekend": "Enjoy the weekend!",
+                "beforeSchool": "學校開始於 {{time}}",
+                "afterSchool": "學校結束",
+                "passingPeriod": "間隔時間",
+                "weekend": "度過美好的周末！",
                 "holidays": {},
-                "noSchool": "No school ({{name}})"
+                "noSchool": "沒有上課 ({{name}})"
             },
             "subheadings": {
-                "firstPeriod": "First period is {{period}}.",
-                "nextPeriod": "Next period is {{period}}.",
-                "lastPeriod": "This is the last period of the day."
+                "firstPeriod": "第一節是 {{period}}。",
+                "nextPeriod": "下一節是 {{period}}。",
+                "lastPeriod": "這是今天的最後一節。"
             }
         },
         "scheduleList": {
-            "today": "Today's schedule",
-            "arbitrary": "Schedule Preview",
-            "alternate": "Alternate Schedule",
-            "arbitraryAlternate": "{{date}} (Alternate)",
-            "goBack": "Back to today",
-            "nextDay": "Next date",
-            "previousDay": "Previous date",
-            "noSchool": "No school",
+            "today": "今天的日程安排",
+            "arbitrary": "日程預覽",
+            "alternate": "替代日程安排",
+            "arbitraryAlternate": "{{date}} （替代）",
+            "goBack": "返回今天",
+            "nextDay": "下一個日期",
+            "previousDay": "上一個日期",
+            "noSchool": "沒有上學",
             "periodTime": "{{start}} — {{end}}"
         }
     },
     "pages": {
         "404": {
-            "title": "Page not found",
-            "message": "The page you are looking for does not exist."
+            "title": "未找到頁面",
+            "message": "您正在尋找的網頁不存在。"
         },
         "home": {
-            "title": "Home"
+            "title": "家"
         },
         "identification": {
-            "title": "Identification",
+            "title": "辨識",
             "titleShort": "ID",
-            "idPlaceholder": "Enter your 950 ID number"
+            "idPlaceholder": "輸入您的950識別號碼"
         },
         "settings": {
-            "title": "Settings",
-            "language": "Language",
-            "scheduleCustomization": "Schedule customization",
-            "appRefresh": "Fix App Cache",
-            "appRefreshDescription": "If the app is not working properly, it may be because some files are outdated. This will fix that. Do not do this if you are offline.",
-            "appRefreshButton": "Fix"
+            "title": "設定",
+            "language": "語言",
+            "scheduleCustomization": "課表定制",
+            "appRefresh": "修復應用程式快取",
+            "appRefreshDescription": "如果應用程式出現異常，可能是因為某些檔案已過時。使用此功能可以修復此問題。如果您未連線至網路，請勿執行此操作。",
+            "appRefreshButton": "修復"
         },
         "about": {
-            "title": "About",
-            "quote": "You must be the change you wish to see in the world.",
-            "quoteAuthor": "Mahatma Gandhi",
-            "description": "TUWA is the succsessor to WATT and UGWA. We built TUWA due to WATT being after 2024 and a lack of updates to WATT. TUWA is open source on Github and we welcome contributions of any kind. Join our Discord server to get involved! All feedback and opinions are welcome! TUWA is hevaly inspired by WATT and UGWA. We would not be here without them. Thank you for using TUWA!",
-            "discordLink": "Join Discord",
-            "githubLink": "Contribute on Github"
+            "title": "關於",
+            "quote": "你必須成為你想見到的改變。",
+            "quoteAuthor": "馬哈託·甘地",
+            "description": "TUWA是WATT和UGWA的繼任者。由於WATT於2024年之後沒有更新，我們建立了TUWA。TUWA是一個在Github上開源的項目，我們歡迎任何形式的貢獻。加入我們的Discord伺服器，一同參與吧！我們非常感謝WATT和UGWA，沒有它們就不會有TUWA。感謝您使用TUWA！",
+            "discordLink": "加入Discord",
+            "githubLink": "在Github上做出貢獻"
         }
     }
 }
