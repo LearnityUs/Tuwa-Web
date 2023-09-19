@@ -23,6 +23,7 @@ export const storeableSettingsV1 = object({
         graduationYear: number()
             .required()
             .default(new Date().getFullYear() + 4),
+        isEducator: boolean().required().default(false),
         identificationNumber: string().default(''),
         periods: object({
             0: periodSettingsV1.required(),

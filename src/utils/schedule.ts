@@ -8,7 +8,7 @@ import overides from './overides.json';
 interface Period {
     start: number;
     end: number;
-    grades?: ('9' | '10' | '11' | '12')[];
+    grades: ('9' | '10' | '11' | '12' | 'educator')[];
 }
 
 /// Class period (period 0-8)
@@ -142,11 +142,17 @@ export const filterSchedule = (
     schedule: DayScheduleAny,
     settings: StorableSyncableSettingsV1
 ) => {
-    const gradeLevel = (settings.graduationYear - date.year + 9).toString() as
-        | '9'
-        | '10'
-        | '11'
-        | '12';
+    const gradeLevelNumber = settings.graduationYear - date.year + 9;
+
+    const educator = gradeLevelNumber > 12 || gradeLevelNumber < 9;
+
+    const gradeLevel = educator
+        ? 'educator'
+        : (gradeLevelNumber.toString() as '9' | '10' | '11' | '12');
+
+    if (!['9', '10', '11', '12'].includes(gradeLevel)) {
+        educator = true;
+    }
 
     schedule.periods = schedule.periods
         ? schedule.periods!.filter(period => {
