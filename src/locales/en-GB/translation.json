@@ -67,27 +67,27 @@
             "periodLeft": "{{time}} left",
             "headings": {
                 "beforeSchool": "School starts at {{time}}",
-                "afterSchool": "School is over",
-                "passingPeriod": "Passing period",
-                "weekend": "Enjoy the weekend!",
+                "afterSchool": "School is finished",
+                "passingPeriod": "Break between classes",
+                "weekend": "Have a great weekend!",
                 "holidays": {},
-                "noSchool": "No school ({{name}})"
+                "noSchool": "No classes today ({{name}})"
             },
             "subheadings": {
-                "firstPeriod": "First period is {{period}}.",
-                "nextPeriod": "Next period is {{period}}.",
-                "lastPeriod": "This is the last period of the day."
+                "firstPeriod": "First class is {{period}}.",
+                "nextPeriod": "Next class is {{period}}.",
+                "lastPeriod": "This is the final class of the day."
             }
         },
         "scheduleList": {
-            "today": "Today's schedule",
+            "today": "Today's timetable",
             "arbitrary": "Schedule Preview",
-            "alternate": "Alternate Schedule",
+            "alternate": "Alternative Schedule",
             "arbitraryAlternate": "{{date}} (Alternate)",
             "goBack": "Back to today",
-            "nextDay": "Next date",
+            "nextDay": "Upcoming date",
             "previousDay": "Previous date",
-            "noSchool": "No school",
+            "noSchool": "No classes",
             "periodTime": "{{start}} — {{end}}"
         }
     },
@@ -116,7 +116,7 @@
             "title": "About",
             "quote": "You must be the change you wish to see in the world.",
             "quoteAuthor": "Mahatma Gandhi",
-            "description": "TUWA is the succsessor to WATT and UGWA. We built TUWA due to WATT being after 2024 and a lack of updates to WATT. TUWA is open source on Github and we welcome contributions of any kind. Join our Discord server to get involved! All feedback and opinions are welcome! TUWA is hevaly inspired by WATT and UGWA. We would not be here without them. Thank you for using TUWA!",
+            "description": "TUWA is the successor to WATT and UGWA. We built TUWA due to WATT being after 2024 and a lack of updates to WATT. TUWA is open source on Github and we welcome contributions of any kind. Join our Discord server to get involved! All feedback and opinions are welcome! TUWA is heavily inspired by WATT and UGWA. We would not be here without them. Thank you for using TUWA!",
             "discordLink": "Join Discord",
             "githubLink": "Contribute on Github"
         }
