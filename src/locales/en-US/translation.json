@@ -15,31 +15,31 @@
             "dateFmtShort": "{{month}} {{date}}, {{year}}",
             "days": {
                 "monday": "Monday",
-                "tuesday": "Martes",
-                "wednesday": "Miércoles",
-                "thursday": "Jueves",
-                "friday": "Viernes",
-                "saturday": "Sábado",
-                "sunday": "Domingo"
+                "tuesday": "Tuesday",
+                "wednesday": "Wednesday",
+                "thursday": "Thursday",
+                "friday": "Friday",
+                "saturday": "Saturday",
+                "sunday": "Sunday"
             },
             "months": {
-                "january": "Enero",
-                "february": "Febrero",
-                "march": "Marzo",
-                "april": "Abril",
-                "may": "Mayo",
-                "june": "Junio",
-                "july": "Julio",
-                "august": "Agosto",
-                "september": "Septiembre",
-                "october": "Octubre",
-                "november": "Noviembre",
-                "december": "Diciembre"
+                "january": "January",
+                "february": "February",
+                "march": "March",
+                "april": "April",
+                "may": "May",
+                "june": "June",
+                "july": "July",
+                "august": "August",
+                "september": "September",
+                "october": "October",
+                "november": "November",
+                "december": "December"
             }
         }
     },
     "common": {
-        "unknownError": "Algo salió mal",
+        "unknownError": "Something went wrong",
         "periods": {
             "0": "ZERO period",
             "1": "1st period",
@@ -56,8 +56,8 @@
             "lunch": "Lunch",
             "brunch": "Brunch",
             "passing": "Passing period",
-            "custom": "0",
-            "name": "0"
+            "custom": "{{name}}",
+            "name": "{{name}}"
         },
         "pageFmt": "{{page}} | TUWA Gunn App"
     },
@@ -84,7 +84,7 @@
             "arbitrary": "Schedule Preview",
             "alternate": "Alternate Schedule",
             "arbitraryAlternate": "{{date}} (Alternate)",
-            "goBack": "Regresar a hoy",
+            "goBack": "Back to today",
             "nextDay": "Next date",
             "previousDay": "Previous date",
             "noSchool": "No school",
@@ -116,7 +116,7 @@
             "title": "About",
             "quote": "You must be the change you wish to see in the world.",
             "quoteAuthor": "Mahatma Gandhi",
-            "description": "TUWA is the successor to WATT and UGWA. We built TUWA due to WATT being after 2024 and a lack of updates to WATT. TUWA is open source on Github and we welcome contributions of any kind. Join our Discord server to get involved! All feedback and opinions are welcome! TUWA is heavily inspired by WATT and UGWA. We would not be here without them. Thank you for using TUWA!",
+            "description": "TUWA is the succsessor to WATT and UGWA. We built TUWA due to WATT being after 2024 and a lack of updates to WATT. TUWA is open source on Github and we welcome contributions of any kind. Join our Discord server to get involved! All feedback and opinions are welcome! TUWA is hevaly inspired by WATT and UGWA. We would not be here without them. Thank you for using TUWA!",
             "discordLink": "Join Discord",
             "githubLink": "Contribute on Github"
         }
