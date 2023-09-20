@@ -50,9 +50,9 @@ export const SelectMenu: Component<SelectMenuProps> = ({
         >
             <button
                 class={
-                    'flex w-fit min-w-[16rem] cursor-pointer flex-row items-center gap-2 rounded-lg bg-gray-800 p-2 px-4 py-2 shadow-md ring-1 ring-gray-700/60 transition-colors hover:bg-gray-700 active:bg-gray-600 ' +
+                    'flex w-fit min-w-[8rem] cursor-pointer flex-row items-center gap-2 rounded-lg bg-gray-800 p-2 px-4 py-2 shadow-md ring-1 ring-gray-700/60 transition-colors hover:bg-gray-700 active:bg-gray-600 md:min-w-[16rem] ' +
                     (disabled() &&
-                        '!cursor-not-allowed !bg-gray-800/60 !text-gray-300 !shadow-none !outline-none !ring-0')
+                        '!cursor-not-allowed !bg-gray-900 !text-gray-300 !shadow-none !outline-none !ring-0')
                 }
                 onClick={() => setIsOpen(disabled() ? false : !isOpen())}
             >
@@ -62,7 +62,7 @@ export const SelectMenu: Component<SelectMenuProps> = ({
             </button>
             <div
                 class={
-                    'absolute z-10 mt-4 max-h-64 min-w-[16rem] origin-top-left flex-col overflow-x-hidden overflow-y-scroll rounded-lg bg-gray-800 py-1 ring-1 ring-gray-700/60 transition-all ' +
+                    'absolute z-10 mt-4 max-h-64 min-w-[8rem] origin-top-left flex-col overflow-x-hidden overflow-y-scroll rounded-lg bg-gray-800 py-1 ring-1 ring-gray-700/60 transition-all md:min-w-[16rem] ' +
                     (isOpen() ? 'flex scale-100' : 'pointer-events-none scale-95 opacity-0')
                 }
             >

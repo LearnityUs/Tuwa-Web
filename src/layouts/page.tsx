@@ -35,9 +35,9 @@ export const PageLayout: Component<PageLayoutProps> = ({ children, title, showTi
                 (appear() && '!translate-y-0 !opacity-100')
             }
         >
-            <div class='flex min-h-full w-full flex-col justify-end gap-8 overflow-visible pb-[3.75rem] md:justify-start md:pb-0 md:pl-[5.5rem]'>
+            <div class='flex min-h-full w-full flex-col gap-8 overflow-visible pb-[3.75rem] pt-6 md:pb-0 md:pl-[5.5rem] md:pt-0'>
                 {showTitle && (
-                    <h1 class='text-5xl font-bold'>
+                    <h1 class='text-4xl font-bold md:text-5xl'>
                         <Trans key={title} />
                     </h1>
                 )}

@@ -88,7 +88,7 @@ export const SideBar: Component = () => {
     const [page, setPage] = createSignal(stripUrl(window.location.pathname));
 
     return (
-        <div class='pointer-events-none fixed top-0 z-10 hidden h-full bg-gray-900/60 pb-5 pl-[max(env(safe-area-inset-left),1.25rem)] pr-5 pt-[calc(env(safe-area-inset-top)+1.25rem)] backdrop-blur-md transition-all md:pointer-events-auto md:flex'>
+        <div class='pointer-events-none fixed top-0 z-10 hidden h-full bg-gray-900 pb-5 pr-5 ring-2 ring-gray-800/60 backdrop-blur-md transition-all pl-safe-or-5 py-safe-or-5 md:pointer-events-auto md:flex'>
             <div class='flex w-12 flex-col items-center gap-6'>
                 {pageOptions.map(option => (
                     <NavOption
@@ -108,7 +108,7 @@ export const BottomBar: Component = () => {
     const [page, setPage] = createSignal(stripUrl(window.location.pathname));
 
     return (
-        <div class='fixed bottom-0 z-10 flex w-full flex-row justify-evenly gap-6 bg-gray-900/60 px-4 py-2 pb-[max(0.5rem,calc(env(safe-area-inset-bottom)))] backdrop-blur-md transition-all md:pointer-events-none md:hidden'>
+        <div class='fixed bottom-0 z-10 flex w-full flex-row justify-evenly gap-6 bg-gray-900 px-4 py-2 ring-2 ring-gray-800/60 backdrop-blur-md transition-all pb-safe-or-2 md:pointer-events-none md:hidden'>
             {pageOptions
                 .filter(e => e.showMobile)
                 .map(option => (

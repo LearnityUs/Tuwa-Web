@@ -151,8 +151,10 @@ export const filterSchedule = (
 
     const educator = settings.isEducator;
 
-    schedule.periods = schedule.periods
-        ? schedule.periods!.filter(period => {
+    const scheduleData = { ...schedule };
+
+    scheduleData.periods = scheduleData.periods
+        ? [...scheduleData.periods].filter(period => {
               const isGrade = period.grades.includes(
                   (educator ? 'educator' : gradeLevel.toString()) as
                       | '9'
@@ -170,7 +172,7 @@ export const filterSchedule = (
           })
         : [];
 
-    return schedule;
+    return scheduleData;
 };
 
 /// Get the standard schedule for a day

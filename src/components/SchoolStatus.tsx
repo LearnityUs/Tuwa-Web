@@ -5,7 +5,7 @@ import { ProgressBar } from './ProgressBar';
 import { DateData, getFormatedTimeLeft, getFormattedClockTime } from '../utils/time';
 import { icons } from 'lucide-solid';
 import { Icon } from '../utils/icon';
-import { DayScheduleAny, getPeriodKey, getPeriodName } from '../utils/schedule';
+import { DayScheduleAny, filterSchedule, getPeriodKey, getPeriodName } from '../utils/schedule';
 import { useSettingsStore } from '../utils/settings/store';
 import { generateFavicon } from '../utils/favicon';
 
@@ -66,7 +66,8 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
 
     createEffect(() => {
         // Using the time check the current period
-        const scheduleData = schedule();
+        const scheduleRaw = schedule();
+        const scheduleData = scheduleRaw && filterSchedule(date(), scheduleRaw, settings);
         const dateData = date();
 
         if (!scheduleData) {
@@ -235,7 +236,12 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
 
     return (
         <GroupBox>
-            <div class={'flex items-start gap-4 ' + (subtitle() || 'items-center')}>
+            <div
+                class={
+                    'flex flex-col items-start gap-4 md:flex-row ' +
+                    (subtitle() || 'md:items-center')
+                }
+            >
                 <div class='flex h-12 w-12 min-w-[3rem] items-center justify-center rounded-full bg-theme-700 p-3'>
                     <Icon name={icon} />
                 </div>

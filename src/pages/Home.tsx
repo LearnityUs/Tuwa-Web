@@ -63,16 +63,28 @@ const HomePage: Component = () => {
     return (
         <PageLayout showTitle={false} title='pages.home.title'>
             <div>
-                <h2 class='text-6xl font-bold'>
-                    <span>{date().hour.toString().padStart(2, '0')}</span>
+                <h2 class='text-5xl font-bold md:text-6xl'>
+                    <span>{settings.timeFormat === '12h' ? date().hour % 12 : date().hour}</span>
                     <span>:</span>
                     <span>{date().minute.toString().padStart(2, '0')}</span>
-                    <span class='text-4xl text-gray-300'>:</span>
-                    <span class='text-4xl text-gray-300'>
+                    <span class='text-3xl text-gray-300 md:text-4xl'>:</span>
+                    <span class='text-3xl text-gray-300 md:text-4xl'>
                         {date().second.toString().padStart(2, '0')}
                     </span>
+                    {settings.timeFormat === '12h' && (
+                        <>
+                            <span class='text-3xl text-gray-300 md:text-4xl'> </span>
+                            <span class='text-3xl text-gray-300 md:text-4xl'>
+                                {date().hour > 12 ? (
+                                    <TranslationItem fmtString='common.time.pm' />
+                                ) : (
+                                    <TranslationItem fmtString='common.time.am' />
+                                )}
+                            </span>
+                        </>
+                    )}
                 </h2>
-                <p class='text-gray-300'>
+                <p class='text-sm text-gray-300 md:text-base'>
                     <TranslationItem {...getFormattedDate(date() ?? getDateData())} />
                 </p>
             </div>

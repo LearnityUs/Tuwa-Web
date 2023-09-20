@@ -1,4 +1,4 @@
-import { onCleanup, onMount } from 'solid-js';
+import { createSignal, onCleanup, onMount } from 'solid-js';
 import { StorableSyncableSettingsV1, StoreableSettingsV1, storeableSettingsV1 } from './v1';
 import { createStore } from 'solid-js/store';
 
@@ -68,6 +68,7 @@ class SettingsStore {
 }
 
 export const useSettingsStore = () => {
+    const [updateTime, setUpdateTime] = createSignal<number>(Date.now());
     const [settings, setSettings] = createStore<StorableSyncableSettingsV1>(
         (storeableSettingsV1.getDefault() as StoreableSettingsV1).syncable
     );
@@ -86,6 +87,7 @@ export const useSettingsStore = () => {
     onMount(() => {
         const listener = () => {
             setSettings(store.settings.syncable);
+            setUpdateTime(Date.now());
         };
 
         listener();
@@ -97,5 +99,5 @@ export const useSettingsStore = () => {
         });
     });
 
-    return [settings, update] as const;
+    return [settings, update, updateTime] as const;
 };

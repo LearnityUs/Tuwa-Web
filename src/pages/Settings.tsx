@@ -1,6 +1,6 @@
-import { Index, type Component } from 'solid-js';
+import { Index, type Component, JSX } from 'solid-js';
 import { PageLayout } from '../layouts/page';
-import { AvailableLocales, TranslationItem } from '../locales';
+import { AvailableLocales, FmtProps, TranslationItem } from '../locales';
 import { GroupBox } from '../components/GroupBox';
 import { Button } from '../components/Button';
 import { SelectMenu } from '../components/SelectMenu';
@@ -41,79 +41,126 @@ const languages = [
     }
 ];
 
+const SettingItem: Component<{
+    text: FmtProps;
+    disabled: () => boolean;
+    children: JSX.Element;
+}> = ({ text, disabled, children }) => {
+    return (
+        <div class='flex h-10 items-center'>
+            <p class={'max-w-[8rem] md:max-w-[16rem] ' + (disabled() && 'text-gray-300')}>
+                <TranslationItem {...text} />
+            </p>
+            <div class='min-w-[0.5rem] flex-grow' />
+            <div>{children}</div>
+        </div>
+    );
+};
+
 const SettingsPage: Component = () => {
     const [settings, setSettings] = useSettingsStore();
 
     return (
         <PageLayout title='pages.settings.title'>
-            <div class='flex w-full items-center'>
-                <p>
-                    <TranslationItem fmtString='pages.settings.language' />
-                </p>
-                <div class='flex flex-grow' />
-                <SelectMenu
-                    options={() =>
-                        languages.map(l => ({
-                            key: l.key,
-                            element: <span>{l.text}</span>
-                        }))
-                    }
-                    disabled={() => false}
-                    selected={() => settings.locale}
-                    onChange={value => {
-                        setSettings({
-                            locale: value as AvailableLocales
-                        });
+            <div class='flex flex-col gap-4'>
+                <SettingItem
+                    text={{
+                        fmtString: 'pages.settings.language'
                     }}
-                />
-            </div>
-            <div class='flex w-full items-center'>
-                <p>
-                    <TranslationItem fmtString='pages.settings.educator' />
-                </p>
-                <div class='flex flex-grow' />
-                <TickBox
-                    value={() => settings.isEducator}
                     disabled={() => false}
-                    onChange={value => {
-                        setSettings({
-                            isEducator: value
-                        });
-                    }}
-                />
-            </div>
-            <div class='flex w-full items-center'>
-                <p class={'transition-all ' + (settings.isEducator ? 'text-gray-300' : '')}>
-                    <TranslationItem fmtString='pages.settings.graduationYear' />
-                </p>
-                <div class='flex flex-grow' />
-                <SelectMenu
-                    options={() =>
-                        [1, 2, 3, 4].map(year => ({
-                            key: (year + new Date().getFullYear()).toString(),
-                            element: (
-                                <span>
-                                    <TranslationItem
-                                        fmtString='pages.settings.graduationYearOption'
-                                        fmtArgs={{ year: year + new Date().getFullYear() }}
-                                    />
-                                </span>
-                            )
-                        }))
-                    }
+                >
+                    <SelectMenu
+                        options={() =>
+                            languages.map(l => ({
+                                key: l.key,
+                                element: <span>{l.text}</span>
+                            }))
+                        }
+                        disabled={() => false}
+                        selected={() => settings.locale}
+                        onChange={value => {
+                            setSettings({
+                                locale: value as AvailableLocales
+                            });
+                        }}
+                    />
+                </SettingItem>
+                <SettingItem text={{ fmtString: 'pages.settings.educator' }} disabled={() => false}>
+                    <TickBox
+                        value={() => settings.isEducator}
+                        disabled={() => false}
+                        onChange={value => {
+                            setSettings({
+                                isEducator: value
+                            });
+                        }}
+                    />
+                </SettingItem>
+                <SettingItem
+                    text={{ fmtString: 'pages.settings.graduationYear' }}
                     disabled={() => settings.isEducator}
-                    selected={() => {
-                        const year = new Date().getFullYear();
-                        return settings.graduationYear < year || settings.graduationYear > year + 4
-                            ? year.toString()
-                            : settings.graduationYear.toString();
-                    }}
-                    onChange={value => {
-                        setSettings({
-                            graduationYear: parseInt(value)
-                        });
-                    }}
-                />
+                >
+                    <SelectMenu
+                        options={() =>
+                            [1, 2, 3, 4].map(year => ({
+                                key: (year + new Date().getFullYear()).toString(),
+                                element: (
+                                    <span>
+                                        <TranslationItem
+                                            fmtString='pages.settings.graduationYearOption'
+                                            fmtArgs={{ year: year + new Date().getFullYear() }}
+                                        />
+                                    </span>
+                                )
+                            }))
+                        }
+                        disabled={() => settings.isEducator}
+                        selected={() => {
+                            const year = new Date().getFullYear();
+                            return settings.graduationYear < year ||
+                                settings.graduationYear > year + 4
+                                ? year.toString()
+                                : settings.graduationYear.toString();
+                        }}
+                        onChange={value => {
+                            setSettings({
+                                graduationYear: parseInt(value)
+                            });
+                        }}
+                    />
+                </SettingItem>
+                <SettingItem
+                    text={{ fmtString: 'pages.settings.timeFormat' }}
+                    disabled={() => false}
+                >
+                    <SelectMenu
+                        options={() => [
+                            {
+                                key: '12h',
+                                element: (
+                                    <span>
+                                        <TranslationItem fmtString='pages.settings.time.12hr' />
+                                    </span>
+                                )
+                            },
+                            {
+                                key: '24h',
+                                element: (
+                                    <span>
+                                        <TranslationItem fmtString='pages.settings.time.24hr' />
+                                    </span>
+                                )
+                            }
+                        ]}
+                        disabled={() => false}
+                        selected={() => settings.timeFormat}
+                        onChange={value => {
+                            setSettings({
+                                timeFormat: value === '12h' ? '12h' : '24h'
+                            });
+                        }}
+                    />
+                </SettingItem>
             </div>
             <GroupBox>
                 <h3 class='text-2xl font-bold'>

@@ -1,4 +1,5 @@
 import { FmtProps } from '../locales';
+import { StorableSyncableSettingsV1 } from './settings/v1';
 
 /// Type containing the months
 export type AllMonths =
@@ -146,13 +147,33 @@ export const getFormatedTimeLeft = (secondMidnight: number, useSeconds = false):
  * @param secondMidnight - time in seconds
  */
 
-export const getFormattedClockTime = (secondMidnight: number): string => {
+export const getFormattedClockTime = (
+    secondMidnight: number,
+    settings?: StorableSyncableSettingsV1
+): FmtProps => {
     const hours = Math.floor(secondMidnight / 3600);
     const minutes = Math.floor((secondMidnight % 3600) / 60);
 
-    return `${hours % 12 === 0 ? 12 : hours % 12}:${minutes < 10 ? '0' : ''}${minutes} ${
-        hours < 12 ? 'AM' : 'PM'
-    }`;
+    if (settings?.timeFormat === '24h') {
+        return {
+            fmtString: 'common.time.timeFmt24h',
+            fmtArgs: {
+                hours,
+                minutes: minutes < 10 ? `0${minutes}` : minutes
+            }
+        };
+    }
+
+    return {
+        fmtString: 'common.time.timeFmt12h',
+        fmtArgs: {
+            hours: hours % 12 === 0 ? 12 : hours % 12,
+            minutes: minutes < 10 ? `0${minutes}` : minutes,
+            ampm: {
+                fmtString: hours < 12 ? 'common.time.am' : 'common.time.pm'
+            }
+        }
+    };
 };
 
 /**
