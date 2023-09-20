@@ -2,46 +2,46 @@
     "utils": {
         "time": {
             "timeLeft": {
-                "timeFmtThree": "{{unitBig}}, {{unitMedium}} and {{unitSmall}}",
-                "timeFmtTwo": "{{unitBig}} and {{unitSmall}}",
-                "hours_other": "{{count}} hours",
-                "minutes_other": "{{count}} minutes",
-                "seconds_other": "{{count}} seconds"
+                "timeFmtThree": "{{unitBig}}、 {{unitMedium}} 、 {{unitSmall}}",
+                "timeFmtTwo": "{{unitBig}} 、 {{unitSmall}}",
+                "hours_other": "{{count}} 時間",
+                "minutes_other": "{{count}} 分",
+                "seconds_other": "{{count}} 秒"
             },
-            "dateFmt": "{{day}}, {{month}} {{date}}, {{year}}",
+            "dateFmt": "{{day}}、 {{month}} {{date}}、 {{year}}",
             "dateFmtShort": "{{month}} {{date}}, {{year}}",
             "days": {
-                "monday": "Monday",
-                "tuesday": "Tuesday",
-                "wednesday": "Wednesday",
-                "thursday": "Thursday",
-                "friday": "Friday",
-                "saturday": "Saturday",
-                "sunday": "Sunday"
+                "monday": "月曜日",
+                "tuesday": "火曜日",
+                "wednesday": "水曜日",
+                "thursday": "木曜日",
+                "friday": "金曜日",
+                "saturday": "土曜日",
+                "sunday": "日曜日"
             },
             "months": {
-                "january": "January",
-                "february": "February",
-                "march": "March",
-                "april": "April",
-                "may": "May",
-                "june": "June",
-                "july": "July",
-                "august": "August",
-                "september": "September",
-                "october": "October",
-                "november": "November",
-                "december": "December"
+                "january": "1月",
+                "february": "2月",
+                "march": "3月",
+                "april": "4月",
+                "may": "5月",
+                "june": "6月",
+                "july": "7月",
+                "august": "8月",
+                "september": "9月",
+                "october": "10月",
+                "november": "11月",
+                "december": "12月"
             }
         }
     },
     "common": {
-        "unknownError": "Something went wrong",
+        "unknownError": "何かが間違っていました",
         "periods": {
-            "0": "ZERO period",
-            "1": "1st period",
-            "2": "2nd period",
-            "3": "3rd period",
+            "0": "ゼロ期間",
+            "1": "1番目の期間",
+            "2": "2番目の期間",
+            "3": "3番目の期間",
             "4": "4th period",
             "5": "5th period",
             "6": "6th period",
@@ -56,35 +56,35 @@
             "custom": "{{name}}",
             "name": "{{name}}"
         },
-        "pageFmt": "{{page}} | TUWA Gunn App"
+        "pageFmt": "{{page}} | TUWA Gunn アプリ"
     },
     "components": {
         "schoolStatus": {
             "progrssBar": "Percentage of period completed",
             "periodLeft": "{{time}} left",
             "headings": {
-                "beforeSchool": "School starts at {{time}}",
-                "afterSchool": "School is over",
-                "passingPeriod": "Passing period",
-                "weekend": "Enjoy the weekend!",
+                "beforeSchool": "学校は {{time}}に始まります",
+                "afterSchool": "学校終わりました",
+                "passingPeriod": "通り抜けの時間",
+                "weekend": "週末をお楽しみください！",
                 "holidays": {},
-                "noSchool": "No school ({{name}})"
+                "noSchool": "学校はありません ({{name}})"
             },
             "subheadings": {
                 "firstPeriod": "First period is {{period}}.",
                 "nextPeriod": "Next period is {{period}}.",
-                "lastPeriod": "This is the last period of the day."
+                "lastPeriod": "これは今日の最後の期間です。"
             }
         },
         "scheduleList": {
-            "today": "Today's schedule",
-            "arbitrary": "Schedule Preview",
-            "alternate": "Alternate Schedule",
+            "today": "今日のスケジュール",
+            "arbitrary": "スケジュールプレビュー",
+            "alternate": "代替スケジュール",
             "arbitraryAlternate": "{{date}} (Alternate)",
-            "goBack": "Back to today",
-            "nextDay": "Next date",
-            "previousDay": "Previous date",
-            "noSchool": "No school",
+            "goBack": "今日に戻る",
+            "nextDay": "次の日付",
+            "previousDay": "前日",
+            "noSchool": "学校なし",
             "periodTime": "{{start}} — {{end}}"
         }
     },
@@ -94,28 +94,28 @@
             "message": "The page you are looking for does not exist."
         },
         "home": {
-            "title": "Home"
+            "title": "トップ"
         },
         "identification": {
-            "title": "Identification",
+            "title": "識別",
             "titleShort": "ID",
-            "idPlaceholder": "Enter your 950 ID number"
+            "idPlaceholder": "950 ID番号を入力してください"
         },
         "settings": {
-            "title": "Settings",
-            "language": "Language",
-            "scheduleCustomization": "Schedule customization",
-            "appRefresh": "Fix App Cache",
-            "appRefreshDescription": "If the app is not working properly, it may be because some files are outdated. This will fix that. Do not do this if you are offline.",
-            "appRefreshButton": "Fix"
+            "title": "設定",
+            "language": "言語",
+            "scheduleCustomization": "スケジュールのカスタマイズ",
+            "appRefresh": "アプリキャッシュ修正",
+            "appRefreshDescription": "アプリが正常に動作しない場合、一部のファイルが古くなっている可能性があります。これによって修正されます。オフラインの場合は実行しないでください。",
+            "appRefreshButton": "修正"
         },
         "about": {
-            "title": "About",
-            "quote": "You must be the change you wish to see in the world.",
-            "quoteAuthor": "Mahatma Gandhi",
-            "description": "TUWA is the succsessor to WATT and UGWA. We built TUWA due to WATT being after 2024 and a lack of updates to WATT. TUWA is open source on Github and we welcome contributions of any kind. Join our Discord server to get involved! All feedback and opinions are welcome! TUWA is hevaly inspired by WATT and UGWA. We would not be here without them. Thank you for using TUWA!",
-            "discordLink": "Join Discord",
-            "githubLink": "Contribute on Github"
+            "title": "について",
+            "quote": "あなたが世界で見たい変化になる必要があります。",
+            "quoteAuthor": "マハトマ・ガンジー",
+            "description": "TUWAはWATTおよびUGWAの後継です。2024年以降にWATTが存在し、WATTへの更新が行われていないため、TUWAを構築しました。TUWAはGithubでオープンソースであり、どんな種類の貢献も歓迎します。関与するためのDiscordサーバーに参加してください。すべてのフィードバックと意見を歓迎します。TUWAはWATTとUGWAから強くインスピレーションを受けています。彼らなしではここにはいません。TUWAをご利用いただきありがとうございます！",
+            "discordLink": "参加してください ディスコード",
+            "githubLink": "GitHub で貢献する"
         }
     }
 }
