@@ -2,7 +2,7 @@
     "utils": {
         "time": {
             "timeLeft": {
-                "timeFmtThree": "{{unitBig}}{{unitMedium}}{{unitMedium}}",
+                "timeFmtThree": "{{unitBig}}{{unitMedium}}{{unitSmall}}",
                 "timeFmtTwo": "{{unitBig}}{{unitSmall}}",
                 "hours_other": "{{count}}个小时",
                 "minutes_other": "{{count}}分钟",
