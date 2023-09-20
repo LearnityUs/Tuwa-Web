@@ -79,9 +79,9 @@
         "scheduleList": {
             "today": "今天的日程",
             "arbitrary": "日程预览",
-            "alternate": "Alternate Schedule",
-            "arbitraryAlternate": "{{date}} (Alternate)",
-            "goBack": "Back to today",
+            "alternate": "替代日程",
+            "arbitraryAlternate": "{{date}}（替代）",
+            "goBack": "回复今天的日程",
             "nextDay": "后一天",
             "previousDay": "前一天",
             "noSchool": "没有学校",

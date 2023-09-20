@@ -2,92 +2,92 @@
     "utils": {
         "time": {
             "timeLeft": {
-                "timeFmtThree": "{{unitBig}}, {{unitMedium}} and {{unitSmall}}",
-                "timeFmtTwo": "{{unitBig}} and {{unitSmall}}",
-                "hours_one": "{{count}} hour",
-                "hours_other": "{{count}} hours",
-                "minutes_one": "{{count}} minute",
-                "minutes_other": "{{count}} minutes",
-                "seconds_one": "{{count}} second",
-                "seconds_other": "{{count}} seconds"
+                "timeFmtThree": "{{unitBig}}, {{unitMedium}} y {{unitSmall}}",
+                "timeFmtTwo": "{{unitBig}} y {{unitSmall}}",
+                "hours_one": "{{count}} hora",
+                "hours_other": "{{count}} horas",
+                "minutes_one": "{{count}} minuto",
+                "minutes_other": "{{count}} minutos",
+                "seconds_one": "{{count}} segundo",
+                "seconds_other": "{{count}} segundos"
             },
             "dateFmt": "{{day}}, {{month}} {{date}}, {{year}}",
             "dateFmtShort": "{{month}} {{date}}, {{year}}",
             "days": {
-                "monday": "Monday",
-                "tuesday": "Tuesday",
-                "wednesday": "Wednesday",
-                "thursday": "Thursday",
-                "friday": "Friday",
-                "saturday": "Saturday",
-                "sunday": "Sunday"
+                "monday": "Lunes",
+                "tuesday": "Martes",
+                "wednesday": "Miércoles",
+                "thursday": "Jueves",
+                "friday": "Viernes",
+                "saturday": "Sábado",
+                "sunday": "Domingo"
             },
             "months": {
-                "january": "January",
-                "february": "February",
-                "march": "March",
-                "april": "April",
-                "may": "May",
-                "june": "June",
-                "july": "July",
-                "august": "August",
-                "september": "September",
-                "october": "October",
-                "november": "November",
-                "december": "December"
+                "january": "Enero",
+                "february": "Febrero",
+                "march": "Marzo",
+                "april": "Abril",
+                "may": "Mayo",
+                "june": "Junio",
+                "july": "Julio",
+                "august": "Agosto",
+                "september": "Septiembre",
+                "october": "Octubre",
+                "november": "Noviembre",
+                "december": "Diciembre"
             }
         }
     },
     "common": {
-        "unknownError": "Something went wrong",
+        "unknownError": "Algo salió mal",
         "periods": {
-            "0": "ZERO period",
-            "1": "1st period",
-            "2": "2nd period",
-            "3": "3rd period",
-            "4": "4th period",
-            "5": "5th period",
-            "6": "6th period",
-            "7": "7th period",
-            "8": "8th period",
-            "self": "SELF",
-            "prime": "PRIME",
-            "studyHall": "Study Hall",
-            "lunch": "Lunch",
-            "brunch": "Brunch",
-            "passing": "Passing period",
+            "0": "Período CERO",
+            "1": "1er periodo",
+            "2": "2do periodo",
+            "3": "3er periodo",
+            "4": "4to periodo",
+            "5": "5to periodo",
+            "6": "6to periodo",
+            "7": "7mo periodo",
+            "8": "8vo periodo",
+            "self": "MISMO",
+            "prime": "PRINCIPAL",
+            "studyHall": "Sala de estudio",
+            "lunch": "Almuerzo",
+            "brunch": "Merienda",
+            "passing": "Período de paso",
             "custom": "{{name}}",
             "name": "{{name}}"
         },
-        "pageFmt": "{{page}} | TUWA Gunn App"
+        "pageFmt": "{{page}} | TUWA Aplicación Gunn"
     },
     "components": {
         "schoolStatus": {
             "progrssBar": "Percentage of period completed",
             "periodLeft": "{{time}} left",
             "headings": {
-                "beforeSchool": "School starts at {{time}}",
-                "afterSchool": "School is over",
-                "passingPeriod": "Passing period",
-                "weekend": "Enjoy the weekend!",
+                "beforeSchool": "La escuela comienza a las {{time}}",
+                "afterSchool": "La escuela ha terminado",
+                "passingPeriod": "Periodo de cambio",
+                "weekend": "¡Disfruta el fin de semana!",
                 "holidays": {},
-                "noSchool": "No school ({{name}})"
+                "noSchool": "No hay clases ({{name}})"
             },
             "subheadings": {
-                "firstPeriod": "First period is {{period}}.",
-                "nextPeriod": "Next period is {{period}}.",
-                "lastPeriod": "This is the last period of the day."
+                "firstPeriod": "El primer periodo es {{period}}.",
+                "nextPeriod": "El siguiente periodo es {{period}}.",
+                "lastPeriod": "Este es el último periodo del día."
             }
         },
         "scheduleList": {
-            "today": "Today's schedule",
-            "arbitrary": "Schedule Preview",
-            "alternate": "Alternate Schedule",
-            "arbitraryAlternate": "{{date}} (Alternate)",
-            "goBack": "Back to today",
-            "nextDay": "Next date",
-            "previousDay": "Previous date",
-            "noSchool": "No school",
+            "today": "Horario de hoy",
+            "arbitrary": "Vista previa del horario",
+            "alternate": "Horario alterno",
+            "arbitraryAlternate": "{{date}} (Alternativo)",
+            "goBack": "Volver a hoy",
+            "nextDay": "Próxima fecha",
+            "previousDay": "Fecha anterior",
+            "noSchool": "No hay clases",
             "periodTime": "{{start}} — {{end}}"
         }
     },
@@ -107,7 +107,7 @@
         "settings": {
             "title": "Settings",
             "language": "Language",
-            "scheduleCustomization": "Schedule customization",
+            "scheduleCustomization": "Personalización de horario",
             "appRefresh": "Fix App Cache",
             "appRefreshDescription": "If the app is not working properly, it may be because some files are outdated. This will fix that. Do not do this if you are offline.",
             "appRefreshButton": "Fix"
@@ -116,9 +116,9 @@
             "title": "About",
             "quote": "You must be the change you wish to see in the world.",
             "quoteAuthor": "Mahatma Gandhi",
-            "description": "TUWA is the succsessor to WATT and UGWA. We built TUWA due to WATT being after 2024 and a lack of updates to WATT. TUWA is open source on Github and we welcome contributions of any kind. Join our Discord server to get involved! All feedback and opinions are welcome! TUWA is hevaly inspired by WATT and UGWA. We would not be here without them. Thank you for using TUWA!",
-            "discordLink": "Join Discord",
-            "githubLink": "Contribute on Github"
+            "description": "TUWA es el sucesor de WATT y UGWA. Construimos TUWA debido a que WATT está después de 2024 y falta actualizaciones a WATT. TUWA es de código abierto en Github y damos la bienvenida a contribuciones de cualquier tipo. ¡Únete a nuestro servidor de Discord para participar! ¡Apreciamos todos los comentarios y opiniones! TUWA está fuertemente inspirado en WATT y UGWA. No estaríamos aquí sin ellos. ¡Gracias por usar TUWA!",
+            "discordLink": "Únete a Discord",
+            "githubLink": "Contribuye en Github"
         }
     }
 }
