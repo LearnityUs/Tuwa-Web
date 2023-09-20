@@ -75,5 +75,61 @@
                 "end": 57000
             }
         ]
+    },
+    "19620": {
+        "type": "customSchool",
+        "name": "Extended Lunch Schedule",
+        "hasSchool": true,
+        "periods": [
+            {
+                "type": "period",
+                "grades": ["9", "10", "11", "12", "educator"],
+                "period": 0,
+                "start": 28500,
+                "end": 31800
+            },
+            {
+                "type": "period",
+                "grades": ["9", "10", "11", "12", "educator"],
+                "period": 5,
+                "start": 32400,
+                "end": 38100
+            },
+            {
+                "type": "break",
+                "grades": ["9", "10", "11", "12", "educator"],
+                "break": "brunch",
+                "start": 38100,
+                "end": 38400
+            },
+            {
+                "type": "period",
+                "grades": ["9", "10", "11", "12", "educator"],
+                "period": 6,
+                "start": 39000,
+                "end": 44400
+            },
+            {
+                "type": "break",
+                "grades": ["9", "10", "11", "12", "educator"],
+                "break": "lunch",
+                "start": 44400,
+                "end": 47100
+            },
+            {
+                "type": "period",
+                "grades": ["9", "10", "11", "12", "educator"],
+                "period": 7,
+                "start": 47700,
+                "end": 53100
+            },
+            {
+                "type": "active",
+                "grades": ["9", "10", "11", "12", "educator"],
+                "active": "prime",
+                "start": 53700,
+                "end": 55800
+            }
+        ]
     }
 }
