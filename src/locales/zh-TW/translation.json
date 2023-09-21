@@ -56,6 +56,12 @@
             "custom": "{{name}}",
             "name": "{{name}}"
         },
+        "time": {
+            "am": "AM",
+            "pm": "PM",
+            "timeFmt12h": "{{hours}}:{{minutes}} {{ampm}}",
+            "timeFmt24h": "{{hours}}:{{minutes}}"
+        },
         "pageFmt": "{{page}} | TUWA Gunn App"
     },
     "components": {
@@ -103,6 +109,14 @@
         },
         "settings": {
             "title": "設定",
+            "educator": "I am an educator",
+            "graduationYear": "Graduation year",
+            "graduationYearOption": "{{year}}",
+            "timeFormat": "Time format",
+            "time": {
+                "12hr": "12-hour",
+                "24hr": "24-hour"
+            },
             "language": "語言",
             "scheduleCustomization": "課表定制",
             "appRefresh": "修復應用程式快取",
