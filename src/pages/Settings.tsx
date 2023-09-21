@@ -67,6 +67,54 @@ const SettingsPage: Component = () => {
                     }}
                 />
             </div>
+            <div class='flex w-full items-center'>
+                <p>
+                    <TranslationItem fmtString='pages.settings.educator' />
+                </p>
+                <div class='flex flex-grow' />
+                <TickBox
+                    value={() => settings.isEducator}
+                    disabled={() => false}
+                    onChange={value => {
+                        setSettings({
+                            isEducator: value
+                        });
+                    }}
+                />
+            </div>
+            <div class='flex w-full items-center'>
+                <p class={'transition-all ' + (settings.isEducator ? 'text-gray-300' : '')}>
+                    <TranslationItem fmtString='pages.settings.graduationYear' />
+                </p>
+                <div class='flex flex-grow' />
+                <SelectMenu
+                    options={() =>
+                        [1, 2, 3, 4].map(year => ({
+                            key: (year + new Date().getFullYear()).toString(),
+                            element: (
+                                <span>
+                                    <TranslationItem
+                                        fmtString='pages.settings.graduationYearOption'
+                                        fmtArgs={{ year: year + new Date().getFullYear() }}
+                                    />
+                                </span>
+                            )
+                        }))
+                    }
+                    disabled={() => settings.isEducator}
+                    selected={() => {
+                        const year = new Date().getFullYear();
+                        return settings.graduationYear < year || settings.graduationYear > year + 4
+                            ? year.toString()
+                            : settings.graduationYear.toString();
+                    }}
+                    onChange={value => {
+                        setSettings({
+                            graduationYear: parseInt(value)
+                        });
+                    }}
+                />
+            </div>
             <GroupBox>
                 <h3 class='text-2xl font-bold'>
                     <TranslationItem fmtString='pages.settings.scheduleCustomization' />

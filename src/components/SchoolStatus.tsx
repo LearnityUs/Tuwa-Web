@@ -83,7 +83,6 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
         if (!scheduleData.hasSchool || !scheduleData.periods || !scheduleData.periods.length) {
             setProgress(undefined);
             setPeriodEndsIn(undefined);
-            console.log(scheduleData.type);
 
             switch (scheduleData.type) {
                 case 'standardWeekend':

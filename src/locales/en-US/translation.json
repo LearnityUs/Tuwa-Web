@@ -106,6 +106,9 @@
         },
         "settings": {
             "title": "Settings",
+            "educator": "I am an educator",
+            "graduationYear": "Graduation year",
+            "graduationYearOption": "{{year}}",
             "language": "Language",
             "scheduleCustomization": "Schedule customization",
             "appRefresh": "Fix App Cache",
