@@ -2,7 +2,7 @@
     "utils": {
         "time": {
             "timeLeft": {
-                "timeFmtThree": "{{unitBig}}{{unitMedium}}{{unitMedium}}",
+                "timeFmtThree": "{{unitBig}}{{unitMedium}}{{unitSmall}}",
                 "timeFmtTwo": "{{unitBig}}{{unitSmall}}",
                 "hours_other": "{{count}}个小时",
                 "minutes_other": "{{count}}分钟",
@@ -56,6 +56,12 @@
             "custom": "{{name}}",
             "name": "{{name}}"
         },
+        "time": {
+            "am": "AM",
+            "pm": "PM",
+            "timeFmt12h": "{{hours}}:{{minutes}} {{ampm}}",
+            "timeFmt24h": "{{hours}}:{{minutes}}"
+        },
         "pageFmt": "{{page}}｜途哇 Gunn APP"
     },
     "components": {
@@ -103,6 +109,14 @@
         },
         "settings": {
             "title": "设置",
+            "educator": "I am an educator",
+            "graduationYear": "Graduation year",
+            "graduationYearOption": "{{year}}",
+            "timeFormat": "Time format",
+            "time": {
+                "12hr": "12-hour",
+                "24hr": "24-hour"
+            },
             "language": "语言",
             "scheduleCustomization": "自定义日程安排",
             "appRefresh": "修复应用程序缓存",

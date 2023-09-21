@@ -59,6 +59,12 @@
             "custom": "0",
             "name": "0"
         },
+        "time": {
+            "am": "AM",
+            "pm": "PM",
+            "timeFmt12h": "{{hours}}:{{minutes}} {{ampm}}",
+            "timeFmt24h": "{{hours}}:{{minutes}}"
+        },
         "pageFmt": "{{page}} | Application TUWA"
     },
     "components": {
@@ -106,6 +112,14 @@
         },
         "settings": {
             "title": "Paramètres",
+            "educator": "I am an educator",
+            "graduationYear": "Graduation year",
+            "graduationYearOption": "{{year}}",
+            "timeFormat": "Time format",
+            "time": {
+                "12hr": "12-hour",
+                "24hr": "24-hour"
+            },
             "language": "Langue",
             "scheduleCustomization": "Personnalisation de l'emploi du temps",
             "appRefresh": "Réparer le cache de l'application",
