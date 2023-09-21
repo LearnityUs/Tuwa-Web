@@ -1,5 +1,5 @@
 import { createSignal, type Component, createEffect } from 'solid-js';
-import { DateData, getDateData, getFormattedClockTime, getFormattedDateShort } from '../utils/time';
+import { DateData, getDateData, getFormattedClockTime, getFormattedDate } from '../utils/time';
 import {
     DayScheduleAny,
     filterSchedule,
@@ -18,20 +18,23 @@ interface ScheduleListProps {
 
 export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
     let cache = 0;
-    const [settings] = useSettingsStore();
+    let settingsDate = 0;
+    const [settings, , updateTime] = useSettingsStore();
     const [lookAhead, setLookAhead] = createSignal<Date | null>(null);
     const [schedule, setSchedule] = createSignal<DayScheduleAny>({
         type: 'customSchool',
         name: 'error',
         hasSchool: false
     });
+    // const [date, setDate] = createSignal(defaultDate());
 
     const updateSchedule = (date: DateData) => {
-        if (date.dayEpoch === cache) return;
+        if (date.dayEpoch === cache && updateTime() === settingsDate) return;
+        settingsDate = updateTime();
         cache = date.dayEpoch;
 
-        const scheduleData = filterSchedule(date, getStandardSchedule(date), settings);
-        setSchedule(scheduleData);
+        const scheduleData = getStandardSchedule(date);
+        setSchedule(filterSchedule(date, scheduleData, settings));
     };
 
     createEffect(() => {
@@ -55,7 +58,7 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
 
     return (
         <div class='flex flex-col gap-4'>
-            <div class='flex items-center gap-2'>
+            <div class='flex flex-col gap-2 md:flex-row md:items-center'>
                 <div class='flex flex-col gap-1'>
                     <h2 class='text-2xl font-bold'>
                         {lookAhead() ? (
@@ -70,15 +73,13 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
                                 schedule().type
                             ) ? (
                                 <TranslationItem
-                                    {...getFormattedDateShort(
-                                        getDateData(lookAhead() || new Date())
-                                    )}
+                                    {...getFormattedDate(getDateData(lookAhead() || new Date()))}
                                 />
                             ) : (
                                 <TranslationItem
                                     fmtString='components.scheduleList.arbitraryAlternate'
                                     fmtArgs={{
-                                        date: getFormattedDateShort(
+                                        date: getFormattedDate(
                                             getDateData(lookAhead() || new Date())
                                         )
                                     }}
@@ -93,47 +94,49 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
                         </p>
                     )}
                 </div>
-                <div class='flex-grow' />
-                <Button
-                    disabled={() => lookAhead() === null}
-                    onClick={() => setLookAhead(null)}
-                    style='secondary'
-                    ariaLabel={{
-                        fmtString: 'components.scheduleList.goBack'
-                    }}
-                >
-                    <Icon class='h-4 w-4' name={() => 'Home'} />
-                </Button>
-                <Button
-                    disabled={() => false}
-                    onClick={() => {
-                        const ogDate = lookAhead() || new Date();
-                        const newDate = new Date(ogDate);
-                        newDate.setDate(newDate.getDate() - 1);
-                        setLookAhead(newDate);
-                    }}
-                    style='secondary'
-                    ariaLabel={{
-                        fmtString: 'components.scheduleList.previousDay'
-                    }}
-                >
-                    <Icon class='h-4 w-4' name={() => 'ArrowLeft'} />
-                </Button>
-                <Button
-                    disabled={() => false}
-                    onClick={() => {
-                        const ogDate = lookAhead() || new Date();
-                        const newDate = new Date(ogDate);
-                        newDate.setDate(newDate.getDate() + 1);
-                        setLookAhead(newDate);
-                    }}
-                    style='secondary'
-                    ariaLabel={{
-                        fmtString: 'components.scheduleList.nextDay'
-                    }}
-                >
-                    <Icon class='h-4 w-4' name={() => 'ArrowRight'} />
-                </Button>
+                <div class='md:flex-grow' />
+                <div class='flex w-full justify-center gap-3 md:w-min'>
+                    <Button
+                        disabled={() => lookAhead() === null}
+                        onClick={() => setLookAhead(null)}
+                        style='secondary'
+                        ariaLabel={{
+                            fmtString: 'components.scheduleList.goBack'
+                        }}
+                    >
+                        <Icon class='h-4 w-4' name={() => 'Home'} />
+                    </Button>
+                    <Button
+                        disabled={() => false}
+                        onClick={() => {
+                            const ogDate = lookAhead() || new Date();
+                            const newDate = new Date(ogDate);
+                            newDate.setDate(newDate.getDate() - 1);
+                            setLookAhead(newDate);
+                        }}
+                        style='secondary'
+                        ariaLabel={{
+                            fmtString: 'components.scheduleList.previousDay'
+                        }}
+                    >
+                        <Icon class='h-4 w-4' name={() => 'ArrowLeft'} />
+                    </Button>
+                    <Button
+                        disabled={() => false}
+                        onClick={() => {
+                            const ogDate = lookAhead() || new Date();
+                            const newDate = new Date(ogDate);
+                            newDate.setDate(newDate.getDate() + 1);
+                            setLookAhead(newDate);
+                        }}
+                        style='secondary'
+                        ariaLabel={{
+                            fmtString: 'components.scheduleList.nextDay'
+                        }}
+                    >
+                        <Icon class='h-4 w-4' name={() => 'ArrowRight'} />
+                    </Button>
+                </div>
             </div>
             <div class='flex flex-col gap-4'>
                 {schedule().hasSchool && schedule().periods ? (
@@ -142,23 +145,33 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
                             <div
                                 class={
                                     'flex flex-col gap-1 ' +
-                                    (!lookAhead() && p.end <= defaultDate().secondMidnight
-                                        ? 'opacity-60'
-                                        : '')
+                                    (!lookAhead() &&
+                                        p.end <= defaultDate().secondMidnight &&
+                                        'opacity-60')
                                 }
                             >
                                 <h3 class='text-xl font-bold'>
                                     <TranslationItem {...getPeriodName(p, settings)} />
                                 </h3>
-                                <p class='text-md text-gray-300'>
-                                    <TranslationItem
-                                        fmtString='components.scheduleList.periodTime'
-                                        fmtArgs={{
-                                            start: getFormattedClockTime(p.start),
-                                            end: getFormattedClockTime(p.end)
-                                        }}
-                                    />
-                                </p>
+                                <div
+                                    class={
+                                        'text-md flex items-center gap-2 text-gray-300 ' +
+                                        (!lookAhead() &&
+                                            p.end <= defaultDate().secondMidnight &&
+                                            'text-gray-400')
+                                    }
+                                >
+                                    <Icon name={() => 'Clock'} class='h-4 w-4' />
+                                    <p>
+                                        <TranslationItem
+                                            fmtString='components.scheduleList.periodTime'
+                                            fmtArgs={{
+                                                start: getFormattedClockTime(p.start, settings),
+                                                end: getFormattedClockTime(p.end, settings)
+                                            }}
+                                        />
+                                    </p>
+                                </div>
                             </div>
                         </GroupBox>
                     ))

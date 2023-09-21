@@ -13,7 +13,7 @@ export const TickBox: Component<TickBoxProps> = ({ value, disabled, onChange }) 
             class={
                 'flex h-6 w-6 min-w-[1.5rem] cursor-pointer overflow-hidden rounded-md bg-gray-800 shadow-sm ring-1 ring-gray-700/60 ' +
                 (disabled() &&
-                    '!cursor-not-allowed !bg-gray-800/60 !text-gray-300 !shadow-none !outline-none !ring-0')
+                    '!cursor-not-allowed !bg-gray-900 !text-gray-300 !shadow-none !outline-none !ring-0')
             }
             role='checkbox'
             aria-checked={value()}

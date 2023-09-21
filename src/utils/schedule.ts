@@ -106,7 +106,7 @@ export const getPeriodName = (
 ): FmtProps => {
     const key = getPeriodKey(period);
 
-    if (settings && key && settings.periods[key].name) {
+    if (settings && key !== null && settings.periods[key].name) {
         return {
             fmtString: 'common.periods.custom',
             fmtArgs: {
@@ -142,17 +142,27 @@ export const filterSchedule = (
     schedule: DayScheduleAny,
     settings: StorableSyncableSettingsV1
 ) => {
-    const gradeLevelNumber = settings.graduationYear - date.year + 9;
+    const year = date.year;
+    const gradYear =
+        settings.graduationYear < year || settings.graduationYear > year + 4
+            ? year
+            : settings.graduationYear;
+    const gradeLevel = gradYear - year + 8 + (date.month >= 8 ? 0 : -1);
 
-    const educator = gradeLevelNumber > 12 || gradeLevelNumber < 9;
+    const educator = settings.isEducator;
 
-    const gradeLevel = educator
-        ? 'educator'
-        : (gradeLevelNumber.toString() as '9' | '10' | '11' | '12');
+    const scheduleData = { ...schedule };
 
-    schedule.periods = schedule.periods
-        ? schedule.periods!.filter(period => {
-              const isGrade = period.grades ? period.grades.includes(gradeLevel) : true;
+    scheduleData.periods = scheduleData.periods
+        ? [...scheduleData.periods].filter(period => {
+              const isGrade = period.grades.includes(
+                  (educator ? 'educator' : gradeLevel.toString()) as
+                      | '9'
+                      | '10'
+                      | '11'
+                      | '12'
+                      | 'educator'
+              );
               const isEnabled =
                   getPeriodKey(period) !== null
                       ? settings.periods[getPeriodKey(period)!].enabled
@@ -162,7 +172,7 @@ export const filterSchedule = (
           })
         : [];
 
-    return schedule;
+    return scheduleData;
 };
 
 /// Get the standard schedule for a day

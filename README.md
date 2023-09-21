@@ -22,8 +22,8 @@ contributing code. Feel free to do any of these things!
 ## Feature Progress
 
 -   [x] Schedules
-    -   [ ] Alternative Schedules
--   [ ] User editable periods
+    -   [x] Alternative Schedules
+-   [x] User editable periods
 -   [ ] Cloud syncing
 -   [ ] Schoology intagration
 -   [ ] Much more...
