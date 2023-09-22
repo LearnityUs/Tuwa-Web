@@ -4,6 +4,7 @@ import enUs from './en-US/translation.json';
 import esEs from './es-ES/translation.json';
 import frFr from './fr-FR/translation.json';
 import jaJp from './ja-JP/translation.json';
+import koKr from './ko-KR/translation.json';
 import zhCn from './zh-CN/translation.json';
 import zhTw from './zh-TW/translation.json';
 import { TransProvider, useTransContext } from '@mbarzda/solid-i18next';
@@ -33,6 +34,9 @@ const localeTranslationUnits: Record<
     'ja-JP': {
         translation: jaJp
     },
+    'ko-KR': {
+        translation: koKr
+    },
     'zh-CN': {
         translation: zhCn
     },
@@ -47,6 +51,7 @@ export const availableLocales = [
     'es-ES',
     'fr-FR',
     'ja-JP',
+    'ko-KR',
     'zh-CN',
     'zh-TW'
 ] as const;
