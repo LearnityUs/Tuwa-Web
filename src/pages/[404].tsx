@@ -6,7 +6,7 @@ const NotFoundPage: Component = () => {
     return (
         <PageLayout title='pages.404.title'>
             <p>
-                <TranslationItem fmtString='pages.404.description' />
+                <TranslationItem fmtString='pages.404.message' />
             </p>
         </PageLayout>
     );
