@@ -57,7 +57,7 @@
             "name": "{{name}}"
         },
         "holidays": {
-            "localHoliday": "Local holiday"
+            "localHoliday": "本地假期"
         },
         "time": {
             "am": "上午",
