@@ -8,8 +8,8 @@
                 "minutes_other": "{{count}} 분",
                 "seconds_other": "{{count}} 초"
             },
-            "dateFmt": "{{day}}, {{year}}년 {{month}} {{date}}일",
-            "dateFmtShort": "{{month}} {{date}}, {{year}}",
+            "dateFmt": "{{year}}년 {{month}} {{date}}일 {{day}}",
+            "dateFmtShort": "{{year}}년 {{month}} {{date}}일",
             "days": {
                 "monday": "월요일",
                 "tuesday": "화요일",
@@ -57,7 +57,7 @@
             "name": "{{name}}"
         },
         "holidays": {
-            "localHoliday": "지역 휴일"
+            "localHoliday": "휴일"
         },
         "time": {
             "am": "오전",
