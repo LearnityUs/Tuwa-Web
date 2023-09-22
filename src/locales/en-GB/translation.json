@@ -59,6 +59,9 @@
             "custom": "{{name}}",
             "name": "{{name}}"
         },
+        "holidays": {
+            "localHoliday": "Local holiday"
+        },
         "time": {
             "am": "AM",
             "pm": "PM",
@@ -76,7 +79,6 @@
                 "afterSchool": "School is finished",
                 "passingPeriod": "Break between classes",
                 "weekend": "Have a great weekend!",
-                "holidays": {},
                 "noSchool": "No classes today ({{name}})"
             },
             "subheadings": {
