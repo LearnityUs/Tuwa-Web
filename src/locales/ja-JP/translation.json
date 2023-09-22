@@ -56,6 +56,9 @@
             "custom": "{{name}}",
             "name": "{{name}}"
         },
+        "holidays": {
+            "localHoliday": "Local holiday"
+        },
         "time": {
             "am": "AM",
             "pm": "PM",
@@ -73,7 +76,6 @@
                 "afterSchool": "学校終わりました",
                 "passingPeriod": "通り抜けの時間",
                 "weekend": "週末をお楽しみください！",
-                "holidays": {},
                 "noSchool": "学校はありません ({{name}})"
             },
             "subheadings": {
