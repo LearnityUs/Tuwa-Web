@@ -64,7 +64,13 @@ const HomePage: Component = () => {
         <PageLayout showTitle={false} title='pages.home.title'>
             <div>
                 <h2 class='text-5xl font-bold md:text-6xl'>
-                    <span>{settings.timeFormat === '12h' ? date().hour % 12 : date().hour}</span>
+                    <span>
+                        {settings.timeFormat === '12h'
+                            ? date().hour % 12 === 0
+                                ? 12
+                                : date().hour % 12
+                            : date().hour}
+                    </span>
                     <span>:</span>
                     <span>{date().minute.toString().padStart(2, '0')}</span>
                     <span class='text-3xl text-gray-300 md:text-4xl'>:</span>
@@ -75,7 +81,7 @@ const HomePage: Component = () => {
                         <>
                             <span class='text-3xl text-gray-300 md:text-4xl'> </span>
                             <span class='text-3xl text-gray-300 md:text-4xl'>
-                                {date().hour > 12 ? (
+                                {date().hour >= 12 ? (
                                     <TranslationItem fmtString='common.time.pm' />
                                 ) : (
                                     <TranslationItem fmtString='common.time.am' />
