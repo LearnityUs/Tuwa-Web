@@ -1,11 +1,17 @@
 import { createSignal, type Component, createEffect } from 'solid-js';
-import { FmtProps, TranslationItem } from '../locales';
+import { FmtProps, TranslationItem, flattenFmt } from '../locales';
 import { GroupBox } from './GroupBox';
 import { ProgressBar } from './ProgressBar';
 import { DateData, getFormatedTimeLeft, getFormattedClockTime } from '../utils/time';
 import { icons } from 'lucide-solid';
 import { Icon } from '../utils/icon';
-import { DayScheduleAny, filterSchedule, getPeriodKey, getPeriodName } from '../utils/schedule';
+import {
+    DayScheduleAny,
+    filterSchedule,
+    getHolidayName,
+    getPeriodKey,
+    getPeriodName
+} from '../utils/schedule';
 import { useSettingsStore } from '../utils/settings/store';
 import { generateFavicon } from '../utils/favicon';
 
@@ -64,6 +70,15 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
         favicon.type = 'image/png';
     };
 
+    const updateTitle = (string: FmtProps) => {
+        document.title = flattenFmt({
+            fmtString: 'common.pageFmt',
+            fmtArgs: {
+                page: flattenFmt(string)
+            }
+        });
+    };
+
     createEffect(() => {
         // Using the time check the current period
         const scheduleRaw = schedule();
@@ -75,6 +90,7 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
             setPeriodEndsIn(undefined);
             setIcon('AlertTriangle');
             setTitle({ fmtString: 'common.unknownError' });
+            updateTitle({ fmtString: 'common.unknownError' });
             setSubtitle(undefined);
             updateFavicon(null);
             return;
@@ -90,21 +106,28 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
                     if (cache === 'standardWeekend') return;
                     setIcon('Sun');
                     setTitle({ fmtString: 'components.schoolStatus.headings.weekend' });
+                    updateTitle({ fmtString: 'components.schoolStatus.headings.weekend' });
                     setSubtitle(undefined);
                     cache = 'standardWeekend';
                     break;
                 case 'holiday':
-                    if (cache === 'holiday') return;
-                    // TODO: Properly handle holidays
-                    // setIcon('Gift');
-                    // setTitle({ fmtString: 'components.schoolStatus.holiday' });
-                    // setSubtitle(undefined);
-                    cache = 'holiday';
+                    if (cache === 'holiday-' + scheduleData.holiday) return;
+                    setIcon('Gift');
+                    setTitle(getHolidayName(scheduleData.holiday));
+                    updateTitle(getHolidayName(scheduleData.holiday));
+                    setSubtitle(undefined);
+                    cache = 'holiday-' + scheduleData.holiday;
                     break;
                 case 'customSchool':
                     if (cache === 'customSchool') return;
                     setIcon('Calendar');
                     setTitle({
+                        fmtString: 'components.schoolStatus.headings.noSchool',
+                        fmtArgs: {
+                            name: scheduleData.name
+                        }
+                    });
+                    updateTitle({
                         fmtString: 'components.schoolStatus.headings.noSchool',
                         fmtArgs: {
                             name: scheduleData.name
@@ -150,6 +173,12 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
                     time: getFormattedClockTime(scheduleData.periods[0].start)
                 }
             });
+            updateTitle({
+                fmtString: 'components.schoolStatus.headings.beforeSchool',
+                fmtArgs: {
+                    time: getFormattedClockTime(scheduleData.periods[0].start)
+                }
+            });
             setSubtitle({
                 fmtString: 'components.schoolStatus.subheadings.firstPeriod',
                 fmtArgs: {
@@ -168,6 +197,7 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
             setPeriodEndsIn(undefined);
             setIcon('Sunset');
             setTitle({ fmtString: 'components.schoolStatus.headings.afterSchool' });
+            updateTitle({ fmtString: 'components.schoolStatus.headings.afterSchool' });
             setSubtitle(undefined);
             updateFavicon(null);
             return;
@@ -188,6 +218,9 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
             cache = cacheString;
             setIcon('Clock');
             setTitle({
+                fmtString: 'components.schoolStatus.headings.passingPeriod'
+            });
+            updateTitle({
                 fmtString: 'components.schoolStatus.headings.passingPeriod'
             });
             setSubtitle({
@@ -218,6 +251,7 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
         }
 
         setTitle(getPeriodName(periodData, settings));
+        updateTitle(getPeriodName(periodData, settings));
 
         // If last period, show last period
         if (periodIndex === scheduleData.periods.length - 1) {

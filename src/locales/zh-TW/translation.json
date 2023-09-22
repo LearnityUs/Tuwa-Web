@@ -73,7 +73,6 @@
                 "afterSchool": "學校結束",
                 "passingPeriod": "間隔時間",
                 "weekend": "度過美好的周末！",
-                "holidays": {},
                 "noSchool": "沒有上課 ({{name}})"
             },
             "subheadings": {

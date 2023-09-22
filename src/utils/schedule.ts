@@ -61,7 +61,7 @@ export interface DayScheduleStandardWeekend extends DaySchedule {
 
 /// Holiday name
 // TODO: Add holiday names
-export type HolidayName = '';
+export type HolidayName = 'localHoliday';
 
 /// Holiday school day schedule
 export interface DayScheduleHoliday extends DaySchedule {
@@ -97,6 +97,13 @@ export const getPeriodKey = (period: PeriodAny): PeriodKey | null => {
     }
 
     return null;
+};
+
+/// Gets the holiday name for a holiday
+export const getHolidayName = (holiday: HolidayName): FmtProps => {
+    return {
+        fmtString: holidayTexts[holiday]
+    };
 };
 
 /// Gets the formatted period text for a period
@@ -207,4 +214,8 @@ export const periodTexts: Record<PeriodKey | 'lunch' | 'brunch' | 'custom', stri
     prime: 'common.periods.prime',
     self: 'common.periods.self',
     custom: 'common.periods.custom'
+};
+
+export const holidayTexts: Record<HolidayName, string> = {
+    localHoliday: 'common.holidays.localHoliday'
 };

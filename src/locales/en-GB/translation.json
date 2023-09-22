@@ -76,7 +76,6 @@
                 "afterSchool": "School is finished",
                 "passingPeriod": "Break between classes",
                 "weekend": "Have a great weekend!",
-                "holidays": {},
                 "noSchool": "No classes today ({{name}})"
             },
             "subheadings": {
