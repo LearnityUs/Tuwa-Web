@@ -56,9 +56,12 @@
             "custom": "{{name}}",
             "name": "{{name}}"
         },
+        "holidays": {
+            "localHoliday": "Local holiday"
+        },
         "time": {
-            "am": "AM",
-            "pm": "PM",
+            "am": "上午",
+            "pm": "下午",
             "timeFmt12h": "{{hours}}:{{minutes}} {{ampm}}",
             "timeFmt24h": "{{hours}}:{{minutes}}"
         },
@@ -108,13 +111,13 @@
         },
         "settings": {
             "title": "设置",
-            "educator": "I am an educator",
-            "graduationYear": "Graduation year",
+            "educator": "我是一位教育工作者",
+            "graduationYear": "毕业年份",
             "graduationYearOption": "{{year}}",
-            "timeFormat": "Time format",
+            "timeFormat": "时间格式",
             "time": {
-                "12hr": "12-hour",
-                "24hr": "24-hour"
+                "12hr": "12小时制",
+                "24hr": "24小时"
             },
             "language": "语言",
             "scheduleCustomization": "自定义日程安排",

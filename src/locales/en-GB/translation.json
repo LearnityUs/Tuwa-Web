@@ -59,6 +59,9 @@
             "custom": "{{name}}",
             "name": "{{name}}"
         },
+        "holidays": {
+            "localHoliday": "Local holiday"
+        },
         "time": {
             "am": "AM",
             "pm": "PM",
