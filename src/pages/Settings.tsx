@@ -32,6 +32,10 @@ const languages = [
         text: '日本語'
     },
     {
+        key: 'ko-KR',
+        text: '한국어'
+    },
+    {
         key: 'zh-CN',
         text: '中文（简体）'
     },
