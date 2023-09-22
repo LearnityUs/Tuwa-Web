@@ -60,7 +60,7 @@
             "name": "0"
         },
         "holidays": {
-            "localHoliday": "Local holiday"
+            "localHoliday": "Fête locale"
         },
         "time": {
             "am": "AM",
@@ -114,13 +114,13 @@
         },
         "settings": {
             "title": "Paramètres",
-            "educator": "I am an educator",
-            "graduationYear": "Graduation year",
+            "educator": "Je suis un éducateur",
+            "graduationYear": "Année de graduation",
             "graduationYearOption": "{{year}}",
-            "timeFormat": "Time format",
+            "timeFormat": "Format d'heure",
             "time": {
-                "12hr": "12-hour",
-                "24hr": "24-hour"
+                "12hr": "12 heures",
+                "24hr": "24 heures"
             },
             "language": "Langue",
             "scheduleCustomization": "Personnalisation de l'emploi du temps",
