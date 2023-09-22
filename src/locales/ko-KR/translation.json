@@ -1,0 +1,137 @@
+{
+    "utils": {
+        "time": {
+            "timeLeft": {
+                "timeFmtThree": "{{unitBig}}, {{unitMedium}} , {{unitSmall}}",
+                "timeFmtTwo": "{{unitBig}} , {{unitSmall}}",
+                "hours_other": "{{count}} 시간",
+                "minutes_other": "{{count}} 분",
+                "seconds_other": "{{count}} 초"
+            },
+            "dateFmt": "{{day}}, {{month}} , {{date}}, {{year}}",
+            "dateFmtShort": "{{month}} {{date}}, {{year}}",
+            "days": {
+                "monday": "월요일",
+                "tuesday": "화요일",
+                "wednesday": "수요일",
+                "thursday": "목요일",
+                "friday": "금요일",
+                "saturday": "토요일",
+                "sunday": "일요일"
+            },
+            "months": {
+                "january": "1월",
+                "february": "2월",
+                "march": "3월",
+                "april": "4월",
+                "may": "5월",
+                "june": "6월",
+                "july": "7월",
+                "august": "8월",
+                "september": "9월",
+                "october": "10월",
+                "november": "11월",
+                "december": "12월"
+            }
+        }
+    },
+    "common": {
+        "unknownError": "문제가 발생했습니다",
+        "periods": {
+            "0": "ZERO 기간",
+            "1": "1st 기간",
+            "2": "2nd 기간",
+            "3": "3rd 기간",
+            "4": "4번째 시간",
+            "5": "5번째 시간",
+            "6": "6번째 시간",
+            "7": "7번째 시간",
+            "8": "8번째 시간",
+            "self": "자습",
+            "prime": "주요",
+            "studyHall": "공부실",
+            "lunch": "점심",
+            "brunch": "간식 시간",
+            "passing": "여유 시간",
+            "custom": "{{name}}",
+            "name": "{{name}}"
+        },
+        "holidays": {
+            "localHoliday": "지역 휴일"
+        },
+        "time": {
+            "am": "오전",
+            "pm": "오후",
+            "timeFmt12h": "{{hours}}시{{minutes}} 분 {{ampm}}초",
+            "timeFmt24h": "{{hours}}시{{minutes}}분"
+        },
+        "pageFmt": "{{page}} | TUWA Gunn App"
+    },
+    "components": {
+        "schoolStatus": {
+            "progrssBar": "수업 진행률",
+            "periodLeft": "{{time}} 남음",
+            "headings": {
+                "beforeSchool": "학교 시작 시간: {{time}}",
+                "afterSchool": "학교가 끝났습니다",
+                "passingPeriod": "환승 시간",
+                "weekend": "즐거운 주말 보내세요!",
+                "noSchool": "휴일 ({{name}})"
+            },
+            "subheadings": {
+                "firstPeriod": "첫 번째 교시는 {{period}}입니다.",
+                "nextPeriod": "다음 교시는 {{period}}입니다.",
+                "lastPeriod": "오늘은 마지막 교시입니다."
+            }
+        },
+        "scheduleList": {
+            "today": "오늘의 일정",
+            "arbitrary": "일정 미리보기",
+            "alternate": "대체 일정",
+            "arbitraryAlternate": "{{date}} (대체)",
+            "goBack": "오늘로 돌아가기",
+            "nextDay": "다음 날짜",
+            "previousDay": "이전 날짜",
+            "noSchool": "휴교",
+            "periodTime": "{{start}} — {{end}}"
+        }
+    },
+    "pages": {
+        "404": {
+            "title": "페이지를 찾을 수 없음",
+            "message": "찾으시는 페이지가 존재하지 않습니다."
+        },
+        "home": {
+            "title": "홈"
+        },
+        "identification": {
+            "title": "신분증",
+            "titleShort": "ID",
+            "idPlaceholder": "950 ID 번호를 입력하세요"
+        },
+        "settings": {
+            "title": "설정",
+            "educator": "저는 교육자입니다",
+            "graduationYear": "졸업 연도",
+            "graduationYearOption": "{{year}}년",
+            "timeFormat": "시간 형식",
+            "time": {
+                "12hr": "12시간",
+                "24hr": "24시간"
+            },
+            "language": "언어",
+            "scheduleCustomization": "일정 맞춤 설정",
+            "appRefresh": "앱 캐시 수정하기",
+            "appRefreshDescription": "앱이 제대로 작동하지 않을 수 있는데, 이것은 일부 파일이 오래되었기 때문일 수 있습니다. 이 작업을 통해 이를 해결할 수 있습니다. 오프라인에서는 이 작업을 하지 마세요.",
+            "appRefreshButton": "수정하기"
+        },
+        "about": {
+            "title": "소개",
+            "quote": "세상을 변화시키고자 한다면 그 변화가 될 필요가 있습니다.",
+            "quoteAuthor": "마하트마 간디",
+            "description": "TUWA는 WATT와 UGWA의 후계자입니다. 우리는 WATT가 2024년 이후로 존재하지 않고 WATT에 대한 업데이트가 부족하기 때문에 TUWA를 만들었습니다. TUWA는 Github에서 오픈 소스로 제공되며 어떤 기여도 환영합니다. Discord 서버에 참여하여 관련 내용에 참여하실 수 있습니다! 모든 피드백과 의견을 환영합니다! TUWA는 WATT와 UGWA에 큰 영감을 받았습니다. 그들 없이는 우리가 여기에 있지 않을 것입니다. TUWA를 사용해 주셔서 감사합니다!",
+            "discordLink": "디스코드에 가입하기",
+            "githubLink": "깃허브에 기여하기"
+        }
+    }
+}

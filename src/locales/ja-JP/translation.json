@@ -42,26 +42,26 @@
             "1": "1番目の期間",
             "2": "2番目の期間",
             "3": "3番目の期間",
-            "4": "4th period",
-            "5": "5th period",
-            "6": "6th period",
-            "7": "7th period",
-            "8": "8th period",
+            "4": "4番目の期間",
+            "5": "5番目の期間",
+            "6": "6番目の期間",
+            "7": "7番目の期間",
+            "8": "8番目の期間",
             "self": "SELF",
             "prime": "PRIME",
             "studyHall": "Study Hall",
-            "lunch": "Lunch",
-            "brunch": "Brunch",
-            "passing": "Passing period",
+            "lunch": "昼食",
+            "brunch": "ブランチ",
+            "passing": "パッシング期間",
             "custom": "{{name}}",
             "name": "{{name}}"
         },
         "holidays": {
-            "localHoliday": "Local holiday"
+            "localHoliday": "地元の祝日"
         },
         "time": {
-            "am": "AM",
-            "pm": "PM",
+            "am": "午前",
+            "pm": "午後",
             "timeFmt12h": "{{hours}}:{{minutes}} {{ampm}}",
             "timeFmt24h": "{{hours}}:{{minutes}}"
         },
@@ -79,8 +79,8 @@
                 "noSchool": "学校はありません ({{name}})"
             },
             "subheadings": {
-                "firstPeriod": "First period is {{period}}.",
-                "nextPeriod": "Next period is {{period}}.",
+                "firstPeriod": "最初の期間は {{period}}です。",
+                "nextPeriod": "次の期間は {{period}}です。",
                 "lastPeriod": "これは今日の最後の期間です。"
             }
         },
@@ -88,18 +88,18 @@
             "today": "今日のスケジュール",
             "arbitrary": "スケジュールプレビュー",
             "alternate": "代替スケジュール",
-            "arbitraryAlternate": "{{date}} (Alternate)",
+            "arbitraryAlternate": "{{date}} （代替）",
             "goBack": "今日に戻る",
             "nextDay": "次の日付",
             "previousDay": "前日",
             "noSchool": "学校なし",
-            "periodTime": "{{start}} — {{end}}"
+            "periodTime": "{{start}} 〜 {{end}}"
         }
     },
     "pages": {
         "404": {
-            "title": "Page not found",
-            "message": "The page you are looking for does not exist."
+            "title": "ページが見つかりません",
+            "message": "お探しのページは存在しません"
         },
         "home": {
             "title": "トップ"
@@ -111,13 +111,13 @@
         },
         "settings": {
             "title": "設定",
-            "educator": "I am an educator",
-            "graduationYear": "Graduation year",
+            "educator": "私は教育者です",
+            "graduationYear": "卒業年",
             "graduationYearOption": "{{year}}",
-            "timeFormat": "Time format",
+            "timeFormat": "時間の書式",
             "time": {
-                "12hr": "12-hour",
-                "24hr": "24-hour"
+                "12hr": "12時間表示",
+                "24hr": "24時間表示"
             },
             "language": "言語",
             "scheduleCustomization": "スケジュールのカスタマイズ",
