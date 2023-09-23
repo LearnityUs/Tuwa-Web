@@ -2,8 +2,8 @@
     "utils": {
         "time": {
             "timeLeft": {
-                "timeFmtThree": "{{unitBig}}, {{unitMedium}} , {{unitSmall}}",
-                "timeFmtTwo": "{{unitBig}} , {{unitSmall}}",
+                "timeFmtThree": "{{unitBig}} {{unitMedium}} {{unitSmall}}",
+                "timeFmtTwo": "{{unitBig}} {{unitSmall}}",
                 "hours_other": "{{count}} 시간",
                 "minutes_other": "{{count}} 분",
                 "seconds_other": "{{count}} 초"
@@ -81,7 +81,7 @@
             "subheadings": {
                 "firstPeriod": "첫 번째 교시는 {{period}}입니다.",
                 "nextPeriod": "다음 교시는 {{period}}입니다.",
-                "lastPeriod": "오늘은 마지막 교시입니다."
+                "lastPeriod": "마지막 교시입니다."
             }
         },
         "scheduleList": {
