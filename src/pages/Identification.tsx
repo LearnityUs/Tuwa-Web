@@ -1,5 +1,5 @@
 import type { Component } from 'solid-js';
-import { PageLayout } from '../layouts/page';
+import { DefaultPageTitle, PageLayout } from '../layouts/Page';
 import { Barcode } from '../components/Barcode';
 import { useSettingsStore } from '../utils/settings/store';
 import { InputBox } from '../components/InputBox';
@@ -8,10 +8,12 @@ const IdentificationPage: Component = () => {
     const [settings, setSettings] = useSettingsStore();
 
     return (
-        <PageLayout title='pages.identification.title'>
+        <PageLayout
+            title={() => <DefaultPageTitle title={{ fmtString: 'pages.identification.title' }} />}
+        >
             <div class='w-full max-w-md rounded-lg bg-white px-4 py-2'>
                 <div class='h-16 overflow-hidden'>
-                    <Barcode height={64} value={() => `*${settings.identificationNumber}*`} />
+                    <Barcode height={1} value={() => `*${settings.identificationNumber}*`} />
                 </div>
             </div>
             <InputBox

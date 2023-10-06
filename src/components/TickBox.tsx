@@ -1,37 +1,42 @@
 import type { Component } from 'solid-js';
 import { Icon } from '../utils/icon';
+import { FmtProps, flattenFmt } from '../locales';
+import { Button } from './Button';
 
 interface TickBoxProps {
     value: () => boolean;
     disabled: () => boolean;
     onChange: (data: boolean, preventDefault: () => void) => void;
+    label: FmtProps;
 }
 
-export const TickBox: Component<TickBoxProps> = ({ value, disabled, onChange }) => {
+export const TickBox: Component<TickBoxProps> = ({ value, disabled, onChange, label }) => {
     return (
-        <div
-            class={
-                'flex h-6 w-6 min-w-[1.5rem] cursor-pointer overflow-hidden rounded-md bg-gray-800 shadow-sm ring-1 ring-gray-700/60 ' +
-                (disabled() &&
-                    '!cursor-not-allowed !bg-gray-900 !text-gray-300 !shadow-none !outline-none !ring-0')
-            }
+        <Button
+            class='h-6 w-6 !rounded !p-0'
+            style='secondary'
+            isIcon={true}
+            state={() => (value() ? 'selected' : 'default')}
             role='checkbox'
-            aria-checked={value()}
+            propData={{
+                'aria-checked': value(),
+                'aria-label': flattenFmt(label)
+            }}
             onClick={e => {
                 if (disabled()) return;
                 onChange(!value(), () => {
-                    e.preventDefault();
+                    e();
                 });
             }}
         >
             <div
                 class={
-                    'flex h-full w-full origin-center scale-50 items-center justify-center rounded-md bg-theme-600 p-1 opacity-0 transition-all ' +
+                    'flex h-full w-full origin-center scale-50 items-center justify-center rounded-md bg-theme-500 p-1 opacity-0 transition-all dark:bg-themedark-700 ' +
                     (value() && '!scale-100 !opacity-100')
                 }
             >
                 <Icon name={() => 'Check'} class='text-white' />
             </div>
-        </div>
+        </Button>
     );
 };

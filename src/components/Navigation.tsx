@@ -1,8 +1,9 @@
 import { Trans } from '@mbarzda/solid-i18next';
-import { A } from '@solidjs/router';
-import { createSignal, type Component } from 'solid-js';
+import { createSignal, type Component, onMount, onCleanup } from 'solid-js';
 import { Icon } from '../utils/icon';
 import { icons } from 'lucide-solid';
+import { TranslationItem } from '../locales';
+import { Button } from './Button';
 
 interface PageOption {
     key: string;
@@ -19,7 +20,7 @@ const pageOptions: PageOption[] = [
         showMobile: true
     },
     {
-        key: 'pages.identification.titleShort',
+        key: 'pages.identification.title',
         href: '/identification',
         icon: 'Fingerprint',
         showMobile: true
@@ -50,65 +51,93 @@ interface NavOptionProps {
     icon: keyof typeof icons;
     active: () => boolean;
     onClick: () => void;
-    isMobile?: boolean;
 }
 
-const NavOption: Component<NavOptionProps> = ({
-    key,
-    href,
-    icon,
-    active,
-    onClick,
-    isMobile = false
-}) => {
+const NavOption: Component<NavOptionProps> = ({ key, href, icon, active, onClick }) => {
     return (
-        <A
-            class='group flex cursor-pointer flex-col items-center gap-1'
+        <Button
+            element='a'
+            style='bordered'
+            state={() => (active() ? 'selected' : 'default')}
+            isIcon={true}
             href={href}
             onClick={() => {
                 onClick();
             }}
         >
-            <div
-                class={
-                    'rounded-full px-3 py-1 text-gray-300 transition-colors group-hover:bg-theme-700/20 group-hover:text-white ' +
-                    (active() && 'bg-theme-700 text-white group-hover:!bg-theme-700')
-                }
-            >
-                <Icon class={isMobile ? 'h-4 w-4' : 'h-6 w-6'} name={() => icon} />
-            </div>
+            <Icon class='h-4 w-4' name={() => icon} />
             <p class='text-xs'>
                 <Trans key={key} />
             </p>
-        </A>
+        </Button>
+    );
+};
+
+const NavOptionSidebar: Component<{
+    key: string;
+    href: string;
+    icon: keyof typeof icons;
+    active: () => boolean;
+}> = ({ key, href, icon, active }) => {
+    return (
+        <Button
+            style='bordered'
+            state={() => (active() ? 'selected' : 'default')}
+            element='a'
+            href={href}
+            class='w-full'
+        >
+            <Icon class='h-5 w-5' name={() => icon} />
+            <p>
+                <Trans key={key} />
+            </p>
+        </Button>
     );
 };
 
 export const SideBar: Component = () => {
     const [page, setPage] = createSignal(stripUrl(window.location.pathname));
 
+    // Listen for route changes
+    onMount(() => {
+        const listener = () => setPage(stripUrl(window.location.pathname));
+        window.addEventListener('popstate', listener);
+        onCleanup(() => window.removeEventListener('popstate', listener));
+    });
+
     return (
-        <div class='pointer-events-none fixed top-0 z-10 hidden h-full bg-gray-900 pb-5 pr-5 ring-2 ring-gray-800/60 backdrop-blur-md transition-all pl-safe-or-5 py-safe-or-5 md:pointer-events-auto md:flex'>
-            <div class='flex w-12 flex-col items-center gap-6'>
+        <nav class='pointer-events-auto sticky top-0 flex h-min flex-col gap-4 transition-all py-safe-or-5'>
+            <Button style='bordered' element='a' href='/'>
+                <h1 class='text-2xl font-bold'>
+                    <TranslationItem fmtString='common.appName' />
+                </h1>
+            </Button>
+            <div class='flex w-64 flex-col items-center gap-2'>
                 {pageOptions.map(option => (
-                    <NavOption
+                    <NavOptionSidebar
                         key={option.key}
                         href={option.href}
                         icon={option.icon}
                         active={() => page() === option.href}
-                        onClick={() => setPage(option.href)}
                     />
                 ))}
             </div>
-        </div>
+        </nav>
     );
 };
 
 export const BottomBar: Component = () => {
     const [page, setPage] = createSignal(stripUrl(window.location.pathname));
 
+    // Listen for route changes
+    onMount(() => {
+        const listener = () => setPage(stripUrl(window.location.pathname));
+        window.addEventListener('popstate', listener);
+        onCleanup(() => window.removeEventListener('popstate', listener));
+    });
+
     return (
-        <div class='fixed bottom-0 z-10 flex w-full flex-row justify-evenly gap-6 bg-gray-900 px-4 py-2 ring-2 ring-gray-800/60 backdrop-blur-md transition-all pb-safe-or-2 md:pointer-events-none md:hidden'>
+        <div class='fixed bottom-0 z-10 flex w-full flex-row justify-evenly gap-6 bg-milk-200 pt-2 shadow-lg transition-colors pb-safe-or-2 px-safe-or-4 dark:bg-rice-800'>
             {pageOptions
                 .filter(e => e.showMobile)
                 .map(option => (
@@ -118,7 +147,6 @@ export const BottomBar: Component = () => {
                         icon={option.icon}
                         active={() => page() === option.href}
                         onClick={() => setPage(option.href)}
-                        isMobile={true}
                     />
                 ))}
         </div>

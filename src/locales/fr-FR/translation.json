@@ -109,7 +109,6 @@
         },
         "identification": {
             "title": "Identification",
-            "titleShort": "ID",
             "idPlaceholder": "Entrez votre numéro d'identifiant 950"
         },
         "settings": {

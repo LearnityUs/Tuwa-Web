@@ -13,6 +13,27 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
     );
 }
 
+// Event for url changes `popstate`
+const createLocationChangeEvent = () => {
+    const event = new Event('popstate');
+    // Dispatch event
+    window.dispatchEvent(event);
+};
+
+// Hacky way to detect url changes
+const oldPushState = history.pushState;
+const oldReplaceState = history.replaceState;
+
+history.pushState = (...args) => {
+    oldPushState.apply(history, args);
+    createLocationChangeEvent();
+};
+
+history.replaceState = (...args) => {
+    oldReplaceState.apply(history, args);
+    createLocationChangeEvent();
+};
+
 render(
     () => (
         <Router>
