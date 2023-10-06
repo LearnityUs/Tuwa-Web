@@ -9,7 +9,7 @@ interface ProgressBarProps {
 export const ProgressBar: Component<ProgressBarProps> = ({ value, label }) => {
     return (
         <div
-            class='h-2 w-full overflow-hidden rounded-full bg-gray-800 ring-1 ring-gray-700/60'
+            class='bg-milk-200 dark:bg-rice-800 h-2 w-full overflow-hidden rounded-full'
             role='progressbar'
             aria-valuemin={0}
             aria-valuemax={100}
@@ -17,7 +17,7 @@ export const ProgressBar: Component<ProgressBarProps> = ({ value, label }) => {
             aria-label={flattenFmt(label())}
         >
             <div
-                class='h-2 w-min overflow-hidden rounded-full bg-theme-700 px-1 transition-all'
+                class='dark:bg-themedark-700 h-2 w-min overflow-hidden rounded-full bg-theme-400 px-1 transition-all'
                 style={{ width: `${value() * 100}%` }}
             />
         </div>

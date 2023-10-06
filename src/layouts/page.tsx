@@ -1,29 +1,44 @@
 import { type Component, type JSX, onMount, createSignal, onCleanup, createEffect } from 'solid-js';
-import { Trans } from '@mbarzda/solid-i18next';
-import { flattenFmt } from '../locales';
+import { FmtProps, TranslationItem, flattenFmt } from '../locales';
 
 interface PageLayoutProps {
     children: JSX.Element;
-    title: string;
-    showTitle?: boolean;
+    title: () => JSX.Element | null;
+    titleKey?: FmtProps;
 }
 
-export const PageLayout: Component<PageLayoutProps> = ({ children, title, showTitle = true }) => {
+interface DefaultPageTitleProps {
+    title: FmtProps;
+}
+
+export const DefaultPageTitle: Component<DefaultPageTitleProps> = ({ title }) => {
+    return (
+        <h1 class='text-3xl font-bold'>
+            <TranslationItem {...title} />
+        </h1>
+    );
+};
+export const PageLayout: Component<PageLayoutProps> = ({ children, title, titleKey }) => {
     const [appear, setAppear] = createSignal(false);
 
     onMount(() => {
         setTimeout(() => setAppear(true), 100);
         onCleanup(() => setAppear(false));
-    });
-
-    createEffect(() => {
-        if (showTitle)
+        if (titleKey)
             document.title = flattenFmt({
                 fmtString: 'common.pageFmt',
                 fmtArgs: {
-                    page: {
-                        fmtString: title
-                    }
+                    page: titleKey
+                }
+            });
+    });
+
+    createEffect(() => {
+        if (titleKey)
+            document.title = flattenFmt({
+                fmtString: 'common.pageFmt',
+                fmtArgs: {
+                    page: titleKey
                 }
             });
     });
@@ -31,17 +46,39 @@ export const PageLayout: Component<PageLayoutProps> = ({ children, title, showTi
     return (
         <div
             class={
-                'flex min-h-full w-full translate-y-20 opacity-0 transition-all p-safe-or-6 md:p-safe-or-10 ' +
-                (appear() && '!translate-y-0 !opacity-100')
+                'flex min-h-full w-full transition-opacity ' +
+                (appear() ? 'opacity-100' : 'md:opacity-0')
             }
         >
-            <div class='flex min-h-full w-full flex-col gap-8 overflow-visible pb-[3.75rem] pt-6 md:pb-0 md:pl-[5.5rem] md:pt-0'>
-                {showTitle && (
-                    <h1 class='text-4xl font-bold md:text-5xl'>
-                        <Trans key={title} />
-                    </h1>
+            <div class='flex min-h-full w-full flex-col overflow-hidden md:rounded-t-3xl'>
+                {title() !== null && (
+                    <div class='dark:bg-themedark-800 w-full bg-theme-300 pb-6 transition-all pt-safe-or-6 px-safe-or-4 md:px-8 md:py-8'>
+                        <div
+                            class={
+                                'ease-out-back transition-transform ' +
+                                (appear()
+                                    ? 'transition-x-0 opacity-100'
+                                    : 'translate-x-16 opacity-0')
+                            }
+                        >
+                            {title()}
+                        </div>
+                    </div>
                 )}
-                {children}
+                <div class='dark:bg-themedark-800 flex flex-1 flex-col bg-theme-300 transition-colors'>
+                    <div class='bg-milk-100 dark:bg-rice-900 flex flex-1 flex-col rounded-t-2xl pt-8 pb-safe-or-32 px-safe-or-4 md:rounded-t-3xl md:px-8 md:py-8'>
+                        <div
+                            class={
+                                'ease-out-back flex flex-1 flex-col gap-8 transition-transform ' +
+                                (appear()
+                                    ? 'transition-x-0 opacity-100'
+                                    : 'translate-x-16 opacity-0')
+                            }
+                        >
+                            {children}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

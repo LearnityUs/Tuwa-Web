@@ -106,7 +106,6 @@
         },
         "identification": {
             "title": "識別",
-            "titleShort": "ID",
             "idPlaceholder": "950 ID番号を入力してください"
         },
         "settings": {

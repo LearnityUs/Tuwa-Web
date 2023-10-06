@@ -276,7 +276,7 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
                     (subtitle() || 'md:items-center')
                 }
             >
-                <div class='flex h-12 w-12 min-w-[3rem] items-center justify-center rounded-full bg-theme-700 p-3'>
+                <div class='dark:bg-themedark-700 flex h-12 w-12 min-w-[3rem] items-center justify-center rounded-full bg-theme-400 p-3'>
                     <Icon name={icon} />
                 </div>
                 <div class='flex w-full flex-col gap-4'>
@@ -289,7 +289,7 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
                             />
                         </h2>
                         {subtitle() && (
-                            <p class='text-md text-gray-300'>
+                            <p class='text-md text-milk-800 dark:text-rice-200'>
                                 <TranslationItem
                                     {...(subtitle() ?? {
                                         fmtString: 'common.unknownError'
@@ -306,7 +306,7 @@ export const SchoolStatus: Component<SchoolStatusProps> = ({
                                     fmtString: 'components.schoolStatus.progress'
                                 })}
                             />
-                            <p class='text-sm text-gray-300'>
+                            <p class='text-milk-800 dark:text-rice-200 text-sm'>
                                 <TranslationItem
                                     fmtString='components.schoolStatus.periodLeft'
                                     fmtArgs={{

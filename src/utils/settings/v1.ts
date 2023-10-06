@@ -18,6 +18,10 @@ export const storeableSettingsV1 = object({
     version: number().required().oneOf([1]).default(1),
     syncable: object({
         firstTime: boolean().required().default(true),
+        preferedColorScheme: string()
+            .required()
+            .oneOf(['system', 'light', 'dark'])
+            .default('system'),
         locale: string().required().oneOf(availableLocales).default('en-US'),
         timeFormat: string().required().oneOf(['12h', '24h']).default('12h'),
         graduationYear: number()

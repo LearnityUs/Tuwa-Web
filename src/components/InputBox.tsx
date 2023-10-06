@@ -33,9 +33,10 @@ export const InputBox: Component<InputBoxProps> = ({
                 element = e;
             }}
             class={
-                'w-full rounded-md bg-gray-800 px-4 py-2 text-white shadow-md outline-offset-4 outline-transparent ring-1 ring-gray-700/60 transition-all focus:outline focus:outline-2 focus:outline-theme-400' +
-                (disabled() &&
-                    '!cursor-not-allowed !bg-gray-900 !text-gray-300 !shadow-none !outline-none !ring-0')
+                'placeholder:text-milk-700 dark:placeholder:text-rice-300 w-full rounded-md px-4 py-2 outline outline-offset-4 outline-transparent transition-all ' +
+                (disabled()
+                    ? 'bg-milk-300 dark:bg-rice-800 dark:text-rice-200 text-milk-800 cursor-not-allowed'
+                    : 'bg-milk-200 dark:bg-rice-700 text-milk-950 dark:text-rice-50 shadow focus:outline-2 focus:outline-theme-400')
             }
             inputMode={inputMode}
             type={type}

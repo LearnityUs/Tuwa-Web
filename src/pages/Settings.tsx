@@ -1,5 +1,5 @@
 import { Index, type Component, JSX } from 'solid-js';
-import { PageLayout } from '../layouts/page';
+import { DefaultPageTitle, PageLayout } from '../layouts/Page';
 import { AvailableLocales, FmtProps, TranslationItem } from '../locales';
 import { GroupBox } from '../components/GroupBox';
 import { Button } from '../components/Button';
@@ -52,7 +52,12 @@ const SettingItem: Component<{
 }> = ({ text, disabled, children }) => {
     return (
         <div class='flex h-10 items-center'>
-            <p class={'max-w-[8rem] md:max-w-[16rem] ' + (disabled() && 'text-gray-300')}>
+            <p
+                class={
+                    'max-w-[8rem] transition-colors md:max-w-[16rem] ' +
+                    (disabled() && 'text-milk-800 dark:text-rice-200')
+                }
+            >
                 <TranslationItem {...text} />
             </p>
             <div class='min-w-[0.5rem] flex-grow' />
@@ -65,7 +70,9 @@ const SettingsPage: Component = () => {
     const [settings, setSettings] = useSettingsStore();
 
     return (
-        <PageLayout title='pages.settings.title'>
+        <PageLayout
+            title={() => <DefaultPageTitle title={{ fmtString: 'pages.settings.title' }} />}
+        >
             <div class='flex flex-col gap-4'>
                 <SettingItem
                     text={{
@@ -98,6 +105,7 @@ const SettingsPage: Component = () => {
                                 isEducator: value
                             });
                         }}
+                        label={{ fmtString: 'pages.settings.educator' }}
                     />
                 </SettingItem>
                 <SettingItem
@@ -129,6 +137,34 @@ const SettingsPage: Component = () => {
                         onChange={value => {
                             setSettings({
                                 graduationYear: parseInt(value)
+                            });
+                        }}
+                    />
+                </SettingItem>
+                <SettingItem
+                    text={{ fmtString: 'pages.settings.theme' }}
+                    disabled={() => settings.isEducator}
+                >
+                    <SelectMenu
+                        options={() =>
+                            [
+                                ['system', 'pages.settings.themeOptions.system'],
+                                ['light', 'pages.settings.themeOptions.light'],
+                                ['dark', 'pages.settings.themeOptions.dark']
+                            ].map(([key, text]) => ({
+                                key,
+                                element: (
+                                    <span>
+                                        <TranslationItem fmtString={text} />
+                                    </span>
+                                )
+                            }))
+                        }
+                        disabled={() => false}
+                        selected={() => settings.preferedColorScheme}
+                        onChange={value => {
+                            setSettings({
+                                preferedColorScheme: value as 'system' | 'light' | 'dark'
                             });
                         }}
                     />
@@ -174,7 +210,7 @@ const SettingsPage: Component = () => {
                     <Index each={Object.keys(settings.periods)}>
                         {key => (
                             <div class='flex flex-col gap-2'>
-                                <p class='text-sm text-gray-300'>
+                                <p class='text-milk-800 dark:text-rice-200 text-sm'>
                                     <TranslationItem
                                         fmtString={
                                             periodTexts[
@@ -237,6 +273,9 @@ const SettingsPage: Component = () => {
                                                 }
                                             });
                                         }}
+                                        label={{
+                                            fmtString: 'pages.settings.scheduleCustomizationEnabled'
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -254,7 +293,6 @@ const SettingsPage: Component = () => {
                     </p>
                 </div>
                 <Button
-                    disabled={() => false}
                     style='secondary'
                     onClick={async () => {
                         if (!navigator.serviceWorker || !navigator.serviceWorker.getRegistration)

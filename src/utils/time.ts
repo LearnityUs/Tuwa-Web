@@ -249,7 +249,7 @@ export interface DateData {
  * const dateData = getDateData(date);
  * console.log(dateData);
  */
-export const getDateData = (date = new Date()): DateData => {
+export const getDateData = (date = new Date('Fri Oct 6 2023 12:40')): DateData => {
     const year = date.getFullYear();
 
     // Month

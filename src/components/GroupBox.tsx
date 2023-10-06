@@ -16,7 +16,7 @@ export const GroupBox: Component<GroupBoxProps> = ({ children, padding = 'large'
     return (
         <div
             class={
-                'flex flex-col gap-6 rounded-xl bg-gray-900 px-8 ring-2 ring-gray-800/60 ' +
+                'bg-milk-50 dark:bg-rice-950 flex flex-col gap-6 rounded-2xl px-8 shadow-lg ' +
                 paddingStyles[padding]
             }
         >

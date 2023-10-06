@@ -106,7 +106,6 @@
         },
         "identification": {
             "title": "신분증",
-            "titleShort": "ID",
             "idPlaceholder": "950 ID 번호를 입력하세요"
         },
         "settings": {

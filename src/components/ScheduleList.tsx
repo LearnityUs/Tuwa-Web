@@ -6,7 +6,6 @@ import {
     getPeriodName,
     getStandardSchedule
 } from '../utils/schedule';
-import { GroupBox } from './GroupBox';
 import { TranslationItem } from '../locales';
 import { Button } from './Button';
 import { Icon } from '../utils/icon';
@@ -26,7 +25,6 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
         name: 'error',
         hasSchool: false
     });
-    // const [date, setDate] = createSignal(defaultDate());
 
     const updateSchedule = (date: DateData) => {
         if (date.dayEpoch === cache && updateTime() === settingsDate) return;
@@ -68,7 +66,7 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
                         )}
                     </h2>
                     {lookAhead() ? (
-                        <p class='text-sm text-gray-300'>
+                        <p class='text-milk-800 dark:text-rice-200 text-sm'>
                             {['standardSchool', 'standardWeekend', 'holiday'].includes(
                                 schedule().type
                             ) ? (
@@ -87,7 +85,7 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
                             )}
                         </p>
                     ) : (
-                        <p class='text-sm text-gray-300'>
+                        <p class='text-milk-800 dark:text-rice-200 text-sm'>
                             {['standardSchool', 'standardWeekend', 'holiday'].includes(
                                 schedule().type
                             ) || <TranslationItem fmtString='components.scheduleList.alternate' />}
@@ -97,7 +95,7 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
                 <div class='md:flex-grow' />
                 <div class='flex w-full justify-center gap-3 md:w-min'>
                     <Button
-                        disabled={() => lookAhead() === null}
+                        state={() => (lookAhead() ? 'default' : 'disabled')}
                         onClick={() => setLookAhead(null)}
                         style='secondary'
                         ariaLabel={{
@@ -107,7 +105,6 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
                         <Icon class='h-4 w-4' name={() => 'Home'} />
                     </Button>
                     <Button
-                        disabled={() => false}
                         onClick={() => {
                             const ogDate = lookAhead() || new Date();
                             const newDate = new Date(ogDate);
@@ -122,7 +119,6 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
                         <Icon class='h-4 w-4' name={() => 'ArrowLeft'} />
                     </Button>
                     <Button
-                        disabled={() => false}
                         onClick={() => {
                             const ogDate = lookAhead() || new Date();
                             const newDate = new Date(ogDate);
@@ -141,7 +137,15 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
             <div class='flex flex-col gap-4'>
                 {schedule().hasSchool && schedule().periods ? (
                     schedule().periods!.map(p => (
-                        <GroupBox padding='small'>
+                        <div class='flex gap-4 px-4 py-2'>
+                            <div
+                                class={
+                                    'h-full w-1 rounded-full transition-colors ' +
+                                    (!lookAhead() && p.end <= defaultDate().secondMidnight
+                                        ? 'dark:bg-themedark-800 bg-theme-300'
+                                        : 'dark:bg-themedark-700 bg-theme-400')
+                                }
+                            />
                             <div
                                 class={
                                     'flex flex-col gap-1 ' +
@@ -155,10 +159,10 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
                                 </h3>
                                 <div
                                     class={
-                                        'text-md flex items-center gap-2 text-gray-300 ' +
-                                        (!lookAhead() &&
-                                            p.end <= defaultDate().secondMidnight &&
-                                            'text-gray-400')
+                                        'text-md text-milk-800 dark:text-rice-200 flex items-center gap-2 transition-colors ' +
+                                        (!lookAhead() && p.end <= defaultDate().secondMidnight
+                                            ? 'text-milk-700 dark:text-rice-300'
+                                            : 'text-milk-800 dark:text-rice-200 ')
                                     }
                                 >
                                     <Icon name={() => 'Clock'} class='h-4 w-4' />
@@ -173,14 +177,12 @@ export const ScheduleList: Component<ScheduleListProps> = ({ defaultDate }) => {
                                     </p>
                                 </div>
                             </div>
-                        </GroupBox>
+                        </div>
                     ))
                 ) : (
-                    <GroupBox padding='medium'>
-                        <p class='text-md flex items-center justify-center text-lg font-bold text-gray-300'>
-                            <TranslationItem fmtString='components.scheduleList.noSchool' />
-                        </p>
-                    </GroupBox>
+                    <p class='text-md text-milk-800 dark:text-rice-200 flex items-center justify-center text-lg font-bold'>
+                        <TranslationItem fmtString='components.scheduleList.noSchool' />
+                    </p>
                 )}
             </div>
         </div>

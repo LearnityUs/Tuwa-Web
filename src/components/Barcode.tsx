@@ -71,7 +71,7 @@ export const Barcode: Component<BarcodeProps> = ({ value, height }) => {
         <canvas
             ref={canvas}
             height={height}
-            class='w-full'
+            class='h-full w-full'
             style={{
                 'image-rendering': 'pixelated'
             }}

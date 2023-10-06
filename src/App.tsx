@@ -1,7 +1,6 @@
 import { lazy, type Component } from 'solid-js';
 import { Navigate, Outlet, Route, Routes } from '@solidjs/router';
 import { I18nProvider } from './locales';
-import { Background } from './components/Background';
 
 // Import pages
 import './pages/Home';
@@ -9,7 +8,7 @@ import './pages/Identification';
 import './pages/Settings';
 import './pages/About';
 import './pages/[404]';
-import { DefaultLayout } from './layouts/default';
+import { DefaultLayout } from './layouts/Default';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -42,7 +41,6 @@ export const App: Component = () => {
                     </Route>
                 </Routes>
             </I18nProvider>
-            <Background />
         </>
     );
 };
