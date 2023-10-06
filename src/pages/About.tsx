@@ -1,5 +1,5 @@
 import type { Component } from 'solid-js';
-import { PageLayout } from '../layouts/page';
+import { DefaultPageTitle, PageLayout } from '../layouts/Page';
 import { TranslationItem } from '../locales';
 import { GroupBox } from '../components/GroupBox';
 import { Button } from '../components/Button';
@@ -7,7 +7,16 @@ import { Icon } from '../utils/icon';
 
 const AboutPage: Component = () => {
     return (
-        <PageLayout title='pages.about.title'>
+        <PageLayout
+            title={() => (
+                <DefaultPageTitle
+                    title={{
+                        fmtString: 'pages.about.title'
+                    }}
+                />
+            )}
+            titleKey={{ fmtString: 'pages.about.title' }}
+        >
             <GroupBox>
                 <div class='flex flex-col gap-2'>
                     <h2 class='text-2xl font-bold italic'>
@@ -22,23 +31,11 @@ const AboutPage: Component = () => {
                 <TranslationItem fmtString='pages.about.description' />
             </p>
             <div class='flex gap-4'>
-                <Button
-                    disabled={() => false}
-                    style='secondary'
-                    element='a'
-                    href='https://discord.gg/sA7MGJnU'
-                    topRightSharp={true}
-                >
+                <Button style='secondary' element='a' href='https://discord.gg/FWUHSgkapJ'>
                     <TranslationItem fmtString='pages.about.discordLink' />
                     <Icon class='h-4 w-4' name={() => 'ArrowUpRight'} />
                 </Button>
-                <Button
-                    disabled={() => false}
-                    style='secondary'
-                    element='a'
-                    href='https://github.com/JoshuaBrest/TUWA'
-                    topRightSharp={true}
-                >
+                <Button style='secondary' element='a' href='https://github.com/TuwaApp/Tuwa-Web'>
                     <TranslationItem fmtString='pages.about.githubLink' />
                     <Icon class='h-4 w-4' name={() => 'ArrowUpRight'} />
                 </Button>

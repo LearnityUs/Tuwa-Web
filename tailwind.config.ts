@@ -1,29 +1,34 @@
 /** @type {import('tailwindcss').Config} */
-import { zinc, rose } from 'tailwindcss/colors';
+import { zinc, red, rose, indigo } from 'tailwindcss/colors';
 import tailwindcssSafeArea from 'tailwindcss-safe-area';
+import tailwindcssEasing from 'tailwindcss-easing';
 
 export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+    darkMode: 'class',
     theme: {
         extend: {
             colors: {
                 gray: zinc,
-                theme: {
-                    '50': '#f3f1ff',
-                    '100': '#ebe5ff',
-                    '200': '#d9ceff',
-                    '300': '#bea6ff',
-                    '400': '#9f75ff',
-                    '500': '#843dff',
-                    '600': '#7916ff',
-                    '700': '#6b04fd',
-                    '800': '#5a03d5',
-                    '900': '#4b05ad',
-                    '950': '#2c0076'
+                theme: rose,
+                themedark: indigo,
+                danger: red,
+                milk: {
+                    '50': '#f6f5f4',
+                    '100': '#eceae8',
+                    '200': '#d8d4d0',
+                    '300': '#bfb8b2',
+                    '400': '#a59a92',
+                    '500': '#93847c',
+                    '600': '#867770',
+                    '700': '#70625e',
+                    '800': '#5d524f',
+                    '900': '#4c4342',
+                    '950': '#282322'
                 },
-                danger: rose
+                rice: zinc
             }
         }
     },
-    plugins: [tailwindcssSafeArea]
+    plugins: [tailwindcssSafeArea, tailwindcssEasing]
 };

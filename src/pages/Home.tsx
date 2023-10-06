@@ -1,5 +1,5 @@
 import { createSignal, type Component, onMount, onCleanup } from 'solid-js';
-import { PageLayout } from '../layouts/page';
+import { PageLayout } from '../layouts/Page';
 import { getDateData, getFormattedDate } from '../utils/time';
 import { DayScheduleAny, filterSchedule, getStandardSchedule } from '../utils/schedule';
 import { TranslationItem } from '../locales';
@@ -61,39 +61,44 @@ const HomePage: Component = () => {
     });
 
     return (
-        <PageLayout showTitle={false} title='pages.home.title'>
-            <div>
-                <h2 class='text-5xl font-bold md:text-6xl'>
-                    <span>
-                        {settings.timeFormat === '12h'
-                            ? date().hour % 12 === 0
-                                ? 12
-                                : date().hour % 12
-                            : date().hour}
-                    </span>
-                    <span>:</span>
-                    <span>{date().minute.toString().padStart(2, '0')}</span>
-                    <span class='text-3xl text-gray-300 md:text-4xl'>:</span>
-                    <span class='text-3xl text-gray-300 md:text-4xl'>
-                        {date().second.toString().padStart(2, '0')}
-                    </span>
-                    {settings.timeFormat === '12h' && (
-                        <>
-                            <span class='text-3xl text-gray-300 md:text-4xl'> </span>
-                            <span class='text-3xl text-gray-300 md:text-4xl'>
-                                {date().hour >= 12 ? (
-                                    <TranslationItem fmtString='common.time.pm' />
-                                ) : (
-                                    <TranslationItem fmtString='common.time.am' />
-                                )}
+        <PageLayout
+            title={() => (
+                <div class='flex flex-col'>
+                    <h2 class='text-4xl font-bold text-theme-950 dark:text-themedark-50 md:text-5xl'>
+                        <span>
+                            {settings.timeFormat === '12h'
+                                ? date().hour % 12 === 0
+                                    ? 12
+                                    : date().hour % 12
+                                : date().hour}
+                        </span>
+                        <span>:</span>
+                        <span>{date().minute.toString().padStart(2, '0')}</span>
+                        <span class='text-theme-900 dark:text-themedark-200'>
+                            <span class='text-2xl md:text-3xl'>:</span>
+                            <span class='text-2xl md:text-3xl'>
+                                {date().second.toString().padStart(2, '0')}
                             </span>
-                        </>
-                    )}
-                </h2>
-                <p class='text-sm text-gray-300 md:text-base'>
-                    <TranslationItem {...getFormattedDate(date() ?? getDateData())} />
-                </p>
-            </div>
+                            {settings.timeFormat === '12h' && (
+                                <>
+                                    <span class='text-2xl md:text-3xl'> </span>
+                                    <span class='text-2xl md:text-3xl'>
+                                        {date().hour >= 12 ? (
+                                            <TranslationItem fmtString='common.time.pm' />
+                                        ) : (
+                                            <TranslationItem fmtString='common.time.am' />
+                                        )}
+                                    </span>
+                                </>
+                            )}
+                        </span>
+                    </h2>
+                    <p class='text-sm text-theme-900 dark:text-themedark-200 md:text-base'>
+                        <TranslationItem {...getFormattedDate(date() ?? getDateData())} />
+                    </p>
+                </div>
+            )}
+        >
             <SchoolStatus date={() => date()} schedule={() => schedule()} shouldSetFavicon={true} />
             <ScheduleList defaultDate={() => date()} />
         </PageLayout>

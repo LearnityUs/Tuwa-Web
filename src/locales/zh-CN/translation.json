@@ -106,7 +106,6 @@
         },
         "identification": {
             "title": "识别",
-            "titleShort": "ID",
             "idPlaceholder": "请输入您的950ID号"
         },
         "settings": {

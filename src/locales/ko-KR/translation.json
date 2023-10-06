@@ -2,14 +2,14 @@
     "utils": {
         "time": {
             "timeLeft": {
-                "timeFmtThree": "{{unitBig}} {{unitMedium}} {{unitSmall}}",
-                "timeFmtTwo": "{{unitBig}} {{unitSmall}}",
+                "timeFmtThree": "{{unitBig}}, {{unitMedium}} , {{unitSmall}}",
+                "timeFmtTwo": "{{unitBig}} , {{unitSmall}}",
                 "hours_other": "{{count}} 시간",
                 "minutes_other": "{{count}} 분",
                 "seconds_other": "{{count}} 초"
             },
-            "dateFmt": "{{year}}년 {{month}} {{date}}일 {{day}}",
-            "dateFmtShort": "{{year}}년 {{month}} {{date}}일",
+            "dateFmt": "{{day}}, {{month}} , {{date}}, {{year}}",
+            "dateFmtShort": "{{month}} {{date}}, {{year}}",
             "days": {
                 "monday": "월요일",
                 "tuesday": "화요일",
@@ -36,34 +36,34 @@
         }
     },
     "common": {
-        "unknownError": "오류가 발생했습니다",
+        "unknownError": "문제가 발생했습니다",
         "periods": {
-            "0": "0교시",
-            "1": "1교시",
-            "2": "2교시",
-            "3": "3교시",
-            "4": "4교시",
-            "5": "5교시",
-            "6": "6교시",
-            "7": "7교시",
-            "8": "8교시",
+            "0": "ZERO 기간",
+            "1": "1st 기간",
+            "2": "2nd 기간",
+            "3": "3rd 기간",
+            "4": "4번째 시간",
+            "5": "5번째 시간",
+            "6": "6번째 시간",
+            "7": "7번째 시간",
+            "8": "8번째 시간",
             "self": "자습",
             "prime": "주요",
             "studyHall": "공부실",
             "lunch": "점심",
-            "brunch": "간식",
+            "brunch": "간식 시간",
             "passing": "여유 시간",
             "custom": "{{name}}",
             "name": "{{name}}"
         },
         "holidays": {
-            "localHoliday": "휴일"
+            "localHoliday": "지역 휴일"
         },
         "time": {
             "am": "오전",
             "pm": "오후",
-            "timeFmt12h": "{{ampm}} {{hours}}시 {{minutes}}분",
-            "timeFmt24h": "{{hours}}시 {{minutes}}분"
+            "timeFmt12h": "{{hours}}시{{minutes}} 분 {{ampm}}초",
+            "timeFmt24h": "{{hours}}시{{minutes}}분"
         },
         "pageFmt": "{{page}} | TUWA Gunn App"
     },
@@ -81,7 +81,7 @@
             "subheadings": {
                 "firstPeriod": "첫 번째 교시는 {{period}}입니다.",
                 "nextPeriod": "다음 교시는 {{period}}입니다.",
-                "lastPeriod": "마지막 교시입니다."
+                "lastPeriod": "오늘은 마지막 교시입니다."
             }
         },
         "scheduleList": {
@@ -106,7 +106,6 @@
         },
         "identification": {
             "title": "신분증",
-            "titleShort": "ID",
             "idPlaceholder": "950 ID 번호를 입력하세요"
         },
         "settings": {
