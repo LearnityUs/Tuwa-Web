@@ -33,8 +33,8 @@ const SettingsApplicator: Component = () => {
                     ? '#3730a3'
                     : '#fda4af'
                 : theme === 'dark'
-                ? '#1f1f1f'
-                : '#f6f5f4';
+                    ? '#1f1f1f'
+                    : '#f6f5f4';
 
         // Set the theme color
         themeColor.content !== styles && (themeColor.content = styles);
