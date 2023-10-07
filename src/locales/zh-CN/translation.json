@@ -66,7 +66,7 @@
             "timeFmt24h": "{{hours}}:{{minutes}}"
         },
         "pageFmt": "{{page}}｜途哇 Gunn APP",
-        "appName": "TUWA"
+        "appName": "途哇"
     },
     "components": {
         "schoolStatus": {
@@ -119,15 +119,15 @@
                 "12hr": "12小时制",
                 "24hr": "24小时"
             },
-            "theme": "Theme",
+            "theme": "主题",
             "themeOptions": {
-                "light": "Light",
-                "dark": "Dark",
-                "system": "System"
+                "light": "轻模式",
+                "dark": "暗模式",
+                "system": "系统模式"
             },
             "language": "语言",
             "scheduleCustomization": "自定义日程安排",
-            "scheduleCustomizationEnabled": "Enable or disable period",
+            "scheduleCustomizationEnabled": "启用或禁用时期",
             "appRefresh": "修复应用程序缓存",
             "appRefreshDescription": "如果应用程序无法正常工作，可能是因为某些文件已过时。这将修复此问题。如果您处于离线状态，请勿执行此操作。",
             "appRefreshButton": "修正"
