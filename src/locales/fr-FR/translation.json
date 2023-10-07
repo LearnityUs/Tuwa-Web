@@ -122,15 +122,15 @@
                 "12hr": "12 heures",
                 "24hr": "24 heures"
             },
-            "theme": "Theme",
+            "theme": "Thème",
             "themeOptions": {
-                "light": "Light",
-                "dark": "Dark",
-                "system": "System"
+                "light": "Clair",
+                "dark": "Sombre",
+                "system": "Système"
             },
             "language": "Langue",
             "scheduleCustomization": "Personnalisation de l'emploi du temps",
-            "scheduleCustomizationEnabled": "Enable or disable period",
+            "scheduleCustomizationEnabled": "Activer ou désactiver la période",
             "appRefresh": "Réparer le cache de l'application",
             "appRefreshDescription": "Si l'application ne fonctionne pas correctement, cela peut être dû à des fichiers obsolètes. Cela les réparera. Ne le faites pas si vous êtes hors ligne.",
             "appRefreshButton": "Réparer"
