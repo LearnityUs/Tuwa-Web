@@ -119,9 +119,9 @@
                 "12hr": "12시간",
                 "24hr": "24시간"
             },
-            "theme": "Theme",
+            "theme": "테마",
             "themeOptions": {
-                "light": "Light",
+                "light": "라이트",
                 "dark": "Dark",
                 "system": "System"
             },
