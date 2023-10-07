@@ -36,7 +36,7 @@ export const InputBox: Component<InputBoxProps> = ({
                 'w-full rounded-md px-4 py-2 outline outline-offset-4 outline-transparent transition-all placeholder:text-milk-700 dark:placeholder:text-rice-300 ' +
                 (disabled()
                     ? 'cursor-not-allowed bg-milk-300 text-milk-800 dark:bg-rice-800 dark:text-rice-200'
-                    : 'bg-milk-200 text-milk-950 shadow focus:outline-2 focus:outline-theme-400 dark:bg-rice-700 dark:text-rice-50')
+                    : 'bg-milk-200 text-milk-950 shadow focus:outline-2 focus:outline-theme-400 dark:bg-rice-700 dark:text-rice-50 dark:focus:outline-themedark-400')
             }
             inputMode={inputMode}
             type={type}
