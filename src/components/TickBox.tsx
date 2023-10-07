@@ -31,7 +31,7 @@ export const TickBox: Component<TickBoxProps> = ({ value, disabled, onChange, la
         >
             <div
                 class={
-                    'flex h-full w-full origin-center scale-50 items-center justify-center rounded-md bg-theme-500 p-1 opacity-0 transition-all dark:bg-themedark-700 ' +
+                    'flex h-full w-full origin-center scale-50 items-center justify-center rounded bg-theme-500 p-1 opacity-0 transition-all dark:bg-themedark-700 ' +
                     (value() && '!scale-100 !opacity-100')
                 }
             >

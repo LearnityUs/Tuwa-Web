@@ -59,14 +59,14 @@ const NavOption: Component<NavOptionProps> = ({ key, href, icon, active, onClick
             element='a'
             style='bordered'
             state={() => (active() ? 'selected' : 'default')}
-            isIcon={true}
             href={href}
             onClick={() => {
                 onClick();
             }}
+            class='h-12 w-16 flex-col justify-center gap-1 text-ellipsis !py-0 text-center !outline-1 !outline-offset-1'
         >
-            <Icon class='h-4 w-4' name={() => icon} />
-            <p class='text-xs'>
+            <Icon class='h-3 w-3' name={() => icon} />
+            <p class='text-[0.5rem]'>
                 <Trans key={key} />
             </p>
         </Button>
@@ -137,7 +137,7 @@ export const BottomBar: Component = () => {
     });
 
     return (
-        <div class='fixed bottom-0 z-10 flex w-full flex-row justify-evenly gap-6 bg-milk-200 pt-2 shadow-lg transition-colors pb-safe-or-2 px-safe-or-4 dark:bg-rice-800'>
+        <div class='fixed bottom-0 z-10 flex w-full flex-row justify-evenly gap-6 rounded-t-3xl bg-milk-50 pt-2 shadow-lg transition-colors pb-safe-or-2 px-safe-or-4 dark:bg-rice-950'>
             {pageOptions
                 .filter(e => e.showMobile)
                 .map(option => (

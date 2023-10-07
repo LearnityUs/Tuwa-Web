@@ -36,23 +36,25 @@ export const Button: Component<ButtonProps> = ({
     const styles = {
         primary: {
             default:
-                'bg-theme-200 hover:bg-theme-300 shadow-md dark:bg-themedark-700 dark:hover:bg-themedark-600',
+                'bg-theme-200 hover:bg-theme-300 active:bg-theme-300 shadow-md dark:bg-themedark-700 dark:hover:bg-themedark-600 dark:active:bg-themedark-600',
             selected: '!bg-theme-300 dark:!bg-theme-600',
             disabled: '!bg-theme-100 !shadow-none dark:!bg-theme-800'
         },
         secondary: {
             default:
-                'bg-milk-300 hover:bg-milk-400 shadow-md dark:bg-rice-700 dark:hover:bg-rice-600',
+                'bg-milk-300 hover:bg-milk-400 active:bg-milk-400 shadow-md dark:bg-rice-700 dark:hover:bg-rice-600 dark:active:bg-rice-600',
             selected: '!bg-milk-400 dark:!bg-rice-600',
             disabled: '!bg-milk-200 !shadow-none dark:!bg-rice-800'
         },
         bordered: {
-            default: 'bg-transparent hover:bg-milk-100 dark:hover:bg-rice-800',
+            default:
+                'bg-transparent hover:bg-milk-100 active:bg-milk-100 dark:hover:bg-rice-800 dark:active:bg-rice-800',
             selected: '!bg-milk-100 dark:!bg-rice-800',
             disabled: '!bg-transparent dark:!bg-transparent'
         },
         danger: {
-            default: 'bg-red-200 hover:bg-red-300 shadow-md dark:bg-red-700 dark:hover:bg-red-600',
+            default:
+                'bg-red-200 hover:bg-red-300 active:bg-red-300 shadow-md dark:bg-red-700 dark:hover:bg-red-600 dark:active:bg-red-600',
             selected: '!bg-red-300 dark:!bg-red-600',
             disabled: '!bg-red-100 !shadow-none dark:!bg-red-800'
         }
