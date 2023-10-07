@@ -68,7 +68,8 @@
             "timeFmt12h": "{{hours}}:{{minutes}} {{ampm}}",
             "timeFmt24h": "{{hours}}:{{minutes}}"
         },
-        "pageFmt": "{{page}} | Application TUWA"
+        "pageFmt": "{{page}} | Application TUWA",
+        "appName": "TUWA"
     },
     "components": {
         "schoolStatus": {
@@ -121,8 +122,15 @@
                 "12hr": "12 heures",
                 "24hr": "24 heures"
             },
+            "theme": "Thème",
+            "themeOptions": {
+                "light": "Clair",
+                "dark": "Sombre",
+                "system": "Système"
+            },
             "language": "Langue",
             "scheduleCustomization": "Personnalisation de l'emploi du temps",
+            "scheduleCustomizationEnabled": "Activer ou désactiver la période",
             "appRefresh": "Réparer le cache de l'application",
             "appRefreshDescription": "Si l'application ne fonctionne pas correctement, cela peut être dû à des fichiers obsolètes. Cela les réparera. Ne le faites pas si vous êtes hors ligne.",
             "appRefreshButton": "Réparer"

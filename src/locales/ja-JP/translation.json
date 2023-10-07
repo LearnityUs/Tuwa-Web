@@ -65,7 +65,8 @@
             "timeFmt12h": "{{hours}}:{{minutes}} {{ampm}}",
             "timeFmt24h": "{{hours}}:{{minutes}}"
         },
-        "pageFmt": "{{page}} | TUWA Gunn アプリ"
+        "pageFmt": "{{page}} | TUWA Gunn アプリ",
+        "appName": "TUWA"
     },
     "components": {
         "schoolStatus": {
@@ -118,8 +119,15 @@
                 "12hr": "12時間表示",
                 "24hr": "24時間表示"
             },
+            "theme": "テーマ",
+            "themeOptions": {
+                "light": "ライト",
+                "dark": "ダーク",
+                "system": "システム"
+            },
             "language": "言語",
             "scheduleCustomization": "スケジュールのカスタマイズ",
+            "scheduleCustomizationEnabled": "期間の有効化または無効化",
             "appRefresh": "アプリキャッシュ修正",
             "appRefreshDescription": "アプリが正常に動作しない場合、一部のファイルが古くなっている可能性があります。これによって修正されます。オフラインの場合は実行しないでください。",
             "appRefreshButton": "修正"

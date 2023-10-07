@@ -68,7 +68,8 @@
             "timeFmt12h": "{{hours}}:{{minutes}} {{ampm}}",
             "timeFmt24h": "{{hours}}:{{minutes}}"
         },
-        "pageFmt": "{{page}} | TUWA Aplicación Gunn"
+        "pageFmt": "{{page}} | TUWA Aplicación Gunn",
+        "appName": "TUWA"
     },
     "components": {
         "schoolStatus": {
@@ -121,8 +122,15 @@
                 "12hr": "12 horas",
                 "24hr": "24 horas"
             },
+            "theme": "Tema",
+            "themeOptions": {
+                "light": "Claro",
+                "dark": "Oscuro",
+                "system": "Sistema"
+            },
             "language": "Idioma",
             "scheduleCustomization": "Personalización de horario",
+            "scheduleCustomizationEnabled": "Activar o desactivar período",
             "appRefresh": "Actualizar Caché de la App",
             "appRefreshDescription": "Si la aplicación no funciona correctamente, puede ser porque algunos archivos están desactualizados. Esto solucionará el problema. No hagas esto si no estás conectado.",
             "appRefreshButton": "Solucionar"
