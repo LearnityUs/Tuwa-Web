@@ -288,11 +288,12 @@ const SettingsPage: Component = () => {
                     <h3 class='text-2xl font-bold'>
                         <TranslationItem fmtString='pages.settings.appRefresh' />
                     </h3>
-                    <p class='text-sm text-gray-300'>
+                    <p class='text-sm text-milk-800 dark:text-rice-200'>
                         <TranslationItem fmtString='pages.settings.appRefreshDescription' />
                     </p>
                 </div>
                 <Button
+                    class='w-fit'
                     style='secondary'
                     onClick={async () => {
                         if (!navigator.serviceWorker || !navigator.serviceWorker.getRegistration)

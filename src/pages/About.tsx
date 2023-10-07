@@ -22,7 +22,7 @@ const AboutPage: Component = () => {
                     <h2 class='text-2xl font-bold italic'>
                         <TranslationItem fmtString='pages.about.quote' />
                     </h2>
-                    <p class='text-md text-gray-300'>
+                    <p class='text-md text-milk-800 dark:text-rice-200'>
                         <TranslationItem fmtString='pages.about.quoteAuthor' />
                     </p>
                 </div>

@@ -9,7 +9,6 @@ export default {
     theme: {
         extend: {
             colors: {
-                gray: zinc,
                 theme: rose,
                 themedark: indigo,
                 danger: red,
